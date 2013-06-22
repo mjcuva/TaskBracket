@@ -8,7 +8,7 @@
 
 #import "TaskCollectionVC.h"
 #import "CollectionCell.h"
-#import "ListCollectionView.h"
+#import "ListView.h"
 
 @interface TaskCollectionVC () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
@@ -47,7 +47,7 @@
     if([cell isKindOfClass:[CollectionCell class]]){
         CollectionCell *collectionCell = (CollectionCell *)cell;
         if(!collectionCell.lcv){
-            ListCollectionView *lv = [[ListCollectionView alloc] initWithFrame:CGRectMake(0, 0, self.flowLayout.itemSize.width, self.flowLayout.itemSize.height)];
+            ListView *lv = [[ListView alloc] initWithFrame:CGRectMake(0, 0, self.flowLayout.itemSize.width, self.flowLayout.itemSize.height)];
             collectionCell.lcv = lv;
             [collectionCell addSubview:lv];
         }

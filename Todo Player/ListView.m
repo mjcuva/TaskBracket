@@ -1,14 +1,14 @@
 //
-//  ListCollectionView.m
+//  ListView.m
 //  Todo Player
 //
 //  Created by Marc Cuva on 6/21/13.
 //  Copyright (c) 2013 Marc Cuva. All rights reserved.
 //
 
-#import "ListCollectionView.h"
+#import "ListView.h"
 
-@implementation ListCollectionView
+@implementation ListView
 
 - (id)initWithFrame:(CGRect)frame
 {

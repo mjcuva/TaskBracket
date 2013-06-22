@@ -1,5 +1,5 @@
 //
-//  ListCollectionView.h
+//  ListView.h
 //  Todo Player
 //
 //  Created by Marc Cuva on 6/21/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ListCollectionView : UIView
+@interface ListView : UIView
 
 @end
