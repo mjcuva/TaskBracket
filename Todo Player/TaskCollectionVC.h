@@ -5,6 +5,7 @@
 //  Created by Marc Cuva on 6/21/13.
 //  Copyright (c) 2013 Marc Cuva. All rights reserved.
 //
+//  Abstract base class for a collection view containing a list of tasks
 
 #import <UIKit/UIKit.h>
 
