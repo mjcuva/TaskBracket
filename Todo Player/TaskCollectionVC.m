@@ -9,10 +9,14 @@
 #import "TaskCollectionVC.h"
 
 @interface TaskCollectionVC () <UICollectionViewDataSource>
-
+@property (strong, nonatomic) IBOutlet UICollectionView* collectionView;
 @end
 
 @implementation TaskCollectionVC
+
+- (void)viewDidLoad{
+    self.collectionView.dataSource = self;
+}
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return [self numCollections];
