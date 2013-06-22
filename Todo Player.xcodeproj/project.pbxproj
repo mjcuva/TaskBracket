@@ -24,6 +24,8 @@
 		49A84D2C177551480076597F /* TaskCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D2B177551480076597F /* TaskCollectionVC.m */; };
 		49A84D2F177558A00076597F /* TodoPlayer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D2D177558A00076597F /* TodoPlayer.xcdatamodeld */; };
 		49A84D3217755CD70076597F /* ListCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D3117755CD70076597F /* ListCollectionVC.m */; };
+		49A84D35177562530076597F /* CollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D34177562530076597F /* CollectionCell.m */; };
+		49A84D38177562910076597F /* ListCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D37177562910076597F /* ListCollectionView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +63,10 @@
 		49A84D2E177558A00076597F /* TodoPlayer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TodoPlayer.xcdatamodel; sourceTree = "<group>"; };
 		49A84D3017755CD70076597F /* ListCollectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCollectionVC.h; sourceTree = "<group>"; };
 		49A84D3117755CD70076597F /* ListCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCollectionVC.m; sourceTree = "<group>"; };
+		49A84D33177562530076597F /* CollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionCell.h; sourceTree = "<group>"; };
+		49A84D34177562530076597F /* CollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionCell.m; sourceTree = "<group>"; };
+		49A84D36177562910076597F /* ListCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCollectionView.h; sourceTree = "<group>"; };
+		49A84D37177562910076597F /* ListCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCollectionView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +129,10 @@
 				49A84D0417754DBA0076597F /* AppDelegate.h */,
 				49A84D0517754DBA0076597F /* AppDelegate.m */,
 				49A84D0717754DBA0076597F /* Main.storyboard */,
+				49A84D33177562530076597F /* CollectionCell.h */,
+				49A84D34177562530076597F /* CollectionCell.m */,
+				49A84D36177562910076597F /* ListCollectionView.h */,
+				49A84D37177562910076597F /* ListCollectionView.m */,
 				49A84D2A177551480076597F /* TaskCollectionVC.h */,
 				49A84D2B177551480076597F /* TaskCollectionVC.m */,
 				49A84D3017755CD70076597F /* ListCollectionVC.h */,
@@ -264,8 +274,10 @@
 			files = (
 				49A84D0C17754DBA0076597F /* ViewController.m in Sources */,
 				49A84D2C177551480076597F /* TaskCollectionVC.m in Sources */,
+				49A84D38177562910076597F /* ListCollectionView.m in Sources */,
 				49A84D0617754DBA0076597F /* AppDelegate.m in Sources */,
 				49A84D0217754DBA0076597F /* main.m in Sources */,
+				49A84D35177562530076597F /* CollectionCell.m in Sources */,
 				49A84D3217755CD70076597F /* ListCollectionVC.m in Sources */,
 				49A84D2F177558A00076597F /* TodoPlayer.xcdatamodeld in Sources */,
 			);
@@ -470,6 +482,7 @@
 				49A84D2617754DBA0076597F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		49A84D2717754DBA0076597F /* Build configuration list for PBXNativeTarget "Todo PlayerTests" */ = {
 			isa = XCConfigurationList;
@@ -478,6 +491,7 @@
 				49A84D2917754DBA0076597F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
