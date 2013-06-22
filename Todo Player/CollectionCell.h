@@ -10,5 +10,5 @@
 #import "ListCollectionView.h"
 
 @interface CollectionCell : UICollectionViewCell
-@property (strong, nonatomic) IBOutlet ListCollectionView *lcv;
+@property (strong, nonatomic) ListCollectionView *lcv;
 @end
