@@ -14,7 +14,6 @@
 		49A84D0217754DBA0076597F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D0117754DBA0076597F /* main.m */; };
 		49A84D0617754DBA0076597F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D0517754DBA0076597F /* AppDelegate.m */; };
 		49A84D0917754DBA0076597F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 49A84D0717754DBA0076597F /* Main.storyboard */; };
-		49A84D0C17754DBA0076597F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D0B17754DBA0076597F /* ViewController.m */; };
 		49A84D0E17754DBA0076597F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 49A84D0D17754DBA0076597F /* Images.xcassets */; };
 		49A84D1517754DBA0076597F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A84D1417754DBA0076597F /* XCTest.framework */; };
 		49A84D1617754DBA0076597F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A84CF517754DBA0076597F /* Foundation.framework */; };
@@ -25,7 +24,7 @@
 		49A84D2F177558A00076597F /* TodoPlayer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D2D177558A00076597F /* TodoPlayer.xcdatamodeld */; };
 		49A84D3217755CD70076597F /* ListCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D3117755CD70076597F /* ListCollectionVC.m */; };
 		49A84D35177562530076597F /* CollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D34177562530076597F /* CollectionCell.m */; };
-		49A84D38177562910076597F /* ListCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D37177562910076597F /* ListCollectionView.m */; };
+		49A84D38177562910076597F /* ListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D37177562910076597F /* ListView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,8 +49,6 @@
 		49A84D0417754DBA0076597F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		49A84D0517754DBA0076597F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		49A84D0817754DBA0076597F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		49A84D0A17754DBA0076597F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		49A84D0B17754DBA0076597F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		49A84D0D17754DBA0076597F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		49A84D1317754DBA0076597F /* Todo PlayerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Todo PlayerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		49A84D1417754DBA0076597F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -65,8 +62,8 @@
 		49A84D3117755CD70076597F /* ListCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCollectionVC.m; sourceTree = "<group>"; };
 		49A84D33177562530076597F /* CollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionCell.h; sourceTree = "<group>"; };
 		49A84D34177562530076597F /* CollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionCell.m; sourceTree = "<group>"; };
-		49A84D36177562910076597F /* ListCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCollectionView.h; sourceTree = "<group>"; };
-		49A84D37177562910076597F /* ListCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCollectionView.m; sourceTree = "<group>"; };
+		49A84D36177562910076597F /* ListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListView.h; sourceTree = "<group>"; };
+		49A84D37177562910076597F /* ListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,20 +123,16 @@
 		49A84CFB17754DBA0076597F /* Todo Player */ = {
 			isa = PBXGroup;
 			children = (
-				49A84D0417754DBA0076597F /* AppDelegate.h */,
-				49A84D0517754DBA0076597F /* AppDelegate.m */,
 				49A84D0717754DBA0076597F /* Main.storyboard */,
-				49A84D33177562530076597F /* CollectionCell.h */,
-				49A84D34177562530076597F /* CollectionCell.m */,
-				49A84D36177562910076597F /* ListCollectionView.h */,
-				49A84D37177562910076597F /* ListCollectionView.m */,
 				49A84D2A177551480076597F /* TaskCollectionVC.h */,
 				49A84D2B177551480076597F /* TaskCollectionVC.m */,
 				49A84D3017755CD70076597F /* ListCollectionVC.h */,
 				49A84D3117755CD70076597F /* ListCollectionVC.m */,
-				49A84D2D177558A00076597F /* TodoPlayer.xcdatamodeld */,
-				49A84D0A17754DBA0076597F /* ViewController.h */,
-				49A84D0B17754DBA0076597F /* ViewController.m */,
+				49A84D33177562530076597F /* CollectionCell.h */,
+				49A84D34177562530076597F /* CollectionCell.m */,
+				49A84D36177562910076597F /* ListView.h */,
+				49A84D37177562910076597F /* ListView.m */,
+				49A84D39177665D20076597F /* Core Data */,
 				49A84D0D17754DBA0076597F /* Images.xcassets */,
 				49A84CFC17754DBA0076597F /* Supporting Files */,
 			);
@@ -149,6 +142,8 @@
 		49A84CFC17754DBA0076597F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				49A84D0417754DBA0076597F /* AppDelegate.h */,
+				49A84D0517754DBA0076597F /* AppDelegate.m */,
 				49A84CFD17754DBA0076597F /* Todo Player-Info.plist */,
 				49A84CFE17754DBA0076597F /* InfoPlist.strings */,
 				49A84D0117754DBA0076597F /* main.m */,
@@ -173,6 +168,14 @@
 				49A84D1D17754DBA0076597F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		49A84D39177665D20076597F /* Core Data */ = {
+			isa = PBXGroup;
+			children = (
+				49A84D2D177558A00076597F /* TodoPlayer.xcdatamodeld */,
+			);
+			name = "Core Data";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,9 +275,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49A84D0C17754DBA0076597F /* ViewController.m in Sources */,
 				49A84D2C177551480076597F /* TaskCollectionVC.m in Sources */,
-				49A84D38177562910076597F /* ListCollectionView.m in Sources */,
+				49A84D38177562910076597F /* ListView.m in Sources */,
 				49A84D0617754DBA0076597F /* AppDelegate.m in Sources */,
 				49A84D0217754DBA0076597F /* main.m in Sources */,
 				49A84D35177562530076597F /* CollectionCell.m in Sources */,
