@@ -21,6 +21,9 @@
 		49A84D1717754DBA0076597F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A84CF917754DBA0076597F /* UIKit.framework */; };
 		49A84D1F17754DBA0076597F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49A84D1D17754DBA0076597F /* InfoPlist.strings */; };
 		49A84D2117754DBA0076597F /* Todo_PlayerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D2017754DBA0076597F /* Todo_PlayerTests.m */; };
+		49A84D2C177551480076597F /* TaskCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D2B177551480076597F /* TaskCollectionVC.m */; };
+		49A84D2F177558A00076597F /* TodoPlayer.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D2D177558A00076597F /* TodoPlayer.xcdatamodeld */; };
+		49A84D3217755CD70076597F /* ListCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D3117755CD70076597F /* ListCollectionVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +56,11 @@
 		49A84D1C17754DBA0076597F /* Todo PlayerTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Todo PlayerTests-Info.plist"; sourceTree = "<group>"; };
 		49A84D1E17754DBA0076597F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		49A84D2017754DBA0076597F /* Todo_PlayerTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Todo_PlayerTests.m; sourceTree = "<group>"; };
+		49A84D2A177551480076597F /* TaskCollectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskCollectionVC.h; sourceTree = "<group>"; };
+		49A84D2B177551480076597F /* TaskCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskCollectionVC.m; sourceTree = "<group>"; };
+		49A84D2E177558A00076597F /* TodoPlayer.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TodoPlayer.xcdatamodel; sourceTree = "<group>"; };
+		49A84D3017755CD70076597F /* ListCollectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListCollectionVC.h; sourceTree = "<group>"; };
+		49A84D3117755CD70076597F /* ListCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListCollectionVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +123,11 @@
 				49A84D0417754DBA0076597F /* AppDelegate.h */,
 				49A84D0517754DBA0076597F /* AppDelegate.m */,
 				49A84D0717754DBA0076597F /* Main.storyboard */,
+				49A84D2A177551480076597F /* TaskCollectionVC.h */,
+				49A84D2B177551480076597F /* TaskCollectionVC.m */,
+				49A84D3017755CD70076597F /* ListCollectionVC.h */,
+				49A84D3117755CD70076597F /* ListCollectionVC.m */,
+				49A84D2D177558A00076597F /* TodoPlayer.xcdatamodeld */,
 				49A84D0A17754DBA0076597F /* ViewController.h */,
 				49A84D0B17754DBA0076597F /* ViewController.m */,
 				49A84D0D17754DBA0076597F /* Images.xcassets */,
@@ -250,8 +263,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				49A84D0C17754DBA0076597F /* ViewController.m in Sources */,
+				49A84D2C177551480076597F /* TaskCollectionVC.m in Sources */,
 				49A84D0617754DBA0076597F /* AppDelegate.m in Sources */,
 				49A84D0217754DBA0076597F /* main.m in Sources */,
+				49A84D3217755CD70076597F /* ListCollectionVC.m in Sources */,
+				49A84D2F177558A00076597F /* TodoPlayer.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -464,6 +480,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		49A84D2D177558A00076597F /* TodoPlayer.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				49A84D2E177558A00076597F /* TodoPlayer.xcdatamodel */,
+			);
+			currentVersion = 49A84D2E177558A00076597F /* TodoPlayer.xcdatamodel */;
+			path = TodoPlayer.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 49A84CEA17754DBA0076597F /* Project object */;
 }

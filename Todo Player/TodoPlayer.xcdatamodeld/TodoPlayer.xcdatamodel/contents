@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3381.3" systemVersion="13A476u" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="ItemList" syncable="YES">
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" syncable="YES"/>
+    </entity>
+    <entity name="Playlist" syncable="YES">
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" syncable="YES"/>
+    </entity>
+    <entity name="Task" syncable="YES"/>
+    <elements>
+        <element name="Playlist" positionX="268" positionY="72" width="128" height="73"/>
+        <element name="ItemList" positionX="54" positionY="54" width="128" height="73"/>
+        <element name="Task" positionX="162" positionY="207" width="128" height="45"/>
+    </elements>
+</model>
