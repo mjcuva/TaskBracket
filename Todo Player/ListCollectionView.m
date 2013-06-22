@@ -14,8 +14,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        NSLog(@"HERE");
-        [self setBackgroundColor:[UIColor redColor]];
+        [self setBackgroundColor:[UIColor clearColor]];
     }
     return self;
 }
