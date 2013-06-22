@@ -53,30 +53,38 @@
             </objects>
             <point key="canvasLocation" x="952" y="-681"/>
         </scene>
-        <!--Task CollectionVC - Items-->
+        <!--List CollectionVC - Items-->
         <scene sceneID="pQV-g8-RMt">
             <objects>
-                <viewController id="a9j-SP-Rw2" customClass="TaskCollectionVC" sceneMemberID="viewController">
+                <viewController id="a9j-SP-Rw2" customClass="ListCollectionVC" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bmL-zT-w7a">
                         <rect key="frame" x="0.0" y="64" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mJM-bf-MYk">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="460"/>
+                                <rect key="frame" x="0.0" y="-64" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eoP-qW-lQq">
-                                    <size key="itemSize" width="50" height="50"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="5" id="eoP-qW-lQq">
+                                    <size key="itemSize" width="90" height="86"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="15" minY="79" maxX="15" maxY="44"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="jRh-ZM-LNz">
-                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                    <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="listCell" id="jRh-ZM-LNz" customClass="CollectionCell">
+                                        <rect key="frame" x="15" y="79" width="90" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="90" height="86"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3x4-gd-Edd" customClass="ListCollectionView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="95" height="86"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                </view>
+                                            </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                     </collectionViewCell>
@@ -84,6 +92,12 @@
                             </collectionView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="mJM-bf-MYk" firstAttribute="trailing" secondItem="bmL-zT-w7a" secondAttribute="trailing" id="DGe-dI-ZOf"/>
+                            <constraint firstItem="mJM-bf-MYk" firstAttribute="top" secondItem="bmL-zT-w7a" secondAttribute="top" constant="-64" id="aQx-aW-f42"/>
+                            <constraint firstItem="mJM-bf-MYk" firstAttribute="leading" secondItem="bmL-zT-w7a" secondAttribute="leading" id="t4C-UX-5fc"/>
+                            <constraint firstItem="mJM-bf-MYk" firstAttribute="centerY" secondItem="bmL-zT-w7a" secondAttribute="centerY" constant="-10" id="x8f-T0-4JG"/>
+                        </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
@@ -91,6 +105,9 @@
                         <barButtonItem key="rightBarButtonItem" title="+" id="w1G-Yn-VM2"/>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="collectionView" destination="mJM-bf-MYk" id="4We-U9-IS9"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nTg-NU-CKb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -101,7 +118,7 @@
             <objects>
                 <tabBarController definesPresentationContext="YES" id="Pms-Ww-vk2" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="Pbz-C0-CUD">
                         <rect key="frame" x="129" y="330" width="163" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -118,6 +135,41 @@
             <point key="canvasLocation" x="-175" y="-46"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="CollectionCell" superclassName="UICollectionViewCell">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CollectionCell.h"/>
+            <relationships>
+                <relationship kind="outlet" name="lcv" candidateClass="ListCollectionView"/>
+            </relationships>
+        </class>
+        <class className="ListCollectionVC" superclassName="TaskCollectionVC">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ListCollectionVC.h"/>
+        </class>
+        <class className="ListCollectionView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ListCollectionView.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="TaskCollectionVC" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TaskCollectionVC.h"/>
+            <relationships>
+                <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
+            </relationships>
+        </class>
+        <class className="UICollectionReusableView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionReusableView.h"/>
+        </class>
+        <class className="UICollectionViewCell" superclassName="UICollectionReusableView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewCell.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
