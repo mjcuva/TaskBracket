@@ -14,25 +14,22 @@
 
 @implementation ListCollectionVC
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
+- (NSUInteger)numCollections{
+    // TODO: Add database
+    return 30;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view.
+- (NSString *)reuseID{
+    return @"listCell";
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)updateCell:(UICollectionViewCell *)cell usingList:(id)list{
+    // TODO: Add cell
+}
+
+- (id)listAtIndex:(NSUInteger)index{
+    // TODO: Add database
+    return nil;
 }
 
 @end
