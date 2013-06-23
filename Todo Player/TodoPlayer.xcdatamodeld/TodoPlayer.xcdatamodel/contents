@@ -1,17 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="3381.3" systemVersion="13A476u" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="ItemList" syncable="YES">
+    <entity name="ItemList" representedClassName="ItemList" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" syncable="YES"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="lists" inverseEntity="Task" syncable="YES"/>
     </entity>
-    <entity name="Playlist" syncable="YES">
+    <entity name="Playlist" representedClassName="Playlist" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" syncable="YES"/>
+        <relationship name="tasks" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Task" inverseName="playlist" inverseEntity="Task" syncable="YES"/>
     </entity>
-    <entity name="Task" syncable="YES"/>
+    <entity name="Task" representedClassName="Task" syncable="YES">
+        <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="task_description" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="lists" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemList" inverseName="tasks" inverseEntity="ItemList" syncable="YES"/>
+        <relationship name="playlist" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Playlist" inverseName="tasks" inverseEntity="Playlist" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="Playlist" positionX="268" positionY="72" width="128" height="73"/>
         <element name="ItemList" positionX="54" positionY="54" width="128" height="73"/>
-        <element name="Task" positionX="162" positionY="207" width="128" height="45"/>
+        <element name="Playlist" positionX="268" positionY="72" width="128" height="73"/>
+        <element name="Task" positionX="162" positionY="207" width="128" height="118"/>
     </elements>
 </model>
