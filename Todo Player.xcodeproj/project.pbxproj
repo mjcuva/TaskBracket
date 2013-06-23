@@ -25,6 +25,9 @@
 		49A84D3217755CD70076597F /* ListCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D3117755CD70076597F /* ListCollectionVC.m */; };
 		49A84D35177562530076597F /* CollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D34177562530076597F /* CollectionCell.m */; };
 		49A84D38177562910076597F /* ListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D37177562910076597F /* ListView.m */; };
+		49A84D3C1777B84A0076597F /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D3B1777B84A0076597F /* Task.m */; };
+		49A84D3F1777B84B0076597F /* Playlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D3E1777B84B0076597F /* Playlist.m */; };
+		49A84D421777B84B0076597F /* ItemList.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D411777B84B0076597F /* ItemList.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +67,12 @@
 		49A84D34177562530076597F /* CollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionCell.m; sourceTree = "<group>"; };
 		49A84D36177562910076597F /* ListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListView.h; sourceTree = "<group>"; };
 		49A84D37177562910076597F /* ListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListView.m; sourceTree = "<group>"; };
+		49A84D3A1777B84A0076597F /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Task.h; path = "Core Data/Task.h"; sourceTree = "<group>"; };
+		49A84D3B1777B84A0076597F /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Task.m; path = "Core Data/Task.m"; sourceTree = "<group>"; };
+		49A84D3D1777B84B0076597F /* Playlist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Playlist.h; path = "Core Data/Playlist.h"; sourceTree = "<group>"; };
+		49A84D3E1777B84B0076597F /* Playlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Playlist.m; path = "Core Data/Playlist.m"; sourceTree = "<group>"; };
+		49A84D401777B84B0076597F /* ItemList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemList.h; path = "Core Data/ItemList.h"; sourceTree = "<group>"; };
+		49A84D411777B84B0076597F /* ItemList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemList.m; path = "Core Data/ItemList.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +183,12 @@
 			isa = PBXGroup;
 			children = (
 				49A84D2D177558A00076597F /* TodoPlayer.xcdatamodeld */,
+				49A84D401777B84B0076597F /* ItemList.h */,
+				49A84D411777B84B0076597F /* ItemList.m */,
+				49A84D3D1777B84B0076597F /* Playlist.h */,
+				49A84D3E1777B84B0076597F /* Playlist.m */,
+				49A84D3A1777B84A0076597F /* Task.h */,
+				49A84D3B1777B84A0076597F /* Task.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -275,10 +290,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49A84D421777B84B0076597F /* ItemList.m in Sources */,
 				49A84D2C177551480076597F /* TaskCollectionVC.m in Sources */,
+				49A84D3F1777B84B0076597F /* Playlist.m in Sources */,
 				49A84D38177562910076597F /* ListView.m in Sources */,
 				49A84D0617754DBA0076597F /* AppDelegate.m in Sources */,
 				49A84D0217754DBA0076597F /* main.m in Sources */,
+				49A84D3C1777B84A0076597F /* Task.m in Sources */,
 				49A84D35177562530076597F /* CollectionCell.m in Sources */,
 				49A84D3217755CD70076597F /* ListCollectionVC.m in Sources */,
 				49A84D2F177558A00076597F /* TodoPlayer.xcdatamodeld in Sources */,
