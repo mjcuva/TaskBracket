@@ -24,6 +24,7 @@
 
 - (void)viewDidLoad{
     self.collectionView.dataSource = self;
+    [self useDocument];
     [self setCollectionViewCellSize];
 }
 
@@ -37,6 +38,36 @@
     self.flowLayout.itemSize = CGSizeMake(size, size);
     self.flowLayout.sectionInset = UIEdgeInsetsMake(COLLECTION_VIEW_NAVBAR_OFFSET + COLLECTION_VIEW_OFFSET + COLLECTION_VIEW_STATUSBAR_OFFSET, COLLECTION_VIEW_OFFSET, 44, COLLECTION_VIEW_OFFSET);
 }
+
+- (void)reloadCollectionView{
+    [self.collectionView reloadData];
+}
+
+#pragma mark - Core Data
+
+- (void)useDocument{
+    NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    url = [url URLByAppendingPathComponent:@"Task Data"];
+    UIManagedDocument *document = [[UIManagedDocument alloc] initWithFileURL:url];
+    
+    if(![[NSFileManager defaultManager] fileExistsAtPath:[url path]]){
+        [document saveToURL:url forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success){
+            if(success){
+                self.context = document.managedObjectContext;
+            }
+        }];
+    }else if(document.documentState == UIDocumentStateClosed){
+        [document openWithCompletionHandler:^(BOOL success){
+            if(success){
+                self.context = document.managedObjectContext;
+            }
+        }];
+    }else{
+        self.context = document.managedObjectContext;
+    }
+}
+
+#pragma mark - UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     return [self numCollections];
