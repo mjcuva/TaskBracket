@@ -20,5 +20,8 @@
 - (NSString *)reuseID;
 - (void)updateCell:(UICollectionViewCell *)cell usingList:(id)list;
 - (id)listAtIndex:(NSUInteger)index;
+- (NSString *)entityName;
+
+@property (strong, nonatomic) NSArray *taskLists;
 
 @end

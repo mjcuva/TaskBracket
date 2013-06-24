@@ -9,6 +9,7 @@
 #import "TaskCollectionVC.h"
 #import "CollectionCell.h"
 #import "ListView.h"
+#import <CoreData/CoreData.h>
 
 @interface TaskCollectionVC () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
@@ -88,6 +89,27 @@
     return cell;
 }
 
+- (void)setContext:(NSManagedObjectContext *)context{
+    _context = context;
+    if(context){
+        
+        // Setup Request
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[self entityName]];
+        request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+        request.predicate = nil; // all
+        
+        // Perform Fetch
+        NSError *err;
+        self.taskLists = [context executeFetchRequest:request error:&err];
+        
+        if(err)
+            NSLog(@"%@", [err description]);
+        
+        // Reload CollectionView
+        [self reloadCollectionView];
+    }
+}
+
 #pragma mark - Abstract
 
 - (NSUInteger)numCollections{
@@ -103,8 +125,11 @@
 
 }
 
-
 - (id)listAtIndex:(NSUInteger)index{
+    return nil;
+}
+
+- (NSString *)entityName{
     return nil;
 }
 
