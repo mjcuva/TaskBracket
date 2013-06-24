@@ -7,16 +7,37 @@
 //
 
 #import "ListCollectionVC.h"
+#import "ItemList.h"
 
 @interface ListCollectionVC ()
-
+@property (strong, nonatomic) NSArray *taskLists;
 @end
 
 @implementation ListCollectionVC
 
+- (void)setContext:(NSManagedObjectContext *)context{
+    [super setContext:context];
+    if(context){
+        
+        // Setup Request
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ItemList"];
+        request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+        request.predicate = nil; // all
+        
+        // Perform Fetch
+        NSError *err;
+        self.taskLists = [context executeFetchRequest:request error:&err];
+        
+        if(err)
+            NSLog(@"%@", [err description]);
+        
+        // Reload CollectionView
+        [self reloadCollectionView];
+    }
+}
+
 - (NSUInteger)numCollections{
-    // TODO: Add database
-    return 30;
+    return [self.taskLists count];
 }
 
 - (NSString *)reuseID{
