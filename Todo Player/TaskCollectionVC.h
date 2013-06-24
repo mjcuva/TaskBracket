@@ -11,6 +11,10 @@
 
 @interface TaskCollectionVC : UIViewController
 
+@property (strong, nonatomic) NSManagedObjectContext *context;
+
+- (void)reloadCollectionView;
+
 // Abstract
 - (NSUInteger)numCollections;
 - (NSString *)reuseID;
