@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface ListView : UIView
-
+@property (strong, nonatomic) NSString *title;
 @end
