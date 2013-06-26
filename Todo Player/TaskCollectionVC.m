@@ -11,7 +11,9 @@
 #import "ListView.h"
 #import <CoreData/CoreData.h>
 
-@interface TaskCollectionVC () <UICollectionViewDataSource, UICollectionViewDelegateFlowLayout>
+@interface TaskCollectionVC () <UICollectionViewDataSource,
+                                UICollectionViewDelegateFlowLayout,
+                                UIAlertViewDelegate>
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
 @property (strong, nonatomic) IBOutlet UICollectionView* collectionView;
 @end
@@ -41,6 +43,7 @@
 }
 
 - (void)reloadCollectionView{
+    [self createTaskList];
     [self.collectionView reloadData];
 }
 
@@ -83,6 +86,7 @@
             collectionCell.lcv = lv;
             [collectionCell addSubview:lv];
         }
+        NSLog(@"Item Number: %ul", indexPath.item);
         id list = [self listAtIndex:indexPath.item];
         [self updateCell:collectionCell usingList:list];
     }
@@ -93,22 +97,60 @@
     _context = context;
     if(context){
         
-        // Setup Request
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[self entityName]];
-        request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
-        request.predicate = nil; // all
-        
-        // Perform Fetch
-        NSError *err;
-        self.taskLists = [context executeFetchRequest:request error:&err];
-        
-        if(err)
-            NSLog(@"%@", [err description]);
-        
         // Reload CollectionView
         [self reloadCollectionView];
     }
 }
+
+# pragma mark - Add Item
+
+- (IBAction)addItem:(UIBarButtonItem *)sender {
+    UIAlertView *newListTitleAlert = [[UIAlertView alloc] initWithTitle:@"Enter List Title" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Create", nil];
+    newListTitleAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+    [[newListTitleAlert textFieldAtIndex:0] setAutocapitalizationType:UITextAutocapitalizationTypeWords];
+    [newListTitleAlert show];
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    NSFetchRequest *tasksRequest = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
+    tasksRequest.predicate = nil;
+    tasksRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+    NSArray *tasks = [self.context executeFetchRequest:tasksRequest error:NULL];
+    
+    NSFetchRequest *listRequest = [NSFetchRequest fetchRequestWithEntityName:[self entityName]];
+    listRequest.predicate = [NSPredicate predicateWithFormat:@"title = %@", [alertView textFieldAtIndex:0].text];
+    NSArray *lists = [self.context executeFetchRequest:listRequest error:NULL];
+    
+    if([lists count] == 0){
+        [self createListWithTitle:[alertView textFieldAtIndex:0].text];
+        NSLog(@"Create");
+    }
+    
+    if([tasks count] > 0 && [lists count] == 0){
+        // Show selector
+        NSLog(@"Show Selector");
+    }else if([lists count] == 0){
+        NSLog(@"Reload Collection View");
+        [self reloadCollectionView];
+    }
+}
+
+- (void) createTaskList{
+    // Setup Request
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[self entityName]];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+    request.predicate = nil; // all
+    
+    // Perform Fetch
+    NSError *err;
+    self.taskLists = [self.context executeFetchRequest:request error:&err];
+    
+    if(err)
+        NSLog(@"%@", [err description]);
+    else
+        NSLog(@"New Task List Created");
+}
+
 
 #pragma mark - Abstract
 
@@ -131,6 +173,10 @@
 
 - (NSString *)entityName{
     return nil;
+}
+
+- (void)createListWithTitle:(NSString *)title{
+
 }
 
 @end
