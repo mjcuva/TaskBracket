@@ -7,7 +7,8 @@
 //
 
 #import "ListCollectionVC.h"
-#import "ItemList.h"
+#import "ItemList+Description.h"
+#import "CollectionCell.h"
 
 @interface ListCollectionVC ()
 @end
@@ -15,6 +16,7 @@
 @implementation ListCollectionVC
 
 - (NSUInteger)numCollections{
+    NSLog(@"%@", [self.taskLists description]);
     return [self.taskLists count];
 }
 
@@ -23,16 +25,27 @@
 }
 
 - (void)updateCell:(UICollectionViewCell *)cell usingList:(id)list{
-    // TODO: Add cell
+    if([cell isKindOfClass:[CollectionCell class]]){
+        if([list isKindOfClass:[ItemList class]]){
+            CollectionCell *colCell = (CollectionCell *)cell;
+            ItemList *iList = (ItemList *)list;
+            colCell.lcv.title = iList.title;
+            [colCell.lcv setNeedsDisplay];
+        }
+    }
 }
 
 - (id)listAtIndex:(NSUInteger)index{
-    // TODO: Add database
-    return nil;
+    return self.taskLists[index];
 }
 
 - (NSString *)entityName{
     return @"ItemList";
+}
+
+- (void)createListWithTitle:(NSString *)title{
+    ItemList *list = [NSEntityDescription insertNewObjectForEntityForName:@"ItemList" inManagedObjectContext:self.context];
+    list.title = title;
 }
 
 @end
