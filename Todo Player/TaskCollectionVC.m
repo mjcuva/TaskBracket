@@ -112,26 +112,28 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    NSFetchRequest *tasksRequest = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
-    tasksRequest.predicate = nil;
-    tasksRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
-    NSArray *tasks = [self.context executeFetchRequest:tasksRequest error:NULL];
-    
-    NSFetchRequest *listRequest = [NSFetchRequest fetchRequestWithEntityName:[self entityName]];
-    listRequest.predicate = [NSPredicate predicateWithFormat:@"title = %@", [alertView textFieldAtIndex:0].text];
-    NSArray *lists = [self.context executeFetchRequest:listRequest error:NULL];
-    
-    if([lists count] == 0){
-        [self createListWithTitle:[alertView textFieldAtIndex:0].text];
-        NSLog(@"Create");
-    }
-    
-    if([tasks count] > 0 && [lists count] == 0){
-        // Show selector
-        NSLog(@"Show Selector");
-    }else if([lists count] == 0){
-        NSLog(@"Reload Collection View");
-        [self reloadCollectionView];
+    if(buttonIndex == 1){
+        NSFetchRequest *tasksRequest = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
+        tasksRequest.predicate = nil;
+        tasksRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+        NSArray *tasks = [self.context executeFetchRequest:tasksRequest error:NULL];
+        
+        NSFetchRequest *listRequest = [NSFetchRequest fetchRequestWithEntityName:[self entityName]];
+        listRequest.predicate = [NSPredicate predicateWithFormat:@"title = %@", [alertView textFieldAtIndex:0].text];
+        NSArray *lists = [self.context executeFetchRequest:listRequest error:NULL];
+        
+        if([lists count] == 0){
+            [self createListWithTitle:[alertView textFieldAtIndex:0].text];
+            NSLog(@"Create");
+        }
+        
+        if([tasks count] > 0 && [lists count] == 0){
+            // Show selector
+            NSLog(@"Show Selector");
+        }else if([lists count] == 0){
+            NSLog(@"Reload Collection View");
+            [self reloadCollectionView];
+        }
     }
 }
 
