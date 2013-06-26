@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4457.6" systemVersion="13A476u" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Pms-Ww-vk2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4457.9" systemVersion="13A476u" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Pms-Ww-vk2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3682.6"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3682.9"/>
     </dependencies>
     <scenes>
         <!--View Controller - Playlists-->
@@ -90,7 +90,11 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Items" id="CyE-DZ-ili">
-                        <barButtonItem key="rightBarButtonItem" title="+" id="w1G-Yn-VM2"/>
+                        <barButtonItem key="rightBarButtonItem" title="+" id="w1G-Yn-VM2">
+                            <connections>
+                                <action selector="addItem:" destination="a9j-SP-Rw2" id="O8X-hq-teD"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -137,6 +141,7 @@
         <class className="TaskCollectionVC" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/TaskCollectionVC.h"/>
             <relationships>
+                <relationship kind="action" name="addItem:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="collectionView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="flowLayout" candidateClass="UICollectionViewFlowLayout"/>
             </relationships>
@@ -149,6 +154,9 @@
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
