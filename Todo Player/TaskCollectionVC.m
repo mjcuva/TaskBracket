@@ -102,6 +102,12 @@
     }
 }
 
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    NSLog(@"didSelectItemAtIndexPath:%@", [indexPath description]);
+//    [self performSegueWithIdentifier:@"ShowList" sender:[self listAtIndex:indexPath.item]];
+}
+
 # pragma mark - Add Item
 
 - (IBAction)addItem:(UIBarButtonItem *)sender {
@@ -113,27 +119,21 @@
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if(buttonIndex == 1){
-        NSFetchRequest *tasksRequest = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
-        tasksRequest.predicate = nil;
-        tasksRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
-        NSArray *tasks = [self.context executeFetchRequest:tasksRequest error:NULL];
         
         NSFetchRequest *listRequest = [NSFetchRequest fetchRequestWithEntityName:[self entityName]];
         listRequest.predicate = [NSPredicate predicateWithFormat:@"title = %@", [alertView textFieldAtIndex:0].text];
         NSArray *lists = [self.context executeFetchRequest:listRequest error:NULL];
         
         if([lists count] == 0){
-            [self createListWithTitle:[alertView textFieldAtIndex:0].text];
-            NSLog(@"Create");
+            id list = [self createListWithTitle:[alertView textFieldAtIndex:0].text];
+            NSLog(@"Created List %@", [alertView textFieldAtIndex:0].text);
+            [self reloadCollectionView];
+            [self performSegueWithIdentifier:@"NewListPush" sender:list];
+        }else{
+            // Display Error
         }
         
-        if([tasks count] > 0 && [lists count] == 0){
-            // Show selector
-            NSLog(@"Show Selector");
-        }else if([lists count] == 0){
-            NSLog(@"Reload Collection View");
-            [self reloadCollectionView];
-        }
+        
     }
 }
 
@@ -151,6 +151,21 @@
         NSLog(@"%@", [err description]);
     else
         NSLog(@"New Task List Created");
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.identifier isEqualToString:@"NewListPush"]){
+        NSString *title;
+        if([sender respondsToSelector:@selector(title)]){
+            title = [sender performSelector:@selector(title)];
+        }
+        [segue.destinationViewController setTitle:title];
+    }else if ([segue.identifier isEqualToString:@"CollectionCellPush"]){
+        if([sender isKindOfClass:[CollectionCell class]]){
+            CollectionCell *cell = (CollectionCell *)sender;
+            [segue.destinationViewController setTitle:cell.lcv.title];
+        }
+    }
 }
 
 
@@ -177,8 +192,8 @@
     return nil;
 }
 
-- (void)createListWithTitle:(NSString *)title{
-
+- (id)createListWithTitle:(NSString *)title{
+    return nil;
 }
 
 @end
