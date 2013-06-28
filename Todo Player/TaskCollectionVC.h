@@ -22,7 +22,7 @@
 - (id)listAtIndex:(NSUInteger)index;
 - (NSString *)entityName;
 
-- (void)createListWithTitle:(NSString *)title;
+- (id)createListWithTitle:(NSString *)title;
 
 @property (strong, nonatomic) NSArray *taskLists;
 

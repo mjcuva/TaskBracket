@@ -43,9 +43,10 @@
     return @"ItemList";
 }
 
-- (void)createListWithTitle:(NSString *)title{
+- (id)createListWithTitle:(NSString *)title{
     ItemList *list = [NSEntityDescription insertNewObjectForEntityForName:@"ItemList" inManagedObjectContext:self.context];
     list.title = title;
+    return list;
 }
 
 @end
