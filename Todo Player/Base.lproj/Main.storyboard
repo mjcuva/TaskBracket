@@ -93,7 +93,7 @@
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Items" id="CyE-DZ-ili">
-                        <barButtonItem key="rightBarButtonItem" title="+" id="w1G-Yn-VM2">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="w1G-Yn-VM2">
                             <connections>
                                 <action selector="addItem:" destination="a9j-SP-Rw2" id="O8X-hq-teD"/>
                             </connections>

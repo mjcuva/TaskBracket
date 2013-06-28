@@ -124,16 +124,17 @@
         listRequest.predicate = [NSPredicate predicateWithFormat:@"title = %@", [alertView textFieldAtIndex:0].text];
         NSArray *lists = [self.context executeFetchRequest:listRequest error:NULL];
         
-        if([lists count] == 0){
-            id list = [self createListWithTitle:[alertView textFieldAtIndex:0].text];
+        NSString *title = [alertView textFieldAtIndex:0].text;
+        
+        if([lists count] == 0 && [title length] > 0){
+            id list = [self createListWithTitle:title];
             NSLog(@"Created List %@", [alertView textFieldAtIndex:0].text);
             [self reloadCollectionView];
             [self performSegueWithIdentifier:@"NewListPush" sender:list];
-        }else{
-            // Display Error
+        }else if([lists count] == 1){
+            // Go to existing list
+            [self performSegueWithIdentifier:@"NewListPush" sender:[lists lastObject]];
         }
-        
-        
     }
 }
 
