@@ -8,14 +8,5 @@
 
 #import <UIKit/UIKit.h>
 
-// Needs to be implemented to dismiss modal vc
-@protocol NewTaskModal <NSObject>
-
-- (void)modalViewWasCanceled;
-- (void)modalViewWasCompleted;
-
-@end
-
-@interface NewTaskVC : UIViewController
-@property (assign, nonatomic) id <NewTaskModal> delegate;
+@interface NewTaskVC : UITableViewController
 @end

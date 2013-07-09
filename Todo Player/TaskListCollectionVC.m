@@ -9,29 +9,8 @@
 #import "TaskListCollectionVC.h"
 #import "NewTaskVC.h"
 
-@interface TaskListCollectionVC()<NewTaskModal>
-@property (strong, nonatomic) NewTaskVC *presentedVC;
+@interface TaskListCollectionVC()
 @end
 
-@implementation TaskListCollectionVC 
-
-- (void)modalViewWasCanceled{
-    [self.presentedVC dismissViewControllerAnimated:YES completion:nil];
-}
-- (void)modalViewWasCompleted{
-    [self.presentedVC dismissViewControllerAnimated:YES completion:^{
-        // TODO: Reload View
-    }];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([[segue identifier] isEqualToString:@"NewTask"]){
-        if([segue.destinationViewController isKindOfClass:[NewTaskVC class]]){
-            self.presentedVC = (NewTaskVC *)segue.destinationViewController;
-            self.presentedVC.delegate = self;
-        }
-    }
-}
-
-
+@implementation TaskListCollectionVC
 @end

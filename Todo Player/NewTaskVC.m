@@ -8,36 +8,46 @@
 
 #import "NewTaskVC.h"
 
-@interface NewTaskVC ()
+@interface NewTaskVC () <UITableViewDataSource, UITableViewDelegate>
 @property (strong, nonatomic) UINavigationBar *navBar;
 @end
 
 @implementation NewTaskVC
 
-- (void)viewDidLoad{
-    self.navBar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 64)];
-    UINavigationItem *navBarItem = [[UINavigationItem alloc] initWithTitle:@"New Task"];
-    UIBarButtonItem *cancel = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancel)];
-    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"Done" style:UIBarButtonItemStylePlain target:self action:@selector(done)];
-    
-    navBarItem.leftBarButtonItem = cancel;
-    navBarItem.rightBarButtonItem = done;
+#pragma mark - UITableViewDataSource
 
-    self.navBar.items = @[navBarItem];
-    
-    [self.view addSubview:self.navBar];
-    
-    
+//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+//    return 1;
+//}
+//
+//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+//    return 1;
+//}
+//
+//- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
+//    return nil;
+//}
+//
+//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+//    static NSString *identifier = @"Test";
+//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+//    if(cell == nil){
+//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+//    }
+//    cell.textLabel.text = @"Test";
+//    return cell;
+//}
+
+
+
+#pragma mark - IBActions
+- (IBAction)cancel:(UIBarButtonItem *)sender {
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)cancel{
-    [self.delegate modalViewWasCanceled];
-}
-
-- (void)done{
+- (IBAction)done:(UIBarButtonItem *)sender {
     // TODO: Create and save task
-    [self.delegate modalViewWasCompleted];
-    
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
