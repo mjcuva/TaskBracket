@@ -7,38 +7,25 @@
 //
 
 #import "NewTaskVC.h"
+#import "UIPlaceHolderTextView.h"
 
-@interface NewTaskVC () <UITableViewDataSource, UITableViewDelegate>
+@interface NewTaskVC () <UIPickerViewDataSource, UIPickerViewDelegate>
+@property (weak, nonatomic) IBOutlet UIPlaceHolderTextView *descriptionView;
+@property (weak, nonatomic) IBOutlet UITextField *titleView;
 @property (strong, nonatomic) UINavigationBar *navBar;
+@property (weak, nonatomic) IBOutlet UIPickerView *picker;
 @end
 
 @implementation NewTaskVC
 
-#pragma mark - UITableViewDataSource
-
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-//    return 1;
-//}
-//
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-//    return 1;
-//}
-//
-//- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section{
-//    return nil;
-//}
-//
-//- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    static NSString *identifier = @"Test";
-//    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
-//    if(cell == nil){
-//        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
-//    }
-//    cell.textLabel.text = @"Test";
-//    return cell;
-//}
-
-
+- (void)viewDidLoad{
+    [super viewDidLoad];
+    self.descriptionView.placeHolder = @"Description";
+    self.descriptionView.font = [UIFont systemFontOfSize:16];
+    
+    self.picker.dataSource = self;
+    self.picker.delegate = self;
+}
 
 #pragma mark - IBActions
 - (IBAction)cancel:(UIBarButtonItem *)sender {
@@ -47,7 +34,26 @@
 
 - (IBAction)done:(UIBarButtonItem *)sender {
     // TODO: Create and save task
+    NSLog(@"%@", self.titleView.text);
+    NSLog(@"%@", self.descriptionView.text);
+    NSLog(@"%ul", [self.picker selectedRowInComponent:0]);
     [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+}
+
+#pragma mark - UIPickerViewDataSource
+
+- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{
+    return 1;
+}
+
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component{
+    return 60;
+}
+
+#pragma mark - UIPickerViewDelegate
+
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
+    return [NSString stringWithFormat:@"%ld", (long)row];
 }
 
 @end
