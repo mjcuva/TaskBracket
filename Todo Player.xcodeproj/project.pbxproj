@@ -32,6 +32,7 @@
 		49A84D3C1777B84A0076597F /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D3B1777B84A0076597F /* Task.m */; };
 		49A84D3F1777B84B0076597F /* Playlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D3E1777B84B0076597F /* Playlist.m */; };
 		49A84D421777B84B0076597F /* ItemList.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D411777B84B0076597F /* ItemList.m */; };
+		49B69C40179473F700F95484 /* SharedManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B69C3F179473F700F95484 /* SharedManagedObjectContext.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -85,6 +86,8 @@
 		49A84D3E1777B84B0076597F /* Playlist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Playlist.m; path = "Core Data/Playlist.m"; sourceTree = "<group>"; };
 		49A84D401777B84B0076597F /* ItemList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ItemList.h; path = "Core Data/ItemList.h"; sourceTree = "<group>"; };
 		49A84D411777B84B0076597F /* ItemList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemList.m; path = "Core Data/ItemList.m"; sourceTree = "<group>"; };
+		49B69C3E179473F700F95484 /* SharedManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedManagedObjectContext.h; path = "Core Data/SharedManagedObjectContext.h"; sourceTree = "<group>"; };
+		49B69C3F179473F700F95484 /* SharedManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SharedManagedObjectContext.m; path = "Core Data/SharedManagedObjectContext.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +212,8 @@
 				49A84D3B1777B84A0076597F /* Task.m */,
 				49951420177B79DF00E444D7 /* ItemList+Description.h */,
 				49951421177B79DF00E444D7 /* ItemList+Description.m */,
+				49B69C3E179473F700F95484 /* SharedManagedObjectContext.h */,
+				49B69C3F179473F700F95484 /* SharedManagedObjectContext.m */,
 			);
 			name = "Core Data";
 			sourceTree = "<group>";
@@ -320,6 +325,7 @@
 				49A84D0617754DBA0076597F /* AppDelegate.m in Sources */,
 				49951422177B79DF00E444D7 /* ItemList+Description.m in Sources */,
 				49A84D0217754DBA0076597F /* main.m in Sources */,
+				49B69C40179473F700F95484 /* SharedManagedObjectContext.m in Sources */,
 				49A84D3C1777B84A0076597F /* Task.m in Sources */,
 				49A84D35177562530076597F /* CollectionCell.m in Sources */,
 				49A84D3217755CD70076597F /* ListCollectionVC.m in Sources */,
