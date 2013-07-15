@@ -8,10 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^completionHandler)(NSManagedObjectContext *);
+typedef void (^NSManagedObjectContextCompletionHandler)(NSManagedObjectContext *);
 
 @interface SharedManagedObjectContext : NSObject
 
-+ (void)getSharedContextWithCompletionHandler:(completionHandler)block;
++ (void)getSharedContextWithCompletionHandler:(NSManagedObjectContextCompletionHandler)completionHandler;
 
 @end

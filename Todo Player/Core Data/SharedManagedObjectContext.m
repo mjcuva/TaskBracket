@@ -10,7 +10,7 @@
 
 @implementation SharedManagedObjectContext
 
-+ (void)getSharedContextWithCompletionHandler:(completionHandler)block{
++ (void)getSharedContextWithCompletionHandler:(NSManagedObjectContextCompletionHandler)completionHandler{
     static NSManagedObjectContext *context;
     if(!context){
         NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
@@ -21,22 +21,22 @@
             [document saveToURL:url forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success){
                 if(success){
                     context = document.managedObjectContext;
-                    block(context);
+                    completionHandler(context);
                 }
             }];
         }else if(document.documentState == UIDocumentStateClosed){
             [document openWithCompletionHandler:^(BOOL success){
                 if(success){
                     context = document.managedObjectContext;
-                    block(context);
+                    completionHandler(context);
                 }
             }];
         }else{
             context = document.managedObjectContext;
-            block(context);
+            completionHandler(context);
         }
     }else{
-        block(context);
+        completionHandler(context);
     }
 }
 
