@@ -9,6 +9,7 @@
 #import "TaskCollectionVC.h"
 #import "CollectionCell.h"
 #import "ListView.h"
+#import "SharedManagedObjectContext.h"
 #import <CoreData/CoreData.h>
 
 @interface TaskCollectionVC () <UICollectionViewDataSource,
@@ -27,7 +28,9 @@
 
 - (void)viewDidLoad{
     self.collectionView.dataSource = self;
-    [self useDocument];
+    [SharedManagedObjectContext getSharedContextWithCompletionHandler:^(NSManagedObjectContext *context){
+        self.context = context;
+    }];
     [self setCollectionViewCellSize];
 }
 
@@ -45,30 +48,6 @@
 - (void)reloadCollectionView{
     [self createTaskList];
     [self.collectionView reloadData];
-}
-
-#pragma mark - Core Data
-
-- (void)useDocument{
-    NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
-    url = [url URLByAppendingPathComponent:@"Task Data"];
-    UIManagedDocument *document = [[UIManagedDocument alloc] initWithFileURL:url];
-    
-    if(![[NSFileManager defaultManager] fileExistsAtPath:[url path]]){
-        [document saveToURL:url forSaveOperation:UIDocumentSaveForCreating completionHandler:^(BOOL success){
-            if(success){
-                self.context = document.managedObjectContext;
-            }
-        }];
-    }else if(document.documentState == UIDocumentStateClosed){
-        [document openWithCompletionHandler:^(BOOL success){
-            if(success){
-                self.context = document.managedObjectContext;
-            }
-        }];
-    }else{
-        self.context = document.managedObjectContext;
-    }
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -95,9 +74,7 @@
 
 - (void)setContext:(NSManagedObjectContext *)context{
     _context = context;
-    if(context){
-        
-        // Reload CollectionView
+    if(context){ 
         [self reloadCollectionView];
     }
 }
