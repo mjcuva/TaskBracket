@@ -13,6 +13,11 @@
 @interface ListCollectionVC ()
 @end
 
+#define COLLECTION_VIEW_CELL_PADDING 20
+#define COLLECTION_VIEW_NAVBAR_OFFSET 44
+#define COLLECTION_VIEW_STATUSBAR_OFFSET 20
+#define COLLECTION_VIEW_OFFSET 10
+
 @implementation ListCollectionVC
 
 - (NSUInteger)numCollections{
@@ -35,6 +40,12 @@
     }
 }
 
+- (void)setCollectionViewCellSize{
+    CGFloat size = self.view.frame.size.width / 2 - COLLECTION_VIEW_CELL_PADDING;
+    self.flowLayout.itemSize = CGSizeMake(size, size);
+    self.flowLayout.sectionInset = UIEdgeInsetsMake(COLLECTION_VIEW_NAVBAR_OFFSET + COLLECTION_VIEW_OFFSET + COLLECTION_VIEW_STATUSBAR_OFFSET, COLLECTION_VIEW_OFFSET, 44, COLLECTION_VIEW_OFFSET);
+}
+
 - (id)listAtIndex:(NSUInteger)index{
     return self.taskLists[index];
 }
@@ -47,6 +58,22 @@
     ItemList *list = [NSEntityDescription insertNewObjectForEntityForName:@"ItemList" inManagedObjectContext:self.context];
     list.title = title;
     return list;
+}
+
+- (void) createTaskList{
+    // Setup Request
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[self entityName]];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+    request.predicate = nil; // all
+    
+    // Perform Fetch
+    NSError *err;
+    self.taskLists = [self.context executeFetchRequest:request error:&err];
+    
+    if(err)
+        NSLog(@"%@", [err description]);
+    else
+        NSLog(@"New Task List Created");
 }
 
 @end
