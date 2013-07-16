@@ -8,12 +8,17 @@
 
 #import "NewTaskVC.h"
 #import "UIPlaceHolderTextView.h"
+#import "SharedManagedObjectContext.h"
+#import "Task.h"
+#import "ItemList+Description.h"
 
 @interface NewTaskVC () <UIPickerViewDataSource, UIPickerViewDelegate>
 @property (weak, nonatomic) IBOutlet UIPlaceHolderTextView *descriptionView;
 @property (weak, nonatomic) IBOutlet UITextField *titleView;
 @property (strong, nonatomic) UINavigationBar *navBar;
 @property (weak, nonatomic) IBOutlet UIPickerView *picker;
+
+@property (strong, nonatomic) NSManagedObjectContext *context;
 @end
 
 @implementation NewTaskVC
@@ -25,6 +30,10 @@
     
     self.picker.dataSource = self;
     self.picker.delegate = self;
+    
+    [SharedManagedObjectContext getSharedContextWithCompletionHandler:^(NSManagedObjectContext *context){
+        self.context = context;
+    }];
 }
 
 #pragma mark - IBActions
@@ -34,6 +43,19 @@
 
 - (IBAction)done:(UIBarButtonItem *)sender {
     // TODO: Create and save task
+    
+    Task *task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.context];
+    task.title = self.titleView.text;
+    task.task_description = self.descriptionView.text;
+    task.duration = [NSNumber numberWithInt:[self.picker selectedRowInComponent:0]];
+    
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ItemList"];
+    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+    request.predicate = nil;
+    
+    ItemList *list = [self.context executeFetchRequest:request error:NULL][0];
+    [list addTasksObject:task];
+    
     NSLog(@"%@", self.titleView.text);
     NSLog(@"%@", self.descriptionView.text);
     NSLog(@"%ul", [self.picker selectedRowInComponent:0]);
