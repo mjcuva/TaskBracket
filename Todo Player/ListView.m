@@ -30,15 +30,14 @@
     [[UIColor redColor] setFill];
     UIRectFill(self.bounds);
     
-    // Center Text Horizontally
-    NSMutableParagraphStyle *p = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    [p setAlignment:NSTextAlignmentCenter];
-    NSDictionary *attr = @{NSParagraphStyleAttributeName:p};
     
-    // Center Text Vertically
-    CGFloat YOffSet = (rect.size.height - 12) / 2;
-
-    [self.title drawInRect:CGRectMake(0, YOffSet, rect.size.width, rect.size.height) withAttributes:attr];
+    UILabel *label = [[UILabel alloc] initWithFrame:rect];
+    label.text = self.title;
+    label.numberOfLines = 0;
+    label.textAlignment = NSTextAlignmentCenter;
+    [label sizeToFit];
+    label.center = CGPointMake(rect.size.width / 2, rect.size.height / 2);
+    [self addSubview:label];
 }
 
 @end
