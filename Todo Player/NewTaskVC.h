@@ -9,4 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface NewTaskVC : UITableViewController
+@property (strong, nonatomic) NSString *listTitle;
 @end

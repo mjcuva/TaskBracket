@@ -13,4 +13,12 @@
 @end
 
 @implementation TaskListCollectionVC
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if([segue.destinationViewController isKindOfClass:[UINavigationController class]]){
+        UINavigationController *dvc = (UINavigationController *)segue.destinationViewController;
+        [[dvc.navigationController.viewControllers objectAtIndex:0] performSelector:@selector(setListTitle:) withObject:self.title];
+    }
+}
+
 @end
