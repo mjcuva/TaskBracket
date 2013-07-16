@@ -13,6 +13,8 @@
 
 @property (strong, nonatomic) NSManagedObjectContext *context;
 
+@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
+
 - (void)reloadCollectionView;
 
 // Abstract
@@ -21,6 +23,9 @@
 - (void)updateCell:(UICollectionViewCell *)cell usingList:(id)list;
 - (id)listAtIndex:(NSUInteger)index;
 - (NSString *)entityName;
+- (void)createTaskList;
+
+- (void)setCollectionViewCellSize;
 
 - (id)createListWithTitle:(NSString *)title;
 

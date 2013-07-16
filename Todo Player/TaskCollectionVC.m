@@ -15,16 +15,13 @@
 @interface TaskCollectionVC () <UICollectionViewDataSource,
                                 UICollectionViewDelegateFlowLayout,
                                 UIAlertViewDelegate>
-@property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
+
 @property (strong, nonatomic) IBOutlet UICollectionView* collectionView;
 @end
 
 @implementation TaskCollectionVC
 
-#define COLLECTION_VIEW_CELL_PADDING 20
-#define COLLECTION_VIEW_NAVBAR_OFFSET 44
-#define COLLECTION_VIEW_STATUSBAR_OFFSET 20
-#define COLLECTION_VIEW_OFFSET 10
+
 
 - (void)viewDidLoad{
     self.collectionView.dataSource = self;
@@ -39,11 +36,7 @@
     [self.collectionView reloadData];
 }
 
-- (void)setCollectionViewCellSize{
-    CGFloat size = self.view.frame.size.width / 2 - COLLECTION_VIEW_CELL_PADDING;
-    self.flowLayout.itemSize = CGSizeMake(size, size);
-    self.flowLayout.sectionInset = UIEdgeInsetsMake(COLLECTION_VIEW_NAVBAR_OFFSET + COLLECTION_VIEW_OFFSET + COLLECTION_VIEW_STATUSBAR_OFFSET, COLLECTION_VIEW_OFFSET, 44, COLLECTION_VIEW_OFFSET);
-}
+
 
 - (void)reloadCollectionView{
     [self createTaskList];
@@ -115,22 +108,6 @@
     }
 }
 
-- (void) createTaskList{
-    // Setup Request
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[self entityName]];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
-    request.predicate = nil; // all
-    
-    // Perform Fetch
-    NSError *err;
-    self.taskLists = [self.context executeFetchRequest:request error:&err];
-    
-    if(err)
-        NSLog(@"%@", [err description]);
-    else
-        NSLog(@"New Task List Created");
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.identifier isEqualToString:@"NewListPush"]){
         NSString *title;
@@ -172,6 +149,14 @@
 
 - (id)createListWithTitle:(NSString *)title{
     return nil;
+}
+
+- (void)createTaskList{
+    
+}
+
+- (void)setCollectionViewCellSize{
+    
 }
 
 @end
