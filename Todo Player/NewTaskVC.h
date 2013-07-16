@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol newTask <NSObject>
+
+- (void)taskCreated;
+- (void)taskCanceled;
+
+@end
+
 @interface NewTaskVC : UITableViewController
 @property (strong, nonatomic) NSString *listTitle;
+@property (strong, nonatomic) id<newTask> delagate;
 @end

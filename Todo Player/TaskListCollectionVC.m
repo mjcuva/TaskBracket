@@ -11,10 +11,25 @@
 #import "CollectionCell.h"
 #import "Task+Description.h"
 
-@interface TaskListCollectionVC()
+@interface TaskListCollectionVC() <newTask>
+@property (strong, nonatomic) NewTaskVC *presentedVC;
 @end
 
 @implementation TaskListCollectionVC
+
+- (void)viewDidLoad{
+    [super viewDidLoad];
+    [self reloadCollectionView];
+}
+
+- (void)taskCreated{
+   [self reloadCollectionView];
+    [self.presentedVC dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)taskCanceled{
+    [self.presentedVC dismissViewControllerAnimated:YES completion:NULL];
+}
 
 - (NSUInteger)numCollections{
     return [self.taskLists count];
@@ -46,7 +61,10 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if([segue.destinationViewController isKindOfClass:[UINavigationController class]]){
         UINavigationController *dvc = (UINavigationController *)segue.destinationViewController;
-        [[dvc.navigationController.viewControllers objectAtIndex:0] performSelector:@selector(setListTitle:) withObject:self.title];
+        NSLog(@"%@", [dvc.viewControllers description]);
+        self.presentedVC = (NewTaskVC *)[dvc.viewControllers objectAtIndex:0];
+        self.presentedVC.listTitle = self.title;
+        self.presentedVC.delagate = self;
     }
 }
 
@@ -58,7 +76,6 @@
     // Perform Fetch
     NSError *err;
     self.taskLists = [self.context executeFetchRequest:req error:&err];
-    NSLog(@"%@", [[self.taskLists lastObject] description]);
     if(err){
         NSLog(@"%@", [err description]);
     }else{

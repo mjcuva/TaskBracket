@@ -36,9 +36,14 @@
     }];
 }
 
+- (void)setListTitle:(NSString *)listTitle{
+    _listTitle = listTitle;
+    NSLog(@"set list title");
+}
+
 #pragma mark - IBActions
 - (IBAction)cancel:(UIBarButtonItem *)sender {
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [self.delagate taskCanceled];
 }
 
 - (IBAction)done:(UIBarButtonItem *)sender {
@@ -51,7 +56,8 @@
     
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ItemList"];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
-    request.predicate = nil;
+    NSLog(@"%@", self.listTitle);
+    request.predicate = [NSPredicate predicateWithFormat:@"title=%@", self.listTitle];
     
     ItemList *list = [self.context executeFetchRequest:request error:NULL][0];
     [list addTasksObject:task];
@@ -59,7 +65,7 @@
     NSLog(@"%@", self.titleView.text);
     NSLog(@"%@", self.descriptionView.text);
     NSLog(@"%ul", [self.picker selectedRowInComponent:0]);
-    [self.presentingViewController dismissViewControllerAnimated:YES completion:nil];
+    [self.delagate taskCreated];
 }
 
 #pragma mark - UIPickerViewDataSource
