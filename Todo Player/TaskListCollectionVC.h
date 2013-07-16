@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TaskCollectionVC.h"
 
-@interface TaskListCollectionVC : UICollectionViewController 
+@interface TaskListCollectionVC : TaskCollectionVC
 
 @end
