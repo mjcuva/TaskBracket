@@ -8,6 +8,10 @@
 
 #import "ListView.h"
 
+@interface ListView()
+@property (weak, nonatomic) UILabel *textLabel;
+@end
+
 @implementation ListView
 
 - (id)initWithFrame:(CGRect)frame
@@ -31,13 +35,16 @@
     UIRectFill(self.bounds);
     
     
-    UILabel *label = [[UILabel alloc] initWithFrame:rect];
-    label.text = self.title;
-    label.numberOfLines = 0;
-    label.textAlignment = NSTextAlignmentCenter;
-    [label sizeToFit];
-    label.center = CGPointMake(rect.size.width / 2, rect.size.height / 2);
-    [self addSubview:label];
+    // Center Text Horizontally
+    NSMutableParagraphStyle *p = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
+    [p setAlignment:NSTextAlignmentCenter];
+    NSDictionary *attr = @{NSParagraphStyleAttributeName:p};
+    
+    // Center Text Vertically
+    CGSize fontHeight = [self.title sizeWithAttributes:nil];
+    CGFloat YOffSet = (rect.size.height - fontHeight.height) / 2;
+    
+    [self.title drawInRect:CGRectMake(0, YOffSet, rect.size.width, rect.size.height) withAttributes:attr];
 }
 
 @end
