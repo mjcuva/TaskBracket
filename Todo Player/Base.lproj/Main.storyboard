@@ -1,30 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4471.1" systemVersion="13A510d" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Pms-Ww-vk2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4471.1" systemVersion="12E55" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Pms-Ww-vk2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3697.3"/>
     </dependencies>
     <scenes>
-        <!--View Controller - Playlists-->
-        <scene sceneID="wf9-wp-uVe">
-            <objects>
-                <viewController id="iI9-G0-sXK" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="x7y-eW-3bo"/>
-                        <viewControllerLayoutGuide type="bottom" id="Gg5-eu-LOo"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="2YB-lD-09T">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Playlists" id="gRH-aE-ny8"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ech-YE-kdM" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="531" y="-40"/>
-        </scene>
-        <!--View Controller - Current Task-->
+        <!--View Controller - Task Queue-->
         <scene sceneID="nXr-Kq-1kf">
             <objects>
                 <viewController id="FAY-0c-xvD" sceneMemberID="viewController">
@@ -38,18 +18,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Current Task" id="JWY-9U-BZN"/>
+                    <tabBarItem key="tabBarItem" title="Task Queue" id="JWY-9U-BZN"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u4n-0G-PL8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="531" y="651"/>
         </scene>
-        <!--Navigation Controller - Items-->
+        <!--Navigation Controller - Lists-->
         <scene sceneID="ton-VX-Knf">
             <objects>
                 <navigationController definesPresentationContext="YES" id="mcg-ej-ZYV" sceneMemberID="viewController">
                     <extendedEdge key="edgesForExtendedLayout"/>
-                    <tabBarItem key="tabBarItem" title="Items" id="rce-Cg-UWz"/>
+                    <tabBarItem key="tabBarItem" title="Lists" id="rce-Cg-UWz"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YYE-PL-STR">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -61,7 +41,7 @@
             </objects>
             <point key="canvasLocation" x="606" y="-813"/>
         </scene>
-        <!--List CollectionVC - Items-->
+        <!--List CollectionVC - Lists-->
         <scene sceneID="pQV-g8-RMt">
             <objects>
                 <viewController id="a9j-SP-Rw2" customClass="ListCollectionVC" sceneMemberID="viewController">
@@ -104,7 +84,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Items" id="CyE-DZ-ili">
+                    <navigationItem key="navigationItem" title="Lists" id="CyE-DZ-ili">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="w1G-Yn-VM2">
                             <connections>
                                 <action selector="addItem:" destination="a9j-SP-Rw2" id="O8X-hq-teD"/>
@@ -295,7 +275,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="mcg-ej-ZYV" kind="relationship" relationship="viewControllers" id="2bP-Xh-YDW"/>
-                        <segue destination="iI9-G0-sXK" kind="relationship" relationship="viewControllers" id="mb4-MP-0VB"/>
                         <segue destination="FAY-0c-xvD" kind="relationship" relationship="viewControllers" id="EaU-Zy-kr7"/>
                     </connections>
                 </tabBarController>
