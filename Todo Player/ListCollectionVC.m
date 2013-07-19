@@ -20,6 +20,8 @@
 
 @implementation ListCollectionVC
 
+#pragma mark - Abstract Methods
+
 - (NSUInteger)numCollections{
     NSLog(@"%@", [self.taskLists description]);
     return [self.taskLists count];
@@ -46,14 +48,13 @@
     self.flowLayout.sectionInset = UIEdgeInsetsMake(COLLECTION_VIEW_NAVBAR_OFFSET + COLLECTION_VIEW_OFFSET + COLLECTION_VIEW_STATUSBAR_OFFSET, COLLECTION_VIEW_OFFSET, 44, COLLECTION_VIEW_OFFSET);
 }
 
-- (id)listAtIndex:(NSUInteger)index{
+- (id)objectAtIndex:(NSUInteger)index{
     return self.taskLists[index];
 }
 
 - (NSString *)entityName{
     return @"ItemList";
 }
-
 
 
 - (void) createTaskList{

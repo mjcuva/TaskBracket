@@ -59,7 +59,7 @@
             [collectionCell addSubview:lv];
         }
         NSLog(@"Item Number: %ul", indexPath.item);
-        id list = [self listAtIndex:indexPath.item];
+        id list = [self objectAtIndex:indexPath.item];
         [self updateCell:collectionCell usingObject:list];
     }
     return cell;
@@ -94,7 +94,7 @@
 
 }
 
-- (id)listAtIndex:(NSUInteger)index{
+- (id)objectAtIndex:(NSUInteger)index{
     return nil;
 }
 

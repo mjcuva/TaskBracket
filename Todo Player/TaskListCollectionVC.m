@@ -35,7 +35,7 @@
     return [self.taskLists count];
 }
 
-- (id)listAtIndex:(NSUInteger)index{
+- (id)objectAtIndex:(NSUInteger)index{
     return self.taskLists[index];
 }
 

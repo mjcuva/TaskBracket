@@ -21,7 +21,7 @@
 - (NSUInteger)numCollections;
 - (NSString *)reuseID;
 - (void)updateCell:(UICollectionViewCell *)cell usingObject:(id)Object;
-- (id)listAtIndex:(NSUInteger)index;
+- (id)objectAtIndex:(NSUInteger)index;
 - (NSString *)entityName;
 - (void)createTaskList;
 
