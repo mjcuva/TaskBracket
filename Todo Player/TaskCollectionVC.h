@@ -27,8 +27,6 @@
 
 - (void)setCollectionViewCellSize;
 
-- (id)createListWithTitle:(NSString *)title;
-
 @property (strong, nonatomic) NSArray *taskLists;
 
 @end

@@ -78,51 +78,6 @@
 //    [self performSegueWithIdentifier:@"ShowList" sender:[self listAtIndex:indexPath.item]];
 }
 
-# pragma mark - Add Item
-
-- (IBAction)addItem:(UIBarButtonItem *)sender {
-    UIAlertView *newListTitleAlert = [[UIAlertView alloc] initWithTitle:@"Enter List Title" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Create", nil];
-    newListTitleAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
-    [[newListTitleAlert textFieldAtIndex:0] setAutocapitalizationType:UITextAutocapitalizationTypeWords];
-    [newListTitleAlert show];
-}
-
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-    if(buttonIndex == 1){
-        
-        NSFetchRequest *listRequest = [NSFetchRequest fetchRequestWithEntityName:[self entityName]];
-        listRequest.predicate = [NSPredicate predicateWithFormat:@"title = %@", [alertView textFieldAtIndex:0].text];
-        NSArray *lists = [self.context executeFetchRequest:listRequest error:NULL];
-        
-        NSString *title = [alertView textFieldAtIndex:0].text;
-        
-        if([lists count] == 0 && [title length] > 0){
-            id list = [self createListWithTitle:title];
-            NSLog(@"Created List %@", [alertView textFieldAtIndex:0].text);
-            [self reloadCollectionView];
-            [self performSegueWithIdentifier:@"NewListPush" sender:list];
-        }else if([lists count] == 1){
-            // Go to existing list
-            [self performSegueWithIdentifier:@"NewListPush" sender:[lists lastObject]];
-        }
-    }
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    if([segue.identifier isEqualToString:@"NewListPush"]){
-        NSString *title;
-        if([sender respondsToSelector:@selector(title)]){
-            title = [sender performSelector:@selector(title)];
-        }
-        [segue.destinationViewController setTitle:title];
-    }else if ([segue.identifier isEqualToString:@"CollectionCellPush"]){
-        if([sender isKindOfClass:[CollectionCell class]]){
-            CollectionCell *cell = (CollectionCell *)sender;
-            [segue.destinationViewController setTitle:cell.lcv.title];
-        }
-    }
-}
-
 
 #pragma mark - Abstract
 
@@ -144,10 +99,6 @@
 }
 
 - (NSString *)entityName{
-    return nil;
-}
-
-- (id)createListWithTitle:(NSString *)title{
     return nil;
 }
 
