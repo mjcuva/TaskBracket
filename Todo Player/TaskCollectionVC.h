@@ -23,10 +23,10 @@
 - (void)updateCell:(UICollectionViewCell *)cell usingObject:(id)Object;
 - (id)objectAtIndex:(NSUInteger)index;
 - (NSString *)entityName;
-- (void)createTaskList;
+- (void)createObjectList;
 
 - (void)setCollectionViewCellSize;
 
-@property (strong, nonatomic) NSArray *taskLists;
+@property (strong, nonatomic) NSArray *objectList;
 
 @end

@@ -23,8 +23,8 @@
 #pragma mark - Abstract Methods
 
 - (NSUInteger)numCollections{
-    NSLog(@"%@", [self.taskLists description]);
-    return [self.taskLists count];
+    NSLog(@"%@", [self.objectList description]);
+    return [self.objectList count];
 }
 
 - (NSString *)reuseID{
@@ -49,7 +49,7 @@
 }
 
 - (id)objectAtIndex:(NSUInteger)index{
-    return self.taskLists[index];
+    return self.objectList[index];
 }
 
 - (NSString *)entityName{
@@ -57,7 +57,7 @@
 }
 
 
-- (void) createTaskList{
+- (void) createObjectList{
     // Setup Request
     NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[self entityName]];
     request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
@@ -65,7 +65,7 @@
     
     // Perform Fetch
     NSError *err;
-    self.taskLists = [self.context executeFetchRequest:request error:&err];
+    self.objectList = [self.context executeFetchRequest:request error:&err];
     
     if(err)
         NSLog(@"%@", [err description]);

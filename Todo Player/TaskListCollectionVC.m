@@ -32,11 +32,11 @@
 }
 
 - (NSUInteger)numCollections{
-    return [self.taskLists count];
+    return [self.objectList count];
 }
 
 - (id)objectAtIndex:(NSUInteger)index{
-    return self.taskLists[index];
+    return self.objectList[index];
 }
 
 - (NSString *)reuseID{
@@ -68,14 +68,14 @@
     }
 }
 
-- (void)createTaskList{
+- (void)createObjectList{
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
     req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
     req.predicate = [NSPredicate predicateWithFormat:@"lists.title == %@", self.title];
     
     // Perform Fetch
     NSError *err;
-    self.taskLists = [self.context executeFetchRequest:req error:&err];
+    self.objectList = [self.context executeFetchRequest:req error:&err];
     if(err){
         NSLog(@"%@", [err description]);
     }else{

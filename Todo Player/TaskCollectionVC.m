@@ -39,7 +39,7 @@
 
 
 - (void)reloadCollectionView{
-    [self createTaskList];
+    [self createObjectList];
     [self.collectionView reloadData];
 }
 
@@ -102,7 +102,7 @@
     return nil;
 }
 
-- (void)createTaskList{
+- (void)createObjectList{
     
 }
 
