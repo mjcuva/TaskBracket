@@ -60,7 +60,7 @@
         }
         NSLog(@"Item Number: %ul", indexPath.item);
         id list = [self listAtIndex:indexPath.item];
-        [self updateCell:collectionCell usingList:list];
+        [self updateCell:collectionCell usingObject:list];
     }
     return cell;
 }
@@ -90,7 +90,7 @@
 }
 
 - (void)updateCell:(UICollectionViewCell *)cell
-         usingList:(id)list{
+         usingObject:(id)object{
 
 }
 

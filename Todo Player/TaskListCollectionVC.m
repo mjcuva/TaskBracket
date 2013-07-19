@@ -43,11 +43,11 @@
     return @"TaskListCell";
 }
 
-- (void)updateCell:(UICollectionViewCell *)cell usingList:(id)list{
+- (void)updateCell:(UICollectionViewCell *)cell usingObject:(id)object{
     if([cell isKindOfClass:[CollectionCell class]]){
-        if([list isKindOfClass:[Task class]]){
+        if([object isKindOfClass:[Task class]]){
             CollectionCell *colCell = (CollectionCell *)cell;
-            Task *t = (Task *)list;
+            Task *t = (Task *)object;
             colCell.lcv.title = t.description;
             [colCell.lcv setNeedsDisplay];
         }

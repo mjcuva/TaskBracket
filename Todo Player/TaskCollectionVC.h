@@ -20,7 +20,7 @@
 // Abstract
 - (NSUInteger)numCollections;
 - (NSString *)reuseID;
-- (void)updateCell:(UICollectionViewCell *)cell usingList:(id)list;
+- (void)updateCell:(UICollectionViewCell *)cell usingObject:(id)Object;
 - (id)listAtIndex:(NSUInteger)index;
 - (NSString *)entityName;
 - (void)createTaskList;

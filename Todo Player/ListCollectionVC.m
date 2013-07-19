@@ -29,11 +29,11 @@
     return @"listCell";
 }
 
-- (void)updateCell:(UICollectionViewCell *)cell usingList:(id)list{
+- (void)updateCell:(UICollectionViewCell *)cell usingObject:(id)object{
     if([cell isKindOfClass:[CollectionCell class]]){
-        if([list isKindOfClass:[ItemList class]]){
+        if([object isKindOfClass:[ItemList class]]){
             CollectionCell *colCell = (CollectionCell *)cell;
-            ItemList *iList = (ItemList *)list;
+            ItemList *iList = (ItemList *)object;
             colCell.lcv.title = iList.title;
             [colCell.lcv setNeedsDisplay];
         }
