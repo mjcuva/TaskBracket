@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:Todo Player.xcodeproj">
+      location = "self:Task Bracket.xcodeproj">
    </FileRef>
 </Workspace>

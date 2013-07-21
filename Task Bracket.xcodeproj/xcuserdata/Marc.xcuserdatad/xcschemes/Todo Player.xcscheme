@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "49A84CF117754DBA0076597F"
-               BuildableName = "Todo Player.app"
-               BlueprintName = "Todo Player"
-               ReferencedContainer = "container:Todo Player.xcodeproj">
+               BuildableName = "Task Bracket.app"
+               BlueprintName = "Task Bracket"
+               ReferencedContainer = "container:Task Bracket.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "49A84D1217754DBA0076597F"
-               BuildableName = "Todo PlayerTests.xctest"
-               BlueprintName = "Todo PlayerTests"
-               ReferencedContainer = "container:Todo Player.xcodeproj">
+               BuildableName = "Task BracketTests.xctest"
+               BlueprintName = "Task BracketTests"
+               ReferencedContainer = "container:Task Bracket.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -43,9 +43,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "49A84CF117754DBA0076597F"
-            BuildableName = "Todo Player.app"
-            BlueprintName = "Todo Player"
-            ReferencedContainer = "container:Todo Player.xcodeproj">
+            BuildableName = "Task Bracket.app"
+            BlueprintName = "Task Bracket"
+            ReferencedContainer = "container:Task Bracket.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "49A84CF117754DBA0076597F"
-            BuildableName = "Todo Player.app"
-            BlueprintName = "Todo Player"
-            ReferencedContainer = "container:Todo Player.xcodeproj">
+            BuildableName = "Task Bracket.app"
+            BlueprintName = "Task Bracket"
+            ReferencedContainer = "container:Task Bracket.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -80,9 +80,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "49A84CF117754DBA0076597F"
-            BuildableName = "Todo Player.app"
-            BlueprintName = "Todo Player"
-            ReferencedContainer = "container:Todo Player.xcodeproj">
+            BuildableName = "Task Bracket.app"
+            BlueprintName = "Task Bracket"
+            ReferencedContainer = "container:Task Bracket.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
