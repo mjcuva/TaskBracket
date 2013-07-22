@@ -93,4 +93,35 @@
 //    self.flowLayout.sectionInset
 }
 
+- (IBAction)swipeTask:(UIPanGestureRecognizer *)sender {
+
+    NSIndexPath *path = [self.collectionView indexPathForItemAtPoint:[sender locationInView:[self view]]];
+    UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:path];
+    CollectionCell *cc = (CollectionCell *)cell;
+    
+    if(sender.state == UIGestureRecognizerStateChanged){
+        cc.lcv.frame = CGRectMake(cc.lcv.frame.origin.x + [sender translationInView:[self view]].x, cc.lcv.frame.origin.y, cc.lcv.frame.size.width, cc.lcv.frame.size.height);
+        cc.lcv.alpha = 1 - (abs(cc.lcv.frame.origin.x) / cc.lcv.frame.size.width);
+        [sender setTranslation:CGPointZero inView:[self view]];
+    }else if(sender.state == UIGestureRecognizerStateEnded){
+        if(cc.lcv.frame.origin.x < cc.lcv.frame.size.width / 3 * -1){
+            // TODO: Remove object
+            [UIView animateWithDuration:.75 animations:^{
+                cc.lcv.alpha = 0;
+                cc.lcv.frame = CGRectMake(cc.lcv.frame.size.width * -1, cc.lcv.frame.origin.y , cc.lcv.frame.size.width, cc.lcv.frame.size.height);
+            }];
+        }else if(cc.lcv.frame.origin.x > cc.lcv.frame.size.width / 3){
+            [UIView animateWithDuration:.75 animations:^{
+                cc.lcv.alpha = 0;
+                cc.lcv.frame = CGRectMake(cc.lcv.frame.size.width, cc.lcv.frame.origin.y, cc.lcv.frame.size.width, cc.lcv.frame.size.height);
+            }];
+        }else{
+            [UIView animateWithDuration:.75 animations:^{
+                cc.lcv.frame = CGRectMake(0, 0, cc.lcv.frame.size.width, cc.lcv.frame.size.height);
+                cc.lcv.alpha = 1;
+            }];
+        }
+    }
+}
+
 @end
