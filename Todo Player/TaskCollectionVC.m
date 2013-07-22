@@ -16,7 +16,6 @@
                                 UICollectionViewDelegateFlowLayout,
                                 UIAlertViewDelegate>
 
-@property (strong, nonatomic) IBOutlet UICollectionView* collectionView;
 @end
 
 @implementation TaskCollectionVC

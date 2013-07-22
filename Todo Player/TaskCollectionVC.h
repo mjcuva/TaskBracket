@@ -15,6 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionViewFlowLayout *flowLayout;
 
+@property (strong, nonatomic) IBOutlet UICollectionView* collectionView;
+
 - (void)reloadCollectionView;
 
 // Abstract
