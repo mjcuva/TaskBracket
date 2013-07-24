@@ -29,6 +29,11 @@
 
 - (void)setCollectionViewCellSize;
 
+// Override for custom view width
+- (NSUInteger)viewWidth;
+// Override for custom origin
+- (NSUInteger)viewX;
+
 @property (strong, nonatomic) NSArray *objectList;
 
 @end

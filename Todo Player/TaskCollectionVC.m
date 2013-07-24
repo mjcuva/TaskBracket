@@ -53,7 +53,7 @@
     if([cell isKindOfClass:[CollectionCell class]]){
         CollectionCell *collectionCell = (CollectionCell *)cell;
         if(!collectionCell.lcv){
-            ListView *lv = [[ListView alloc] initWithFrame:CGRectMake(0, 0, self.flowLayout.itemSize.width, self.flowLayout.itemSize.height)];
+            ListView *lv = [[ListView alloc] initWithFrame:CGRectMake([self viewX], 0, [self viewWidth], self.flowLayout.itemSize.height)];
             collectionCell.lcv = lv;
             [collectionCell addSubview:lv];
         }
@@ -107,6 +107,14 @@
 
 - (void)setCollectionViewCellSize{
     
+}
+
+- (NSUInteger)viewWidth{
+    return self.flowLayout.itemSize.width;
+}
+
+- (NSUInteger)viewX{
+    return 0;
 }
 
 @end
