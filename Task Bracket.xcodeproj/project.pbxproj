@@ -11,6 +11,7 @@
 		494DF7961785F7D200B99774 /* NewTaskVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 494DF7951785F7D200B99774 /* NewTaskVC.m */; };
 		494DF799178602E400B99774 /* TaskListCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 494DF798178602E400B99774 /* TaskListCollectionVC.m */; };
 		4962E70B1792277100AFABF5 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4962E70A1792277100AFABF5 /* UIPlaceHolderTextView.m */; };
+		498611FA17A07D800086000E /* UndoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 498611F917A07D800086000E /* UndoView.m */; };
 		49951422177B79DF00E444D7 /* ItemList+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = 49951421177B79DF00E444D7 /* ItemList+Description.m */; };
 		49A84CF617754DBA0076597F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A84CF517754DBA0076597F /* Foundation.framework */; };
 		49A84CF817754DBA0076597F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A84CF717754DBA0076597F /* CoreGraphics.framework */; };
@@ -55,6 +56,8 @@
 		494DF798178602E400B99774 /* TaskListCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListCollectionVC.m; sourceTree = "<group>"; };
 		4962E7091792277100AFABF5 /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
 		4962E70A1792277100AFABF5 /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
+		498611F817A07D800086000E /* UndoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoView.h; sourceTree = "<group>"; };
+		498611F917A07D800086000E /* UndoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoView.m; sourceTree = "<group>"; };
 		49951420177B79DF00E444D7 /* ItemList+Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ItemList+Description.h"; path = "Core Data/ItemList+Description.h"; sourceTree = "<group>"; };
 		49951421177B79DF00E444D7 /* ItemList+Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ItemList+Description.m"; path = "Core Data/ItemList+Description.m"; sourceTree = "<group>"; };
 		49A84CF217754DBA0076597F /* Task Bracket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Task Bracket.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -117,6 +120,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		498611F417A07D4D0086000E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				49A84D36177562910076597F /* ListView.h */,
+				49A84D37177562910076597F /* ListView.m */,
+				498611F817A07D800086000E /* UndoView.h */,
+				498611F917A07D800086000E /* UndoView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		49A84CE917754DBA0076597F = {
 			isa = PBXGroup;
 			children = (
@@ -157,14 +171,13 @@
 				49A84D3117755CD70076597F /* ListCollectionVC.m */,
 				49A84D33177562530076597F /* CollectionCell.h */,
 				49A84D34177562530076597F /* CollectionCell.m */,
-				49A84D36177562910076597F /* ListView.h */,
-				49A84D37177562910076597F /* ListView.m */,
 				494DF797178602E400B99774 /* TaskListCollectionVC.h */,
 				494DF798178602E400B99774 /* TaskListCollectionVC.m */,
 				494DF7941785F7D200B99774 /* NewTaskVC.h */,
 				494DF7951785F7D200B99774 /* NewTaskVC.m */,
 				4962E7091792277100AFABF5 /* UIPlaceHolderTextView.h */,
 				4962E70A1792277100AFABF5 /* UIPlaceHolderTextView.m */,
+				498611F417A07D4D0086000E /* Views */,
 				49A84D39177665D20076597F /* Core Data */,
 				49A84D0D17754DBA0076597F /* Images.xcassets */,
 				49A84CFC17754DBA0076597F /* Supporting Files */,
@@ -331,6 +344,7 @@
 				49A84D0617754DBA0076597F /* AppDelegate.m in Sources */,
 				49951422177B79DF00E444D7 /* ItemList+Description.m in Sources */,
 				49A84D0217754DBA0076597F /* main.m in Sources */,
+				498611FA17A07D800086000E /* UndoView.m in Sources */,
 				49B69C40179473F700F95484 /* SharedManagedObjectContext.m in Sources */,
 				49A84D3C1777B84A0076597F /* Task.m in Sources */,
 				49A84D35177562530076597F /* CollectionCell.m in Sources */,
