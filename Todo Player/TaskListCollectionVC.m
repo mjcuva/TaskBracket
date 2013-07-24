@@ -10,9 +10,20 @@
 #import "NewTaskVC.h"
 #import "CollectionCell.h"
 #import "Task+Description.h"
+#import "UndoView.h"
 
 @interface TaskListCollectionVC() <newTask>
+@property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *panGesture;
 @property (strong, nonatomic) NewTaskVC *presentedVC;
+
+// Holds the view that was last removed, in case the user
+// presses undo
+@property (strong, nonatomic) ListView *lastRemovedList;
+
+// YES is undo was pressed
+@property BOOL removeCanceled;
+
+@property (strong, nonatomic) UndoView *undoButton;
 @end
 
 @implementation TaskListCollectionVC
@@ -83,14 +94,22 @@
     }
 }
 
-#define COLLECTION_VIEW_CELL_PADDING 10
+#define COLLECTION_VIEW_CELL_PADDING 0
 #define COLLECTION_VIEW_CELL_HEIGHT 100
 
 - (void)setCollectionViewCellSize{
     CGFloat width = self.view.frame.size.width - COLLECTION_VIEW_CELL_PADDING;
     CGFloat height = COLLECTION_VIEW_CELL_HEIGHT;
     self.flowLayout.itemSize = CGSizeMake(width, height);
-//    self.flowLayout.sectionInset
+//    self.flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
+}
+
+- (NSUInteger)viewWidth{
+    return self.flowLayout.itemSize.width - 20;
+}
+
+- (NSUInteger)viewX{
+    return 10;
 }
 
 - (IBAction)swipeTask:(UIPanGestureRecognizer *)sender {
@@ -105,22 +124,79 @@
         [sender setTranslation:CGPointZero inView:[self view]];
     }else if(sender.state == UIGestureRecognizerStateEnded){
         if(cc.lcv.frame.origin.x < cc.lcv.frame.size.width / 3 * -1){
-            // TODO: Remove object
             [UIView animateWithDuration:.75 animations:^{
                 cc.lcv.alpha = 0;
                 cc.lcv.frame = CGRectMake(cc.lcv.frame.size.width * -1, cc.lcv.frame.origin.y , cc.lcv.frame.size.width, cc.lcv.frame.size.height);
+            }completion:^(BOOL success){
+                if(success){
+                    [self showCancelWithListView:cc.lcv];
+                }
             }];
         }else if(cc.lcv.frame.origin.x > cc.lcv.frame.size.width / 3){
             [UIView animateWithDuration:.75 animations:^{
                 cc.lcv.alpha = 0;
                 cc.lcv.frame = CGRectMake(cc.lcv.frame.size.width, cc.lcv.frame.origin.y, cc.lcv.frame.size.width, cc.lcv.frame.size.height);
+            } completion:^(BOOL success){
+                if(success){
+                    [self showCancelWithListView:cc.lcv];
+                }
             }];
         }else{
+            // Gesture failed
             [UIView animateWithDuration:.75 animations:^{
-                cc.lcv.frame = CGRectMake(0, 0, cc.lcv.frame.size.width, cc.lcv.frame.size.height);
+                cc.lcv.frame = CGRectMake(10, 0, cc.lcv.frame.size.width, cc.lcv.frame.size.height);
                 cc.lcv.alpha = 1;
             }];
         }
+    }
+}
+
+// Finishes removing the cell swiped away
+- (void) showCancelWithListView:(ListView *)lv{
+    
+    UIView *superView = [lv superview];
+
+    self.lastRemovedList = lv;
+    [lv removeFromSuperview];
+    
+
+    
+    self.undoButton = [[UndoView alloc] initWithFrame:CGRectMake(10, 0, lv.frame.size.width, lv.frame.size.height)];
+    self.undoButton.alpha = 0;
+    [UIView animateWithDuration:.25 animations:^{
+        self.undoButton.alpha = 1;
+    }];
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelRemove)];
+    [self.undoButton addGestureRecognizer:tap];
+    [self performSelector:@selector(finishRemoveWithObjects:) withObject:lv afterDelay:5];
+    [superView addSubview:self.undoButton];
+}
+
+- (void)cancelRemove{
+    self.removeCanceled = YES;
+    [self.lastRemovedList setNeedsDisplay];
+    UIView *superview = self.undoButton.superview;
+    [self.undoButton removeFromSuperview];
+    [superview addSubview:self.lastRemovedList];
+    
+    [UIView animateWithDuration:.5 animations:^{
+        self.lastRemovedList.frame = CGRectMake(10, 0, self.lastRemovedList.frame.size.width, self.lastRemovedList.frame.size.height);
+        self.lastRemovedList.alpha = 1;
+    }];
+}
+
+- (void)finishRemoveWithObjects:(ListView *)lv{
+    
+    UIView *superView = self.undoButton.superview;
+    
+    [UIView animateWithDuration:1 animations:^{
+        self.undoButton.alpha = 0;
+    }];
+    
+    if(self.removeCanceled == NO){
+        // Remove task and update collectionView
+        NSLog(@"not canceled");
     }
 }
 
