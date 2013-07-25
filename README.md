@@ -1,4 +1,4 @@
-Todo Bracket
+Task Bracket
 ==========
 
 Task Manager with a time limit
