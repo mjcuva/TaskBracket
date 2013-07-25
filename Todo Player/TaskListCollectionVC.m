@@ -60,7 +60,8 @@
         if([object isKindOfClass:[Task class]]){
             CollectionCell *colCell = (CollectionCell *)cell;
             Task *t = (Task *)object;
-            colCell.lcv.title = t.description;
+            colCell.lcv.description = t.description;
+            colCell.lcv.title = t.title;
             [colCell.lcv setNeedsDisplay];
         }
     }
@@ -177,7 +178,7 @@
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelRemove)];
     [self.undoButton addGestureRecognizer:tap];
-    [self performSelector:@selector(finishRemoveWithObjects:) withObject:lv afterDelay:5];
+    [self performSelector:@selector(finishRemoveWithObjects:) withObject:lv afterDelay:2];
     [superView addSubview:self.undoButton];
 }
 
@@ -196,16 +197,36 @@
 
 - (void)finishRemoveWithObjects:(ListView *)lv{
     
-    UIView *superView = self.undoButton.superview;
-    
     [UIView animateWithDuration:1 animations:^{
         self.undoButton.alpha = 0;
+    } completion:^(BOOL success){
+        
+        if(self.removeCanceled == NO){
+            
+            UIView *superview = self.undoButton.superview;
+            if([superview isKindOfClass:[CollectionCell class]]){
+                CollectionCell *cc = (CollectionCell *)superview;
+                cc.lcv = nil;
+            }
+            
+            // Remove task and update collectionView
+            NSLog(@"not canceled");
+            
+            NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
+            req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+            req.predicate = [NSPredicate predicateWithFormat:@"title=%@", lv.title];
+            
+            Task *t = [[self.context executeFetchRequest:req error:NULL] lastObject];
+            NSLog(@"%@", [t description]);
+            [self.context deleteObject:t];
+            
+            [self reloadCollectionView];
+            
+        }
+    
     }];
     
-    if(self.removeCanceled == NO){
-        // Remove task and update collectionView
-        NSLog(@"not canceled");
-    }
+
 }
 
 @end
