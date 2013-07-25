@@ -36,7 +36,7 @@
         if([object isKindOfClass:[ItemList class]]){
             CollectionCell *colCell = (CollectionCell *)cell;
             ItemList *iList = (ItemList *)object;
-            colCell.lcv.title = iList.title;
+            colCell.lcv.description = iList.description;
             [colCell.lcv setNeedsDisplay];
         }
     }

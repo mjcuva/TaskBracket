@@ -41,10 +41,10 @@
     NSDictionary *attr = @{NSParagraphStyleAttributeName:p};
     
     // Center Text Vertically
-    CGSize fontHeight = [self.title sizeWithAttributes:nil];
+    CGSize fontHeight = [self.description sizeWithAttributes:nil];
     CGFloat YOffSet = (rect.size.height - fontHeight.height) / 2;
     
-    [self.title drawInRect:CGRectMake(0, YOffSet, rect.size.width, rect.size.height) withAttributes:attr];
+    [self.description drawInRect:CGRectMake(0, YOffSet, rect.size.width, rect.size.height) withAttributes:attr];
 }
 
 @end
