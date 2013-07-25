@@ -12,7 +12,7 @@
 #import "Task+Description.h"
 #import "UndoView.h"
 
-@interface TaskListCollectionVC() <newTask>
+@interface TaskListCollectionVC() <newTask, UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *panGesture;
 @property (strong, nonatomic) NewTaskVC *presentedVC;
 
@@ -31,6 +31,7 @@
 - (void)viewDidLoad{
     [super viewDidLoad];
     [self reloadCollectionView];
+    self.panGesture.delegate = self;
 }
 
 - (void)taskCreated{
@@ -110,6 +111,13 @@
 
 - (NSUInteger)viewX{
     return 10;
+}
+
+#pragma mark - Remove Item Gesture
+
+- (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer{
+    CGPoint translation = [gestureRecognizer translationInView:self.view];
+    return fabs(translation.x) > fabs(translation.y);
 }
 
 - (IBAction)swipeTask:(UIPanGestureRecognizer *)sender {
