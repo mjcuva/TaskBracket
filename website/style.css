@@ -1,0 +1,71 @@
+body {
+    background-image: linear-gradient(left bottom, rgb(224,73,27) 15%, rgb(171,36,36) 57%);
+    background-image: -o-linear-gradient(left bottom, rgb(224,73,27) 15%, rgb(171,36,36) 57%);
+    background-image: -moz-linear-gradient(left bottom, rgb(224,73,27) 15%, rgb(171,36,36) 57%);
+    background-image: -webkit-linear-gradient(left bottom, rgb(224,73,27) 15%, rgb(171,36,36) 57%);
+    background-image: -ms-linear-gradient(left bottom, rgb(224,73,27) 15%, rgb(171,36,36) 57%);
+
+    background-image: -webkit-gradient(
+        linear,
+        left bottom,
+        right top,
+        color-stop(0.15, rgb(224,73,27)),
+        color-stop(0.57, rgb(171,36,36))
+    );
+
+}
+
+#container {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    margin-top: -250px;
+}
+
+#main {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#logo{
+    width: 50%;
+}
+
+#text{
+    font-size: 30px;
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", 
+  Helvetica, Arial, "Lucida Grande", sans-serif;
+
+}
+
+#mailchimp{
+    width: 50%;
+    margin: 0 auto;
+}
+
+#mc_embed_signup form *{
+    text-align: center;
+}
+
+#mc_embed_signup label {
+    font-size: 30px !important;
+    font-weight: normal !important;
+}
+
+#mc_embed_signup input.email {
+    margin: 10px auto !important;
+    display: inline !important;
+    width: 40% !important;
+}
+
+#mc_embed_signup input.button{
+    margin: 0 auto !important;
+    width: 15% !important;
+    display: inline !important;
+    vertical-align: baseline !important;
+}
+
+#box {
+    margin: 0 auto;
+}
