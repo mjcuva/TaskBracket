@@ -90,7 +90,7 @@
     NSError *err;
     self.objectList = [self.context executeFetchRequest:req error:&err];
     if(err){
-        NSLog(@"%@", [err description]);
+        NSLog(@"Error Fetching List %@: %@", self.title, [err description]);
     }else{
         NSLog(@"Fetched List %@", self.title);
     }
