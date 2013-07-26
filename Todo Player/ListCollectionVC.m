@@ -12,6 +12,9 @@
 
 @interface ListCollectionVC () <UIActionSheetDelegate>
 @property (strong, nonatomic) UIActionSheet *actionSheet;
+
+// Cell pressed to bring up action sheet
+@property (strong, nonatomic) CollectionCell *pressedCell;
 @end
 
 #define COLLECTION_VIEW_CELL_PADDING 20
@@ -129,14 +132,28 @@
     return list;
 }
 
+# pragma mark - UIActionSheet
+
+#define EDIT_BUTTON_TITLE @"Edit"
+#define CANCEL_BUTTON_TITLE @"Cancel"
+#define DELETE_BUTTON_TITLE @"Delete"
 
 - (void)showActionSheet:(UILongPressGestureRecognizer *)sender {
     if(sender.state == UIGestureRecognizerStateRecognized){
         CGPoint loc = [sender locationInView:self.view];
-        CollectionCell *cell = (CollectionCell *)[self.collectionView cellForItemAtIndexPath: [self.collectionView indexPathForItemAtPoint:loc]];
+        self.pressedCell = (CollectionCell *)[self.collectionView cellForItemAtIndexPath: [self.collectionView indexPathForItemAtPoint:loc]];
+        NSLog(@"%@", self.pressedCell.lcv.description);
         
-        self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete" otherButtonTitles:@"Edit", nil];
+        self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:CANCEL_BUTTON_TITLE destructiveButtonTitle:DELETE_BUTTON_TITLE otherButtonTitles:EDIT_BUTTON_TITLE, nil];
         [self.actionSheet showFromTabBar:self.tabBarController.tabBar];
+    }
+}
+
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:EDIT_BUTTON_TITLE]){
+        // TODO: Edit List
+    }else if([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DELETE_BUTTON_TITLE]){
+        // TODO: Delete List
     }
 }
 
