@@ -47,8 +47,6 @@
 }
 
 - (IBAction)done:(UIBarButtonItem *)sender {
-    // TODO: Create and save task
-    
     Task *task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.context];
     task.title = self.titleView.text;
     task.task_description = self.descriptionView.text;
