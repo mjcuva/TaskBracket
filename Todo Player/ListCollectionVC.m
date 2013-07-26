@@ -10,7 +10,8 @@
 #import "ItemList+Description.h"
 #import "CollectionCell.h"
 
-@interface ListCollectionVC ()
+@interface ListCollectionVC () <UIActionSheetDelegate>
+@property (strong, nonatomic) UIActionSheet *actionSheet;
 @end
 
 #define COLLECTION_VIEW_CELL_PADDING 20
@@ -38,6 +39,10 @@
             ItemList *iList = (ItemList *)object;
             colCell.lcv.description = iList.description;
             [colCell.lcv setNeedsDisplay];
+            
+            UILongPressGestureRecognizer *lp = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(showActionSheet:)];
+            [colCell addGestureRecognizer:lp];
+            
         }
     }
 }
@@ -123,5 +128,23 @@
     list.title = title;
     return list;
 }
+
+
+- (void)showActionSheet:(UILongPressGestureRecognizer *)sender {
+    if(sender.state == UIGestureRecognizerStateRecognized){
+        CGPoint loc = [sender locationInView:self.view];
+        CollectionCell *cell = (CollectionCell *)[self.collectionView cellForItemAtIndexPath: [self.collectionView indexPathForItemAtPoint:loc]];
+        
+        self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:@"Delete" otherButtonTitles:@"Edit", nil];
+        [self.actionSheet showFromTabBar:self.tabBarController.tabBar];
+    }
+}
+
+
+
+
+
+
+
 
 @end
