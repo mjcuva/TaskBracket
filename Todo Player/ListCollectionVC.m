@@ -113,7 +113,7 @@
     }else if ([segue.identifier isEqualToString:@"CollectionCellPush"]){
         if([sender isKindOfClass:[CollectionCell class]]){
             CollectionCell *cell = (CollectionCell *)sender;
-            [segue.destinationViewController setTitle:cell.lcv.title];
+            [segue.destinationViewController setTitle:cell.lcv.description];
         }
     }
 }
