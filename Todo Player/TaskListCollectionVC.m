@@ -228,7 +228,7 @@
             req.predicate = [NSPredicate predicateWithFormat:@"title=%@", lv.title];
             
             Task *t = [[self.context executeFetchRequest:req error:NULL] lastObject];
-            NSLog(@"%@", [t description]);
+            NSLog(@"Deleting %@", [t title]);
             [self.context deleteObject:t];
             
             [self reloadCollectionView];
