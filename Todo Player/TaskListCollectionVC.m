@@ -219,8 +219,6 @@
             }
             
             // Remove task and update collectionView
-            NSLog(@"not canceled");
-            
             NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
             req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
             req.predicate = [NSPredicate predicateWithFormat:@"title=%@", lv.title];
@@ -231,6 +229,8 @@
             
             [self reloadCollectionView];
             
+        }else{
+            NSLog(@"Deletion Canceled");
         }
     
     }];
