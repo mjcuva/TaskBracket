@@ -13,6 +13,7 @@
 
 - (void)taskCreated;
 - (void)taskCanceled;
+- (void)taskEdited:(Task *)task;
 
 @end
 

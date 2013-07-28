@@ -144,7 +144,6 @@
                         <outlet property="collectionView" destination="ml3-6l-QoS" id="cyJ-3k-8cI"/>
                         <outlet property="flowLayout" destination="3pg-aj-Xy9" id="5Zk-dx-Mvh"/>
                         <outlet property="panGesture" destination="GSa-RO-7BN" id="hDe-MW-l40"/>
-                        <outlet property="tapGesture" destination="Ldv-3D-JaR" id="xdc-hO-Kv4"/>
                         <segue destination="AYI-lC-HjZ" kind="modal" identifier="EditTask" id="rWh-DG-7oJ"/>
                     </connections>
                 </collectionViewController>
@@ -154,11 +153,6 @@
                         <action selector="swipeTask:" destination="yoa-BP-uXb" id="GrX-0d-kNE"/>
                     </connections>
                 </panGestureRecognizer>
-                <tapGestureRecognizer id="Ldv-3D-JaR">
-                    <connections>
-                        <action selector="taskTapped:" destination="yoa-BP-uXb" id="vte-39-2qB"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1670" y="-886"/>
         </scene>

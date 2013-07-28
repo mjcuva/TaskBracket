@@ -12,9 +12,8 @@
 #import "Task+Description.h"
 #import "UndoView.h"
 
-@interface TaskListCollectionVC() <newTask, UIGestureRecognizerDelegate>
+@interface TaskListCollectionVC() <newTask, UIGestureRecognizerDelegate, UICollectionViewDelegate>
 @property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *panGesture;
-@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapGesture;
 @property (strong, nonatomic) NewTaskVC *presentedVC;
 
 // Holds the view that was last removed, in case the user
@@ -43,6 +42,11 @@
 }
 
 - (void)taskCanceled{
+    [self.presentedVC dismissViewControllerAnimated:YES completion:NULL];
+}
+
+- (void)taskEdited:(Task *)task{
+    [self reloadCollectionView];
     [self.presentedVC dismissViewControllerAnimated:YES completion:NULL];
 }
 
@@ -238,17 +242,15 @@
 
 #pragma mark - Edit Task
 
-- (IBAction)taskTapped:(UITapGestureRecognizer *)sender {
-    NSLog(@"HERE");
-    CollectionCell *cell = (CollectionCell *)[self.collectionView cellForItemAtIndexPath: [self.collectionView indexPathForItemAtPoint: [sender locationInView:self.view]]];
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    CollectionCell *cell = (CollectionCell *)[self.collectionView cellForItemAtIndexPath: indexPath];
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
     req.predicate = [NSPredicate predicateWithFormat:@"title == %@ && lists.title = %@", cell.lcv.title, self.title];
     Task *task = [[self.context executeFetchRequest:req error:NULL] lastObject];
     assert(task != nil);
-    [self.context deleteObject:task];
+    [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
     [self performSegueWithIdentifier:@"EditTask" sender:task];
 }
-
 
 
 @end

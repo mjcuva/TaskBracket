@@ -39,6 +39,10 @@
         self.titleView.text = self.startingTask.title;
         self.descriptionView.text = self.startingTask.task_description;
         [self.picker selectRow:[self.startingTask.duration integerValue] inComponent:0 animated:NO];
+        
+        self.navigationController.navigationBar.topItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(done:)];
+        
+        self.title = @"Edit Task";
     }
 }
 
@@ -53,23 +57,30 @@
 }
 
 - (IBAction)done:(UIBarButtonItem *)sender {
-    Task *task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.context];
-    task.title = self.titleView.text;
-    task.task_description = self.descriptionView.text;
-    task.duration = [NSNumber numberWithInt:[self.picker selectedRowInComponent:0]];
-    
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ItemList"];
-    request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
-    NSLog(@"%@", self.listTitle);
-    request.predicate = [NSPredicate predicateWithFormat:@"title=%@", self.listTitle];
-    
-    ItemList *list = [self.context executeFetchRequest:request error:NULL][0];
-    [list addTasksObject:task];
-    
-    NSLog(@"%@", self.titleView.text);
-    NSLog(@"%@", self.descriptionView.text);
-    NSLog(@"%ul", [self.picker selectedRowInComponent:0]);
-    [self.delagate taskCreated];
+    if(!self.startingTask){
+        Task *task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.context];
+        task.title = self.titleView.text;
+        task.task_description = self.descriptionView.text;
+        task.duration = [NSNumber numberWithInt:[self.picker selectedRowInComponent:0]];
+        
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:@"ItemList"];
+        request.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+        NSLog(@"%@", self.listTitle);
+        request.predicate = [NSPredicate predicateWithFormat:@"title=%@", self.listTitle];
+        
+        ItemList *list = [self.context executeFetchRequest:request error:NULL][0];
+        [list addTasksObject:task];
+        
+        NSLog(@"%@", self.titleView.text);
+        NSLog(@"%@", self.descriptionView.text);
+        NSLog(@"%ul", [self.picker selectedRowInComponent:0]);
+        [self.delagate taskCreated];
+    }else{
+        self.startingTask.title = self.titleView.text;
+        self.startingTask.task_description = self.descriptionView.text;
+        self.startingTask.duration = [NSNumber numberWithInt:[self.picker selectedRowInComponent:0]];
+        [self.delagate taskEdited:self.startingTask];
+    }
 }
 
 #pragma mark - UIPickerViewDataSource
