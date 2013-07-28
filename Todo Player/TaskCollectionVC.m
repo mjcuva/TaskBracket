@@ -72,12 +72,6 @@
 }
 
 
-- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"didSelectItemAtIndexPath:%@", [indexPath description]);
-//    [self performSegueWithIdentifier:@"ShowList" sender:[self listAtIndex:indexPath.item]];
-}
-
-
 #pragma mark - Abstract
 
 - (NSUInteger)numCollections{
