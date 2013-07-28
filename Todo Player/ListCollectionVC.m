@@ -149,7 +149,7 @@
 
 # pragma mark - UIActionSheet
 
-#define EDIT_BUTTON_TITLE @"Change Title"
+#define EDIT_BUTTON_TITLE @"Edit Title"
 #define CANCEL_BUTTON_TITLE @"Cancel"
 #define DELETE_BUTTON_TITLE @"Delete"
 
@@ -166,7 +166,7 @@
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     if([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:EDIT_BUTTON_TITLE]){
-        UIAlertView *editAV = [[UIAlertView alloc] initWithTitle:@"Enter New Title" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Create", nil];
+        UIAlertView *editAV = [[UIAlertView alloc] initWithTitle:@"Edit List Title" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save", nil];
         editAV.tag = ALERT_VIEW_EDIT_TAG;
         editAV.alertViewStyle = UIAlertViewStylePlainTextInput;
         [[editAV textFieldAtIndex:0] setAutocapitalizationType: UITextAutocapitalizationTypeWords];
