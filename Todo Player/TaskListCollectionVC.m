@@ -34,6 +34,8 @@
     self.panGesture.delegate = self;
 }
 
+# pragma mark - newTask protocol
+
 - (void)taskCreated{
    [self reloadCollectionView];
     [self.presentedVC dismissViewControllerAnimated:YES completion:NULL];
@@ -42,6 +44,8 @@
 - (void)taskCanceled{
     [self.presentedVC dismissViewControllerAnimated:YES completion:NULL];
 }
+
+#pragma mark - TaskCollectionSublcass methods
 
 - (NSUInteger)numCollections{
     return [self.objectList count];
