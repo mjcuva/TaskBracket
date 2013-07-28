@@ -12,16 +12,53 @@
 #import "Task.h"
 #import "ItemList+Description.h"
 
-@interface NewTaskVC () <UIPickerViewDataSource, UIPickerViewDelegate>
+@interface NewTaskVC () <UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate, UITextViewDelegate>
 @property (weak, nonatomic) IBOutlet UIPlaceHolderTextView *descriptionView;
 @property (weak, nonatomic) IBOutlet UITextField *titleView;
 @property (strong, nonatomic) UINavigationBar *navBar;
 @property (weak, nonatomic) IBOutlet UIPickerView *picker;
 
 @property (strong, nonatomic) NSManagedObjectContext *context;
+
+@property (strong, nonatomic) UIToolbar *accesoryView;
+@property (strong, nonatomic) UISegmentedControl *accesoryControl;
 @end
 
 @implementation NewTaskVC
+
+- (UIToolbar *)accesoryView{
+    
+    if(!_accesoryView){
+        _accesoryView = [[UIToolbar alloc] init];
+        
+        self.accesoryControl = [[UISegmentedControl alloc] initWithItems:@[@"Previous", @"Next"]];
+        
+        [self.accesoryControl addTarget:self action:@selector(changeRow:) forControlEvents:UIControlEventValueChanged];
+        [self.accesoryControl setEnabled:NO forSegmentAtIndex:0];
+        self.accesoryControl.momentary = YES;
+        self.accesoryControl.highlighted = YES;
+        
+        UIBarButtonItem *next = [[UIBarButtonItem alloc] initWithCustomView:self.accesoryControl];
+        NSArray *items = @[next];
+        
+        [_accesoryView setItems:items];
+        
+        [_accesoryView sizeToFit];
+    }
+
+    return _accesoryView;
+}
+
+- (void)changeRow:(id)sender{
+    
+    int selected = [sender selectedSegmentIndex];
+    if(selected == 0){
+        [self updateAccessoryWithTextBox:1];
+    }else{
+        [self updateAccessoryWithTextBox:0];
+    }
+    
+}
 
 - (void)viewDidLoad{
     [super viewDidLoad];
@@ -35,6 +72,8 @@
         self.context = context;
     }];
     
+    [self.titleView becomeFirstResponder];
+    
     if(self.startingTask){
         self.titleView.text = self.startingTask.title;
         self.descriptionView.text = self.startingTask.task_description;
@@ -44,6 +83,37 @@
         
         self.title = @"Edit Task";
     }
+    
+    self.titleView.delegate = self;
+    self.descriptionView.delegate = self;
+    
+    self.titleView.inputAccessoryView = self.accesoryView;
+    self.descriptionView.inputAccessoryView = self.accesoryView;
+}
+
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    self.accesoryControl.tintColor = self.view.window.tintColor;
+}
+
+- (void)updateAccessoryWithTextBox:(int)index{
+    if(index == 0){
+        [self.accesoryControl setEnabled:NO forSegmentAtIndex:1];
+        [self.accesoryControl setEnabled:YES forSegmentAtIndex:0];
+        [self.descriptionView becomeFirstResponder];
+    }else{
+        [self.accesoryControl setEnabled:NO forSegmentAtIndex:0];
+        [self.accesoryControl setEnabled:YES forSegmentAtIndex:1];
+        [self.titleView becomeFirstResponder];
+    }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    [self updateAccessoryWithTextBox:1];
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    [self updateAccessoryWithTextBox:0];
 }
 
 - (void)setListTitle:(NSString *)listTitle{
