@@ -127,6 +127,8 @@
 				49A84D37177562910076597F /* ListView.m */,
 				498611F817A07D800086000E /* UndoView.h */,
 				498611F917A07D800086000E /* UndoView.m */,
+				4962E7091792277100AFABF5 /* UIPlaceHolderTextView.h */,
+				4962E70A1792277100AFABF5 /* UIPlaceHolderTextView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -175,8 +177,6 @@
 				494DF798178602E400B99774 /* TaskListCollectionVC.m */,
 				494DF7941785F7D200B99774 /* NewTaskVC.h */,
 				494DF7951785F7D200B99774 /* NewTaskVC.m */,
-				4962E7091792277100AFABF5 /* UIPlaceHolderTextView.h */,
-				4962E70A1792277100AFABF5 /* UIPlaceHolderTextView.m */,
 				498611F417A07D4D0086000E /* Views */,
 				49A84D39177665D20076597F /* Core Data */,
 				49A84D0D17754DBA0076597F /* Images.xcassets */,
