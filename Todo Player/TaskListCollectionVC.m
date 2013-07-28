@@ -14,6 +14,7 @@
 
 @interface TaskListCollectionVC() <newTask, UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *panGesture;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *tapGesture;
 @property (strong, nonatomic) NewTaskVC *presentedVC;
 
 // Holds the view that was last removed, in case the user
@@ -82,6 +83,10 @@
         self.presentedVC = (NewTaskVC *)[dvc.viewControllers objectAtIndex:0];
         self.presentedVC.listTitle = self.title;
         self.presentedVC.delagate = self;
+        
+        if([sender isKindOfClass:[Task class]]){
+            self.presentedVC.startingTask = sender;
+        }
     }
 }
 
@@ -229,8 +234,21 @@
         }
     
     }];
-    
-
 }
+
+#pragma mark - Edit Task
+
+- (IBAction)taskTapped:(UITapGestureRecognizer *)sender {
+    NSLog(@"HERE");
+    CollectionCell *cell = (CollectionCell *)[self.collectionView cellForItemAtIndexPath: [self.collectionView indexPathForItemAtPoint: [sender locationInView:self.view]]];
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
+    req.predicate = [NSPredicate predicateWithFormat:@"title == %@ && lists.title = %@", cell.lcv.title, self.title];
+    Task *task = [[self.context executeFetchRequest:req error:NULL] lastObject];
+    assert(task != nil);
+    [self.context deleteObject:task];
+    [self performSegueWithIdentifier:@"EditTask" sender:task];
+}
+
+
 
 @end

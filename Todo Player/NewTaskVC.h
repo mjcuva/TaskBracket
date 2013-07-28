@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Task+Description.h"
 
 @protocol newTask <NSObject>
 
@@ -18,4 +19,5 @@
 @interface NewTaskVC : UITableViewController
 @property (strong, nonatomic) NSString *listTitle;
 @property (strong, nonatomic) id<newTask> delagate;
+@property (strong, nonatomic) Task *startingTask;
 @end

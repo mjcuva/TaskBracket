@@ -34,6 +34,12 @@
     [SharedManagedObjectContext getSharedContextWithCompletionHandler:^(NSManagedObjectContext *context){
         self.context = context;
     }];
+    
+    if(self.startingTask){
+        self.titleView.text = self.startingTask.title;
+        self.descriptionView.text = self.startingTask.task_description;
+        [self.picker selectRow:[self.startingTask.duration integerValue] inComponent:0 animated:NO];
+    }
 }
 
 - (void)setListTitle:(NSString *)listTitle{
