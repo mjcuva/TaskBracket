@@ -118,7 +118,6 @@
 
 - (void)setListTitle:(NSString *)listTitle{
     _listTitle = listTitle;
-    NSLog(@"set list title");
 }
 
 #pragma mark - IBActions
