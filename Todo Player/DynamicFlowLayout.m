@@ -12,7 +12,6 @@
     UIDynamicAnimator *_dynamicAnimator;
 }
 
-
 - (void)prepareLayout{
     [super prepareLayout];
     
@@ -70,6 +69,11 @@
     
     
     return NO;
+}
+
+- (void)reset{
+    _dynamicAnimator = nil;
+    [self prepareLayout];
 }
 
 @end
