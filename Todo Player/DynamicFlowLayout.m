@@ -26,7 +26,7 @@
             
             spring.length = 0;
             spring.damping = .5;
-            spring.frequency = .8;
+            spring.frequency = 1;
             
             [_dynamicAnimator addBehavior:spring];
         }
@@ -41,7 +41,7 @@
     return [_dynamicAnimator layoutAttributesForCellAtIndexPath:indexPath];
 }
 
-#define RESISTANCE_FACTOR 500
+#define RESISTANCE_FACTOR 800 // Higher resists less
 
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds{
     UIScrollView *scrollView = self.collectionView;
@@ -59,7 +59,7 @@
         if(delta > 0){
             center.y += MIN(delta * scrollResistance, delta);
         }else{
-            center.y += MAX(delta *scrollResistance, delta);
+            center.y += MAX(delta * scrollResistance, delta);
         }
         
         attr.center = center;
