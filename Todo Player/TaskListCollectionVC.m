@@ -11,6 +11,7 @@
 #import "CollectionCell.h"
 #import "Task+Description.h"
 #import "UndoView.h"
+#import "DynamicFlowLayout.h"
 
 @interface TaskListCollectionVC() <newTask, UIGestureRecognizerDelegate, UICollectionViewDelegate>
 @property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *panGesture;
@@ -239,6 +240,13 @@
         }
     
     }];
+}
+
+- (void)reloadCollectionView{
+    [super reloadCollectionView];
+    if([self.flowLayout isKindOfClass:[DynamicFlowLayout class]]){
+        [self.flowLayout performSelector:@selector(reset)];
+    }
 }
 
 #pragma mark - Edit Task
