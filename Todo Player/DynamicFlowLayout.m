@@ -71,6 +71,7 @@
     return NO;
 }
 
+// Resets the dynamic animator and reprepares the layout
 - (void)reset{
     _dynamicAnimator = nil;
     [self prepareLayout];
