@@ -26,6 +26,77 @@
 
 @implementation NewTaskVC
 
+- (void)viewDidLoad{
+    [super viewDidLoad];
+    
+    // Set up title view
+    [self.titleView becomeFirstResponder];
+    self.navigationController.navigationBar.topItem.rightBarButtonItem.enabled = NO;
+    [self.titleView addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    self.titleView.delegate = self;
+    self.titleView.inputAccessoryView = self.accesoryView;
+    
+    // Set up description view
+    self.descriptionView.placeHolder = @"Description";
+    self.descriptionView.font = [UIFont systemFontOfSize:16];
+    self.descriptionView.delegate = self;
+    self.descriptionView.inputAccessoryView = self.accesoryView;
+    
+    // Set up picker
+    self.picker.dataSource = self;
+    self.picker.delegate = self;
+    
+    // Get shared context
+    [SharedManagedObjectContext getSharedContextWithCompletionHandler:^(NSManagedObjectContext *context){
+        self.context = context;
+    }];
+    
+    // Configure if editing vs creating task
+    if(self.startingTask){
+        self.titleView.text = self.startingTask.title;
+        self.descriptionView.text = self.startingTask.task_description;
+        [self.picker selectRow:[self.startingTask.duration integerValue] inComponent:0 animated:NO];
+        
+        self.navigationController.navigationBar.topItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(done:)];
+        
+        self.title = @"Edit Task";
+    }
+
+}
+
+- (void)viewDidLayoutSubviews{
+    [super viewDidLayoutSubviews];
+    self.accesoryControl.tintColor = self.view.window.tintColor;
+}
+
+#pragma mark - Keyboard Control for Text Boxes
+
+- (void)updateAccessoryWithTextBox:(int)index{
+    if(index == 0){
+        [self.accesoryControl setEnabled:NO forSegmentAtIndex:1];
+        [self.accesoryControl setEnabled:YES forSegmentAtIndex:0];
+        [self.descriptionView becomeFirstResponder];
+    }else{
+        [self.accesoryControl setEnabled:NO forSegmentAtIndex:0];
+        [self.accesoryControl setEnabled:YES forSegmentAtIndex:1];
+        [self.titleView becomeFirstResponder];
+    }
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+
+    
+    [self updateAccessoryWithTextBox:1];
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView{
+    [self updateAccessoryWithTextBox:0];
+}
+
+- (void)setListTitle:(NSString *)listTitle{
+    _listTitle = listTitle;
+}
+
 - (UIToolbar *)accesoryView{
     
     if(!_accesoryView){
@@ -45,7 +116,7 @@
         
         [_accesoryView sizeToFit];
     }
-
+    
     return _accesoryView;
 }
 
@@ -60,64 +131,13 @@
     
 }
 
-- (void)viewDidLoad{
-    [super viewDidLoad];
-    self.descriptionView.placeHolder = @"Description";
-    self.descriptionView.font = [UIFont systemFontOfSize:16];
-    
-    self.picker.dataSource = self;
-    self.picker.delegate = self;
-    
-    [SharedManagedObjectContext getSharedContextWithCompletionHandler:^(NSManagedObjectContext *context){
-        self.context = context;
-    }];
-    
-    [self.titleView becomeFirstResponder];
-    
-    if(self.startingTask){
-        self.titleView.text = self.startingTask.title;
-        self.descriptionView.text = self.startingTask.task_description;
-        [self.picker selectRow:[self.startingTask.duration integerValue] inComponent:0 animated:NO];
-        
-        self.navigationController.navigationBar.topItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave target:self action:@selector(done:)];
-        
-        self.title = @"Edit Task";
-    }
-    
-    self.titleView.delegate = self;
-    self.descriptionView.delegate = self;
-    
-    self.titleView.inputAccessoryView = self.accesoryView;
-    self.descriptionView.inputAccessoryView = self.accesoryView;
-}
-
-- (void)viewDidLayoutSubviews{
-    [super viewDidLayoutSubviews];
-    self.accesoryControl.tintColor = self.view.window.tintColor;
-}
-
-- (void)updateAccessoryWithTextBox:(int)index{
-    if(index == 0){
-        [self.accesoryControl setEnabled:NO forSegmentAtIndex:1];
-        [self.accesoryControl setEnabled:YES forSegmentAtIndex:0];
-        [self.descriptionView becomeFirstResponder];
+#pragma mark - Update confirm button
+- (void)textFieldDidChange:(UITextField *)textField{
+    if([textField.text length] > 0){
+        self.navigationController.navigationBar.topItem.rightBarButtonItem.enabled = YES;
     }else{
-        [self.accesoryControl setEnabled:NO forSegmentAtIndex:0];
-        [self.accesoryControl setEnabled:YES forSegmentAtIndex:1];
-        [self.titleView becomeFirstResponder];
+        self.navigationController.navigationBar.topItem.rightBarButtonItem.enabled = NO;
     }
-}
-
-- (void)textFieldDidBeginEditing:(UITextField *)textField{
-    [self updateAccessoryWithTextBox:1];
-}
-
-- (void)textViewDidBeginEditing:(UITextView *)textView{
-    [self updateAccessoryWithTextBox:0];
-}
-
-- (void)setListTitle:(NSString *)listTitle{
-    _listTitle = listTitle;
 }
 
 #pragma mark - IBActions
@@ -126,6 +146,7 @@
 }
 
 - (IBAction)done:(UIBarButtonItem *)sender {
+    
     if(!self.startingTask){
         Task *task = [NSEntityDescription insertNewObjectForEntityForName:@"Task" inManagedObjectContext:self.context];
         task.title = self.titleView.text;
