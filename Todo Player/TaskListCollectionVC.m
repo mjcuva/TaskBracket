@@ -111,12 +111,13 @@
 
 #define COLLECTION_VIEW_CELL_PADDING 0
 #define COLLECTION_VIEW_CELL_HEIGHT 100
+#define COLLECTION_VIEW_OFFSET 10
 
 - (void)setCollectionViewCellSize{
     CGFloat width = self.view.frame.size.width - COLLECTION_VIEW_CELL_PADDING;
     CGFloat height = COLLECTION_VIEW_CELL_HEIGHT;
     self.flowLayout.itemSize = CGSizeMake(width, height);
-//    self.flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
+    self.flowLayout.sectionInset = UIEdgeInsetsMake(COLLECTION_VIEW_OFFSET, 0, COLLECTION_VIEW_OFFSET, 0);
 }
 
 - (NSUInteger)viewWidth{
