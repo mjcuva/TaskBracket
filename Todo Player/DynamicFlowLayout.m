@@ -42,6 +42,8 @@
     return [_dynamicAnimator layoutAttributesForCellAtIndexPath:indexPath];
 }
 
+#define RESISTANCE_FACTOR 500
+
 - (BOOL)shouldInvalidateLayoutForBoundsChange:(CGRect)newBounds{
     UIScrollView *scrollView = self.collectionView;
     CGFloat delta = newBounds.origin.y - scrollView.bounds.origin.y;
@@ -50,7 +52,7 @@
     for(UIAttachmentBehavior *spring in _dynamicAnimator.behaviors){
         CGPoint anchorPoint = spring.anchorPoint;
         CGFloat distanceFromTouch = fabsf(anchorPoint.y - touchLocation.y);
-        CGFloat scrollResistance = distanceFromTouch / 500;
+        CGFloat scrollResistance = distanceFromTouch / RESISTANCE_FACTOR;
         
         UICollectionViewLayoutAttributes *attr = [spring.items firstObject];
         CGPoint center = attr.center;
