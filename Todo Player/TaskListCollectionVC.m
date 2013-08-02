@@ -24,6 +24,10 @@
 // YES is undo was pressed
 @property BOOL removeCanceled;
 
+// Keeps track of the last swiped to prevent
+// a swipe from occuring on the wrong task
+@property (weak, nonatomic) ListView *lastSwiped;
+
 @property (strong, nonatomic) UndoView *undoButton;
 @end
 
@@ -142,7 +146,12 @@
     UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:path];
     CollectionCell *cc = (CollectionCell *)cell;
     
-    if(sender.state == UIGestureRecognizerStateChanged){
+    if(sender.state == UIGestureRecognizerStateBegan && cc != nil)
+        self.lastSwiped = cc.lcv;
+    
+    NSLog(@"%ul", sender.state);
+    
+    if(sender.state == UIGestureRecognizerStateChanged && cc.lcv == self.lastSwiped){
         cc.lcv.frame = CGRectMake(cc.lcv.frame.origin.x + [sender translationInView:[self view]].x, cc.lcv.frame.origin.y, cc.lcv.frame.size.width, cc.lcv.frame.size.height);
         cc.lcv.alpha = 1 - (abs(cc.lcv.frame.origin.x) / cc.lcv.frame.size.width);
         [sender setTranslation:CGPointZero inView:[self view]];
@@ -168,8 +177,8 @@
         }else{
             // Gesture failed
             [UIView animateWithDuration:.75 animations:^{
-                cc.lcv.frame = CGRectMake(10, 0, cc.lcv.frame.size.width, cc.lcv.frame.size.height);
-                cc.lcv.alpha = 1;
+                self.lastSwiped.frame = CGRectMake(10, 0, self.lastSwiped.frame.size.width, self.lastSwiped.frame.size.height);
+                self.lastSwiped.alpha = 1;
             }];
         }
     }
