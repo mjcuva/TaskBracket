@@ -14,4 +14,6 @@ typedef void (^NSManagedObjectContextCompletionHandler)(NSManagedObjectContext *
 
 + (void)getSharedContextWithCompletionHandler:(NSManagedObjectContextCompletionHandler)completionHandler;
 
++ (void)save;
+
 @end

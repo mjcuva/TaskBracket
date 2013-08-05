@@ -7,11 +7,14 @@
 //
 
 #import "SharedManagedObjectContext.h"
+#import <CoreData/CoreData.h>
 
 @implementation SharedManagedObjectContext
 
 + (void)getSharedContextWithCompletionHandler:(NSManagedObjectContextCompletionHandler)completionHandler{
+    
     static NSManagedObjectContext *context;
+    
     if(!context){
         NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
         url = [url URLByAppendingPathComponent:@"Task Data"];
@@ -25,6 +28,7 @@
                 }
             }];
         }else if(document.documentState == UIDocumentStateClosed){
+            NSLog(@"Opening Document");
             [document openWithCompletionHandler:^(BOOL success){
                 if(success){
                     context = document.managedObjectContext;
@@ -38,6 +42,13 @@
     }else{
         completionHandler(context);
     }
+}
+
++ (void)save{
+    [self getSharedContextWithCompletionHandler:^(NSManagedObjectContext *context){
+        NSLog(@"Saved Context");
+        [context save:NULL];
+    }];
 }
 
 @end
