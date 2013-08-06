@@ -47,7 +47,11 @@
 + (void)save{
     [self getSharedContextWithCompletionHandler:^(NSManagedObjectContext *context){
         NSLog(@"Saved Context");
-        [context save:NULL];
+        NSError *err;
+        [context save:&err];
+        if(err){
+            NSLog(@"Error Saving: %@", [err description]);
+        }
     }];
 }
 
