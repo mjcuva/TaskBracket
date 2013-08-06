@@ -14,37 +14,26 @@
 
 @implementation ListView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        [self setBackgroundColor:[UIColor clearColor]];
-    }
-    return self;
-}
-
-
+#define CENTER_OFFSET 20
 
 - (void)drawRect:(CGRect)rect
 {
-    UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:12.0];
-    
-    [roundedRect addClip];
-    
-    [[UIColor redColor] setFill];
-    UIRectFill(self.bounds);
-    
+ 
+    [super drawRect:rect];
     
     // Center Text Horizontally
     NSMutableParagraphStyle *p = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    [p setAlignment:NSTextAlignmentCenter];
-    NSDictionary *attr = @{NSParagraphStyleAttributeName:p};
+    [p setAlignment:NSTextAlignmentLeft];
+    
+    UIFont *font = [UIFont systemFontOfSize:22];
+    
+    NSDictionary *attr = @{NSParagraphStyleAttributeName:p, NSFontAttributeName:font, NSForegroundColorAttributeName:[UIColor whiteColor]};
     
     // Center Text Vertically
-    CGSize fontHeight = [self.description sizeWithAttributes:nil];
+    CGSize fontHeight = [self.description sizeWithAttributes:attr];
     CGFloat YOffSet = (rect.size.height - fontHeight.height) / 2;
     
-    [self.description drawInRect:CGRectMake(0, YOffSet, rect.size.width, rect.size.height) withAttributes:attr];
+    [self.text drawInRect:CGRectMake(CENTER_OFFSET, YOffSet, rect.size.width, rect.size.height) withAttributes:attr];
 }
 
 @end

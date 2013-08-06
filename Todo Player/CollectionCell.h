@@ -7,8 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "ListView.h"
+#import "BaseView.h"
 
 @interface CollectionCell : UICollectionViewCell
-@property (strong, nonatomic) ListView *lcv;
+@property (strong, nonatomic) BaseView *view;
 @end

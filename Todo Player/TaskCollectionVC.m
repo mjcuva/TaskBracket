@@ -8,7 +8,6 @@
 
 #import "TaskCollectionVC.h"
 #import "CollectionCell.h"
-#import "ListView.h"
 #import "SharedManagedObjectContext.h"
 #import <CoreData/CoreData.h>
 
@@ -52,10 +51,10 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[self reuseID] forIndexPath:indexPath];
     if([cell isKindOfClass:[CollectionCell class]]){
         CollectionCell *collectionCell = (CollectionCell *)cell;
-        if(!collectionCell.lcv){
-            ListView *lv = [[ListView alloc] initWithFrame:CGRectMake([self viewX], 0, [self viewWidth], self.flowLayout.itemSize.height)];
-            collectionCell.lcv = lv;
-            [collectionCell addSubview:lv];
+        if(!collectionCell.view){
+            BaseView *view = [self cellView];
+            collectionCell.view = view;
+            [collectionCell addSubview:view];
         }
         NSLog(@"Item Number: %ul", indexPath.item);
         id list = [self objectAtIndex:indexPath.item];
@@ -109,6 +108,10 @@
 
 - (NSUInteger)viewX{
     return 0;
+}
+
+- (BaseView *)cellView{
+    return nil;
 }
 
 @end

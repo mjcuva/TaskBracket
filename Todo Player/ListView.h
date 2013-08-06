@@ -7,8 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseView.h"
 
-@interface ListView : UIView
-@property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSString *description;
+@interface ListView : BaseView
 @end

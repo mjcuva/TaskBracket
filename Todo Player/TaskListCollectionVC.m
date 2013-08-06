@@ -12,6 +12,7 @@
 #import "Task+Description.h"
 #import "UndoView.h"
 #import "DynamicFlowLayout.h"
+#import "TaskView.h"
 
 @interface TaskListCollectionVC() <newTask, UIGestureRecognizerDelegate, UICollectionViewDelegate>
 @property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *panGesture;
@@ -19,14 +20,14 @@
 
 // Holds the view that was last removed, in case the user
 // presses undo
-@property (strong, nonatomic) ListView *lastRemovedList;
+@property (strong, nonatomic) TaskView *lastRemovedList;
 
 // YES is undo was pressed
 @property BOOL removeCanceled;
 
 // Keeps track of the last swiped to prevent
 // a swipe from occuring on the wrong task
-@property (weak, nonatomic) ListView *lastSwiped;
+@property (weak, nonatomic) TaskView *lastSwiped;
 
 @property (strong, nonatomic) UndoView *undoButton;
 @end
@@ -73,10 +74,11 @@
     if([cell isKindOfClass:[CollectionCell class]]){
         if([object isKindOfClass:[Task class]]){
             CollectionCell *colCell = (CollectionCell *)cell;
+            TaskView *view = (TaskView *)colCell.view;
             Task *t = (Task *)object;
-            colCell.lcv.description = t.description;
-            colCell.lcv.title = t.title;
-            [colCell.lcv setNeedsDisplay];
+            colCell.view.text = t.description;
+            view.title = t.title;
+            [colCell.view setNeedsDisplay];
         }
     }
 }
@@ -133,6 +135,9 @@
     return 10;
 }
 
+- (BaseView *)cellView{
+    return [[TaskView alloc] initWithFrame:CGRectMake([self viewX], 0, [self viewWidth], self.flowLayout.itemSize.height)];
+}
 #pragma mark - Remove Item Gesture
 
 - (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer{
@@ -147,31 +152,31 @@
     CollectionCell *cc = (CollectionCell *)cell;
     
     if(sender.state == UIGestureRecognizerStateBegan && cc != nil)
-        self.lastSwiped = cc.lcv;
+        self.lastSwiped = (TaskView *)cc.view;
     
     NSLog(@"%ul", sender.state);
     
-    if(sender.state == UIGestureRecognizerStateChanged && cc.lcv == self.lastSwiped){
-        cc.lcv.frame = CGRectMake(cc.lcv.frame.origin.x + [sender translationInView:[self view]].x, cc.lcv.frame.origin.y, cc.lcv.frame.size.width, cc.lcv.frame.size.height);
-        cc.lcv.alpha = 1 - (abs(cc.lcv.frame.origin.x) / cc.lcv.frame.size.width);
+    if(sender.state == UIGestureRecognizerStateChanged && cc.view == self.lastSwiped){
+        cc.view.frame = CGRectMake(cc.view.frame.origin.x + [sender translationInView:[self view]].x, cc.view.frame.origin.y, cc.view.frame.size.width, cc.view.frame.size.height);
+        cc.view.alpha = 1 - (abs(cc.view.frame.origin.x) / cc.view.frame.size.width);
         [sender setTranslation:CGPointZero inView:[self view]];
     }else if(sender.state == UIGestureRecognizerStateEnded){
-        if(cc.lcv.frame.origin.x < cc.lcv.frame.size.width / 3 * -1){
+        if(cc.view.frame.origin.x < cc.view.frame.size.width / 3 * -1){
             [UIView animateWithDuration:.75 animations:^{
-                cc.lcv.alpha = 0;
-                cc.lcv.frame = CGRectMake(cc.lcv.frame.size.width * -1, cc.lcv.frame.origin.y , cc.lcv.frame.size.width, cc.lcv.frame.size.height);
+                cc.view.alpha = 0;
+                cc.view.frame = CGRectMake(cc.view.frame.size.width * -1, cc.view.frame.origin.y , cc.view.frame.size.width, cc.view.frame.size.height);
             }completion:^(BOOL success){
                 if(success){
-                    [self showCancelWithListView:cc.lcv];
+                    [self showCancelWithListView:(TaskView *)cc.view];
                 }
             }];
-        }else if(cc.lcv.frame.origin.x > cc.lcv.frame.size.width / 3){
+        }else if(cc.view.frame.origin.x > cc.view.frame.size.width / 3){
             [UIView animateWithDuration:.75 animations:^{
-                cc.lcv.alpha = 0;
-                cc.lcv.frame = CGRectMake(cc.lcv.frame.size.width, cc.lcv.frame.origin.y, cc.lcv.frame.size.width, cc.lcv.frame.size.height);
+                cc.view.alpha = 0;
+                cc.view.frame = CGRectMake(cc.view.frame.size.width, cc.view.frame.origin.y, cc.view.frame.size.width, cc.view.frame.size.height);
             } completion:^(BOOL success){
                 if(success){
-                    [self showCancelWithListView:cc.lcv];
+                    [self showCancelWithListView:(TaskView *)cc.view];
                 }
             }];
         }else{
@@ -185,16 +190,16 @@
 }
 
 // Finishes removing the cell swiped away
-- (void) showCancelWithListView:(ListView *)lv{
+- (void) showCancelWithListView:(TaskView *)tv{
     
-    UIView *superView = [lv superview];
+    UIView *superView = [tv superview];
 
-    self.lastRemovedList = lv;
-    [lv removeFromSuperview];
+    self.lastRemovedList = tv;
+    [tv removeFromSuperview];
     
 
     
-    self.undoButton = [[UndoView alloc] initWithFrame:CGRectMake(10, 0, lv.frame.size.width, lv.frame.size.height)];
+    self.undoButton = [[UndoView alloc] initWithFrame:CGRectMake(10, 0, tv.frame.size.width, tv.frame.size.height)];
     self.undoButton.alpha = 0;
     [UIView animateWithDuration:.25 animations:^{
         self.undoButton.alpha = 1;
@@ -202,7 +207,7 @@
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelRemove)];
     [self.undoButton addGestureRecognizer:tap];
-    [self performSelector:@selector(finishRemoveWithObjects:) withObject:lv afterDelay:2];
+    [self performSelector:@selector(finishRemoveWithObjects:) withObject:tv afterDelay:2];
     [superView addSubview:self.undoButton];
 }
 
@@ -219,7 +224,7 @@
     }];
 }
 
-- (void)finishRemoveWithObjects:(ListView *)lv{
+- (void)finishRemoveWithObjects:(TaskView *)tv{
     
     [UIView animateWithDuration:1 animations:^{
         self.undoButton.alpha = 0;
@@ -230,13 +235,13 @@
             UIView *superview = self.undoButton.superview;
             if([superview isKindOfClass:[CollectionCell class]]){
                 CollectionCell *cc = (CollectionCell *)superview;
-                cc.lcv = nil;
+                cc.view = nil;
             }
             
             // Remove task and update collectionView
             NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
             req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
-            req.predicate = [NSPredicate predicateWithFormat:@"title=%@", lv.title];
+            req.predicate = [NSPredicate predicateWithFormat:@"title=%@", tv.title];
             
             Task *t = [[self.context executeFetchRequest:req error:NULL] lastObject];
             NSLog(@"Deleting %@", [t title]);
@@ -263,7 +268,8 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     CollectionCell *cell = (CollectionCell *)[self.collectionView cellForItemAtIndexPath: indexPath];
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
-    req.predicate = [NSPredicate predicateWithFormat:@"title == %@ && lists.title = %@", cell.lcv.title, self.title];
+    TaskView *view = (TaskView *)cell.view;
+    req.predicate = [NSPredicate predicateWithFormat:@"title == %@ && lists.title = %@", view.title, self.title];
     Task *task = [[self.context executeFetchRequest:req error:NULL] lastObject];
     assert(task != nil);
     [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];

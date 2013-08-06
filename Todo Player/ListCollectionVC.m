@@ -9,6 +9,7 @@
 #import "ListCollectionVC.h"
 #import "ItemList+Description.h"
 #import "CollectionCell.h"
+#import "ListView.h"
 
 @interface ListCollectionVC () <UIActionSheetDelegate>
 @property (strong, nonatomic) UIActionSheet *actionSheet;
@@ -43,8 +44,8 @@
         if([object isKindOfClass:[ItemList class]]){
             CollectionCell *colCell = (CollectionCell *)cell;
             ItemList *iList = (ItemList *)object;
-            colCell.lcv.description = iList.description;
-            [colCell.lcv setNeedsDisplay];
+            colCell.view.text = iList.description;
+            [colCell.view setNeedsDisplay];
             
             UILongPressGestureRecognizer *lp = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(showActionSheet:)];
             [colCell addGestureRecognizer:lp];
@@ -117,7 +118,7 @@
     }else if(alertView.tag == ALERT_VIEW_EDIT_TAG){
         if(buttonIndex == 1){
             NSFetchRequest *listRequest = [NSFetchRequest fetchRequestWithEntityName:@"ItemList"];
-            listRequest.predicate = [NSPredicate predicateWithFormat:@"title = %@", self.pressedCell.lcv.description];
+            listRequest.predicate = [NSPredicate predicateWithFormat:@"title = %@", self.pressedCell.view.text];
             ItemList *list = [[self.context executeFetchRequest:listRequest error:NULL] lastObject];
             assert(list != nil);
             list.title = [alertView textFieldAtIndex:0].text;
@@ -136,7 +137,7 @@
     }else if ([segue.identifier isEqualToString:@"CollectionCellPush"]){
         if([sender isKindOfClass:[CollectionCell class]]){
             CollectionCell *cell = (CollectionCell *)sender;
-            [segue.destinationViewController setTitle:cell.lcv.description];
+            [segue.destinationViewController setTitle:cell.view.text];
         }
     }
 }
@@ -157,7 +158,7 @@
     if(sender.state == UIGestureRecognizerStateRecognized){
         CGPoint loc = [sender locationInView:self.view];
         self.pressedCell = (CollectionCell *)[self.collectionView cellForItemAtIndexPath: [self.collectionView indexPathForItemAtPoint:loc]];
-        NSLog(@"%@", self.pressedCell.lcv.description);
+        NSLog(@"%@", self.pressedCell.view.text);
         
         self.actionSheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:CANCEL_BUTTON_TITLE destructiveButtonTitle:DELETE_BUTTON_TITLE otherButtonTitles:EDIT_BUTTON_TITLE, nil];
         [self.actionSheet showFromTabBar:self.tabBarController.tabBar];
@@ -170,14 +171,14 @@
         editAV.tag = ALERT_VIEW_EDIT_TAG;
         editAV.alertViewStyle = UIAlertViewStylePlainTextInput;
         [[editAV textFieldAtIndex:0] setAutocapitalizationType: UITextAutocapitalizationTypeWords];
-        [editAV textFieldAtIndex:0].text = self.pressedCell.lcv.description;
+        [editAV textFieldAtIndex:0].text = self.pressedCell.view.text;
         [editAV show];
     }else if([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DELETE_BUTTON_TITLE]){
         
         // TODO: Make sure orphaned core data items isn't a problemT
         
         NSFetchRequest *req = [[NSFetchRequest alloc] initWithEntityName:@"ItemList"];
-        req.predicate = [NSPredicate predicateWithFormat:@"title = %@", self.pressedCell.lcv.description];
+        req.predicate = [NSPredicate predicateWithFormat:@"title = %@", self.pressedCell.view.text];
         ItemList *list = [[self.context executeFetchRequest:req error:NULL] lastObject];
         assert(list != nil);
         [self.context deleteObject:list];
@@ -189,7 +190,9 @@
     }
 }
 
-
+- (BaseView *)cellView{
+    return [[ListView alloc] initWithFrame:CGRectMake([self viewX], 0, [self viewWidth], self.flowLayout.itemSize.height)];
+}
 
 
 

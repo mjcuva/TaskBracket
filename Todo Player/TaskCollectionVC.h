@@ -8,6 +8,7 @@
 //  Abstract base class for a collection view containing a list of tasks
 
 #import <UIKit/UIKit.h>
+#import "BaseView.h"
 
 @interface TaskCollectionVC : UIViewController
 
@@ -26,6 +27,7 @@
 - (id)objectAtIndex:(NSUInteger)index;
 - (NSString *)entityName;
 - (void)createObjectList;
+- (BaseView *)cellView;
 
 - (void)setCollectionViewCellSize;
 
