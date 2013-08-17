@@ -36,6 +36,7 @@
 		49A84D3F1777B84B0076597F /* Playlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D3E1777B84B0076597F /* Playlist.m */; };
 		49A84D421777B84B0076597F /* ItemList.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D411777B84B0076597F /* ItemList.m */; };
 		49B69C40179473F700F95484 /* SharedManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B69C3F179473F700F95484 /* SharedManagedObjectContext.m */; };
+		49B9ADF617BFE1BA009BB631 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B9ADF517BFE1BA009BB631 /* Queue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,6 +98,8 @@
 		49A84D411777B84B0076597F /* ItemList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemList.m; path = "Core Data/ItemList.m"; sourceTree = "<group>"; };
 		49B69C3E179473F700F95484 /* SharedManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedManagedObjectContext.h; path = "Core Data/SharedManagedObjectContext.h"; sourceTree = "<group>"; };
 		49B69C3F179473F700F95484 /* SharedManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SharedManagedObjectContext.m; path = "Core Data/SharedManagedObjectContext.m"; sourceTree = "<group>"; };
+		49B9ADF417BFE1BA009BB631 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
+		49B9ADF517BFE1BA009BB631 /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -194,6 +197,8 @@
 		49A84CFC17754DBA0076597F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				49B9ADF417BFE1BA009BB631 /* Queue.h */,
+				49B9ADF517BFE1BA009BB631 /* Queue.m */,
 				49A84D0417754DBA0076597F /* AppDelegate.h */,
 				49A84D0517754DBA0076597F /* AppDelegate.m */,
 				49A84CFD17754DBA0076597F /* Task Bracket-Info.plist */,
@@ -344,6 +349,7 @@
 				494DF799178602E400B99774 /* TaskListCollectionVC.m in Sources */,
 				4962E70B1792277100AFABF5 /* UIPlaceHolderTextView.m in Sources */,
 				49A84D3F1777B84B0076597F /* Playlist.m in Sources */,
+				49B9ADF617BFE1BA009BB631 /* Queue.m in Sources */,
 				49A84D38177562910076597F /* ListView.m in Sources */,
 				494DF7961785F7D200B99774 /* NewTaskVC.m in Sources */,
 				4985FB8F17AB08F100BF9A2F /* DynamicFlowLayout.m in Sources */,
