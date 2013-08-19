@@ -20,7 +20,7 @@
 
 @implementation TaskCollectionVC
 
-
+#define LOG_ITEM_NUMBER 0
 
 - (void)viewDidLoad{
     self.collectionView.dataSource = self;
@@ -57,7 +57,8 @@
             collectionCell.lcv = lv;
             [collectionCell addSubview:lv];
         }
-        NSLog(@"Item Number: %ul", indexPath.item);
+        if(LOG_ITEM_NUMBER)
+            NSLog(@"Item Number: %ul", indexPath.item);
         id list = [self objectAtIndex:indexPath.item];
         [self updateCell:collectionCell usingObject:list];
     }
