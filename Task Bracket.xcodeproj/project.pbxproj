@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		492C11241795DD75006BBB13 /* Task+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C11231795DD75006BBB13 /* Task+Description.m */; };
+		492C690317C283C100DEC650 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 492C690017C283C100DEC650 /* fishhook.c */; };
+		492C690417C283C100DEC650 /* QuietAssertMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = 492C690217C283C100DEC650 /* QuietAssertMacros.c */; };
 		494DF7961785F7D200B99774 /* NewTaskVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 494DF7951785F7D200B99774 /* NewTaskVC.m */; };
 		494DF799178602E400B99774 /* TaskListCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 494DF798178602E400B99774 /* TaskListCollectionVC.m */; };
 		4962E70B1792277100AFABF5 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4962E70A1792277100AFABF5 /* UIPlaceHolderTextView.m */; };
@@ -52,6 +54,9 @@
 /* Begin PBXFileReference section */
 		492C11221795DD75006BBB13 /* Task+Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Task+Description.h"; path = "Core Data/Task+Description.h"; sourceTree = "<group>"; };
 		492C11231795DD75006BBB13 /* Task+Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Task+Description.m"; path = "Core Data/Task+Description.m"; sourceTree = "<group>"; };
+		492C690017C283C100DEC650 /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fishhook.c; path = QuietMacro/fishhook.c; sourceTree = "<group>"; };
+		492C690117C283C100DEC650 /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fishhook.h; path = QuietMacro/fishhook.h; sourceTree = "<group>"; };
+		492C690217C283C100DEC650 /* QuietAssertMacros.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = QuietAssertMacros.c; path = QuietMacro/QuietAssertMacros.c; sourceTree = "<group>"; };
 		494DF7941785F7D200B99774 /* NewTaskVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewTaskVC.h; sourceTree = "<group>"; };
 		494DF7951785F7D200B99774 /* NewTaskVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewTaskVC.m; sourceTree = "<group>"; };
 		494DF797178602E400B99774 /* TaskListCollectionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskListCollectionVC.h; sourceTree = "<group>"; };
@@ -251,9 +256,9 @@
 		49B9ADFA17BFE8B8009BB631 /* IOS7B5 Assert Macro Fix */ = {
 			isa = PBXGroup;
 			children = (
-				49B9ADF717BFE8AE009BB631 /* fishhook.c */,
-				49B9ADF817BFE8AE009BB631 /* fishhook.h */,
-				49B9ADFB17BFE8E6009BB631 /* QuietAssertMacros.c */,
+				492C690017C283C100DEC650 /* fishhook.c */,
+				492C690117C283C100DEC650 /* fishhook.h */,
+				492C690217C283C100DEC650 /* QuietAssertMacros.c */,
 			);
 			name = "IOS7B5 Assert Macro Fix";
 			sourceTree = "<group>";
@@ -356,17 +361,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				49A84D421777B84B0076597F /* ItemList.m in Sources */,
-				49B9ADF917BFE8AE009BB631 /* fishhook.c in Sources */,
 				49A84D2C177551480076597F /* TaskCollectionVC.m in Sources */,
 				494DF799178602E400B99774 /* TaskListCollectionVC.m in Sources */,
 				4962E70B1792277100AFABF5 /* UIPlaceHolderTextView.m in Sources */,
 				49A84D3F1777B84B0076597F /* Playlist.m in Sources */,
 				49B9ADF617BFE1BA009BB631 /* Queue.m in Sources */,
+				492C690317C283C100DEC650 /* fishhook.c in Sources */,
 				49A84D38177562910076597F /* ListView.m in Sources */,
-				49B9ADFC17BFE8E6009BB631 /* QuietAssertMacros.c in Sources */,
 				494DF7961785F7D200B99774 /* NewTaskVC.m in Sources */,
 				4985FB8F17AB08F100BF9A2F /* DynamicFlowLayout.m in Sources */,
 				49A84D0617754DBA0076597F /* AppDelegate.m in Sources */,
+				492C690417C283C100DEC650 /* QuietAssertMacros.c in Sources */,
 				49951422177B79DF00E444D7 /* ItemList+Description.m in Sources */,
 				49A84D0217754DBA0076597F /* main.m in Sources */,
 				498611FA17A07D800086000E /* UndoView.m in Sources */,
