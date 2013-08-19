@@ -202,7 +202,8 @@
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelRemove)];
     [self.undoButton addGestureRecognizer:tap];
-    [self performSelector:@selector(finishRemoveWithObjects:) withObject:lv afterDelay:2];
+    [self performSelector:@selector(finishRemoveWithObjects:) withObject:lv afterDelay:5];
+    NSLog(@"performSelector:withObject:afterDelay called with object: %@", [lv description]);
     [superView addSubview:self.undoButton];
 }
 
@@ -220,6 +221,8 @@
 }
 
 - (void)finishRemoveWithObjects:(ListView *)lv{
+    
+    NSLog(@"finishRemoveWithObjects: %@", [lv description]);
     
     [UIView animateWithDuration:1 animations:^{
         self.undoButton.alpha = 0;
