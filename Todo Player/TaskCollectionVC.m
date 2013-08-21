@@ -39,8 +39,9 @@
 
 - (void)reloadCollectionView{
     [self createObjectList];
-    [self.flowLayout performSelector:@selector(reset)];
     [self.collectionView reloadData];
+    if([self.flowLayout respondsToSelector:@selector(reset)])
+        [self.flowLayout performSelector:@selector(reset)];
 }
 
 #pragma mark - UICollectionViewDataSource
@@ -55,7 +56,6 @@
         CollectionCell *collectionCell = (CollectionCell *)cell;
         if(!collectionCell.lcv){
             ListView *lv = [[ListView alloc] initWithFrame:CGRectMake([self viewX], 0, [self viewWidth], self.flowLayout.itemSize.height)];
-            NSLog(@"lv Frame: %@", NSStringFromCGRect(lv.frame));
             collectionCell.lcv = lv;
             [collectionCell addSubview:lv];
         }
