@@ -268,13 +268,6 @@
     }];
 }
 
-- (void)reloadCollectionView{
-    [super reloadCollectionView];
-    if([self.flowLayout isKindOfClass:[DynamicFlowLayout class]]){
-        [self.flowLayout performSelector:@selector(reset)];
-    }
-}
-
 #pragma mark - Edit Task
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
