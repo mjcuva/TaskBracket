@@ -14,7 +14,7 @@
 #import "DynamicFlowLayout.h"
 #import "Queue.h"
 
-@interface TaskListCollectionVC() <newTask, UIGestureRecognizerDelegate, UICollectionViewDelegate>
+@interface TaskListCollectionVC() <newTask, UIGestureRecognizerDelegate>
 @property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *panGesture;
 @property (strong, nonatomic) NewTaskVC *presentedVC;
 @property (strong, nonatomic) NSMutableArray *undoRemoves;
