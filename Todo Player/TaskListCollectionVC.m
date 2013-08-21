@@ -151,8 +151,6 @@
     UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:path];
     CollectionCell *cc = (CollectionCell *)cell;
     ListView *swiped = cc.lcv;
-        
-    NSLog(@"%@", swiped.title);
     
     if(sender.state == UIGestureRecognizerStateChanged && cc.lcv == swiped){
         cc.lcv.frame = CGRectMake(cc.lcv.frame.origin.x + [sender translationInView:[self view]].x, cc.lcv.frame.origin.y, cc.lcv.frame.size.width, cc.lcv.frame.size.height);
@@ -204,7 +202,6 @@
     [undoButton addGestureRecognizer:tap];
     [self performSelector:@selector(finishRemove) withObject:nil afterDelay:2];
     [self.lists enqueue:lv];
-    NSLog(@"performSelector:withObject:afterDelay called with object: %@", [lv title]);
     [superView addSubview:undoButton];
 }
 
@@ -234,10 +231,6 @@
     
     ListView *lv = [self.lists peek];
     [self.lists dequeue];
-    
-    NSLog(@"finishRemoveWithObjects: %@", [lv title]);
-    
-    NSLog(@"%@", [lv description]);
     
     [UIView animateWithDuration:1 animations:^{
         NSArray *views = [[lv superview] subviews];
