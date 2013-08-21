@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface DynamicFlowLayout : UICollectionViewFlowLayout
-
+- (void)reset;
 @end
