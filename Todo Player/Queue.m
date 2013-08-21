@@ -8,20 +8,33 @@
 
 #import "Queue.h"
 
-@implementation Queue{
-    NSMutableArray *q;
+@interface Queue()
+@property (strong, nonatomic) NSMutableArray *q;
+@end
+
+@implementation Queue
+
+- (NSMutableArray *)q{
+    if(!_q){
+        _q = [[NSMutableArray alloc] init];
+    }
+    return _q;
 }
 
 - (void)enqueue:(id)object{
-    [q insertObject:object atIndex:0];
+    [self.q insertObject:object atIndex:0];
 }
 
 - (id)peek{
-    return [q lastObject];
+    return [self.q lastObject];
 }
 
 - (void)dequeue{
-    [q removeLastObject];
+    [self.q removeLastObject];
+}
+
+- (BOOL)isEmpty{
+    return [self.q count] == 0;
 }
 
 @end

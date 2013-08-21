@@ -31,4 +31,6 @@
  */
 - (void)dequeue;
 
+- (BOOL)isEmpty;
+
 @end
