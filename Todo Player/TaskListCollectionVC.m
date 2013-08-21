@@ -12,23 +12,14 @@
 #import "Task+Description.h"
 #import "UndoView.h"
 #import "DynamicFlowLayout.h"
+#import "Queue.h"
 
 @interface TaskListCollectionVC() <newTask, UIGestureRecognizerDelegate, UICollectionViewDelegate>
 @property (strong, nonatomic) IBOutlet UIPanGestureRecognizer *panGesture;
 @property (strong, nonatomic) NewTaskVC *presentedVC;
+@property (strong, nonatomic) NSMutableArray *undoRemoves;
 
-// Holds the view that was last removed, in case the user
-// presses undo
-@property (strong, nonatomic) ListView *lastRemovedList;
-
-// YES is undo was pressed
-@property BOOL removeCanceled;
-
-// Keeps track of the last swiped to prevent
-// a swipe from occuring on the wrong task
-@property (weak, nonatomic) ListView *lastSwiped;
-
-@property (strong, nonatomic) UndoView *undoButton;
+@property (strong, nonatomic) Queue *lists;
 @end
 
 @implementation TaskListCollectionVC
@@ -37,6 +28,20 @@
     [super viewDidLoad];
     [self reloadCollectionView];
     self.panGesture.delegate = self;
+}
+
+- (NSMutableArray *)undoRemoves{
+    if(!_undoRemoves){
+        _undoRemoves = [[NSMutableArray alloc] init];
+    }
+    
+    return _undoRemoves;
+}
+
+- (Queue *)lists{
+    if(!_lists)
+        _lists = [[Queue alloc] init];
+    return _lists;
 }
 
 # pragma mark - newTask protocol
@@ -145,13 +150,11 @@
     NSIndexPath *path = [self.collectionView indexPathForItemAtPoint:[sender locationInView:[self view]]];
     UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:path];
     CollectionCell *cc = (CollectionCell *)cell;
+    ListView *swiped = cc.lcv;
+        
+    NSLog(@"%@", swiped.title);
     
-    if(sender.state == UIGestureRecognizerStateBegan && cc != nil)
-        self.lastSwiped = cc.lcv;
-    
-    NSLog(@"%ul", sender.state);
-    
-    if(sender.state == UIGestureRecognizerStateChanged && cc.lcv == self.lastSwiped){
+    if(sender.state == UIGestureRecognizerStateChanged && cc.lcv == swiped){
         cc.lcv.frame = CGRectMake(cc.lcv.frame.origin.x + [sender translationInView:[self view]].x, cc.lcv.frame.origin.y, cc.lcv.frame.size.width, cc.lcv.frame.size.height);
         cc.lcv.alpha = 1 - (abs(cc.lcv.frame.origin.x) / cc.lcv.frame.size.width);
         [sender setTranslation:CGPointZero inView:[self view]];
@@ -177,8 +180,8 @@
         }else{
             // Gesture failed
             [UIView animateWithDuration:.75 animations:^{
-                self.lastSwiped.frame = CGRectMake(10, 0, self.lastSwiped.frame.size.width, self.lastSwiped.frame.size.height);
-                self.lastSwiped.alpha = 1;
+                swiped.frame = CGRectMake(10, 0, swiped.frame.size.width, swiped.frame.size.height);
+                swiped.alpha = 1;
             }];
         }
     }
@@ -189,48 +192,65 @@
     
     UIView *superView = [lv superview];
 
-    self.lastRemovedList = lv;
-    [lv removeFromSuperview];
+    [lv setHidden:YES];
     
-
-    
-    self.undoButton = [[UndoView alloc] initWithFrame:CGRectMake(10, 0, lv.frame.size.width, lv.frame.size.height)];
-    self.undoButton.alpha = 0;
+    UndoView *undoButton = [[UndoView alloc] initWithFrame:CGRectMake(10, 0, lv.frame.size.width, lv.frame.size.height)];
+    undoButton.alpha = 0;
     [UIView animateWithDuration:.25 animations:^{
-        self.undoButton.alpha = 1;
+        undoButton.alpha = 1;
     }];
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelRemove)];
-    [self.undoButton addGestureRecognizer:tap];
-    [self performSelector:@selector(finishRemoveWithObjects:) withObject:lv afterDelay:5];
-    NSLog(@"performSelector:withObject:afterDelay called with object: %@", [lv description]);
-    [superView addSubview:self.undoButton];
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelRemove:)];
+    [undoButton addGestureRecognizer:tap];
+    [self performSelector:@selector(finishRemove) withObject:nil afterDelay:2];
+    [self.lists enqueue:lv];
+    NSLog(@"performSelector:withObject:afterDelay called with object: %@", [lv title]);
+    [superView addSubview:undoButton];
 }
 
-- (void)cancelRemove{
-    self.removeCanceled = YES;
-    [self.lastRemovedList setNeedsDisplay];
-    UIView *superview = self.undoButton.superview;
-    [self.undoButton removeFromSuperview];
-    [superview addSubview:self.lastRemovedList];
+- (void)cancelRemove:(UITapGestureRecognizer *)sender{
+    
+    ListView *undoneView;
+    
+    NSArray *views = [[[sender view] superview] subviews];
+    for(id view in views){
+        if([view isKindOfClass:[ListView class]]){
+            [self.undoRemoves addObject:view];
+            undoneView = view;
+        }
+    }
+    
+    [undoneView setHidden:NO];
     
     [UIView animateWithDuration:.5 animations:^{
-        self.lastRemovedList.frame = CGRectMake(10, 0, self.lastRemovedList.frame.size.width, self.lastRemovedList.frame.size.height);
-        self.lastRemovedList.alpha = 1;
+        undoneView.frame = CGRectMake(10, 0, undoneView.frame.size.width, undoneView.frame.size.height);
+        undoneView.alpha = 1;
     }];
+    
+    [[sender view] removeFromSuperview];
 }
 
-- (void)finishRemoveWithObjects:(ListView *)lv{
+- (void)finishRemove{
     
-    NSLog(@"finishRemoveWithObjects: %@", [lv description]);
+    ListView *lv = [self.lists peek];
+    [self.lists dequeue];
+    
+    NSLog(@"finishRemoveWithObjects: %@", [lv title]);
+    
+    NSLog(@"%@", [lv description]);
     
     [UIView animateWithDuration:1 animations:^{
-        self.undoButton.alpha = 0;
+        NSArray *views = [[lv superview] subviews];
+        for(id view in views){
+            if([view isKindOfClass:[UndoView class]]){
+                UndoView *uv = (UndoView *)view;
+                uv.alpha = 0;
+            }
+        }
     } completion:^(BOOL success){
-        
-        if(self.removeCanceled == NO){
+        if(![self.undoRemoves containsObject:lv]){
             
-            UIView *superview = self.undoButton.superview;
+            UIView *superview = lv.superview;
             if([superview isKindOfClass:[CollectionCell class]]){
                 CollectionCell *cc = (CollectionCell *)superview;
                 cc.lcv = nil;
@@ -245,7 +265,8 @@
             NSLog(@"Deleting %@", [t title]);
             [self.context deleteObject:t];
             
-            [self reloadCollectionView];
+            if([self.lists isEmpty])
+                [self reloadCollectionView];
             
         }else{
             NSLog(@"Deletion Canceled");
