@@ -134,8 +134,12 @@
 		498611F417A07D4D0086000E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				49C3A00017B1656A006ECEA8 /* BaseView.h */,
+				49C3A00117B1656A006ECEA8 /* BaseView.m */,
 				49A84D36177562910076597F /* ListView.h */,
 				49A84D37177562910076597F /* ListView.m */,
+				49C3A00317B1677B006ECEA8 /* TaskView.h */,
+				49C3A00417B1677B006ECEA8 /* TaskView.m */,
 				498611F817A07D800086000E /* UndoView.h */,
 				498611F917A07D800086000E /* UndoView.m */,
 				4962E7091792277100AFABF5 /* UIPlaceHolderTextView.h */,
@@ -372,6 +376,7 @@
 				492C690317C283C100DEC650 /* fishhook.c in Sources */,
 				49A84D38177562910076597F /* ListView.m in Sources */,
 				494DF7961785F7D200B99774 /* NewTaskVC.m in Sources */,
+				49C3A00517B1677B006ECEA8 /* TaskView.m in Sources */,
 				4985FB8F17AB08F100BF9A2F /* DynamicFlowLayout.m in Sources */,
 				49A84D0617754DBA0076597F /* AppDelegate.m in Sources */,
 				492C690417C283C100DEC650 /* QuietAssertMacros.c in Sources */,
@@ -382,6 +387,7 @@
 				49A84D3C1777B84A0076597F /* Task.m in Sources */,
 				49A84D35177562530076597F /* CollectionCell.m in Sources */,
 				49A84D3217755CD70076597F /* ListCollectionVC.m in Sources */,
+				49C3A00217B1656A006ECEA8 /* BaseView.m in Sources */,
 				49A84D2F177558A00076597F /* TodoPlayer.xcdatamodeld in Sources */,
 				492C11241795DD75006BBB13 /* Task+Description.m in Sources */,
 			);
