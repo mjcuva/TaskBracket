@@ -12,6 +12,7 @@
 #import "Task+Description.h"
 #import "UndoView.h"
 #import "DynamicFlowLayout.h"
+#import "TaskView.h"
 #import "Queue.h"
 
 @interface TaskListCollectionVC() <newTask, UIGestureRecognizerDelegate>
@@ -154,11 +155,11 @@
     NSIndexPath *path = [self.collectionView indexPathForItemAtPoint:[sender locationInView:[self view]]];
     UICollectionViewCell *cell = [self.collectionView cellForItemAtIndexPath:path];
     CollectionCell *cc = (CollectionCell *)cell;
-    ListView *swiped = cc.lcv;
+    TaskView *swiped = (TaskView *)cc.view;
     
-    if(sender.state == UIGestureRecognizerStateChanged && cc.lcv == swiped){
-        cc.lcv.frame = CGRectMake(cc.lcv.frame.origin.x + [sender translationInView:[self view]].x, cc.lcv.frame.origin.y, cc.lcv.frame.size.width, cc.lcv.frame.size.height);
-        cc.lcv.alpha = 1 - (abs(cc.lcv.frame.origin.x) / cc.lcv.frame.size.width);
+    if(sender.state == UIGestureRecognizerStateChanged && cc.view == swiped){
+        cc.view.frame = CGRectMake(cc.view.frame.origin.x + [sender translationInView:[self view]].x, cc.view.frame.origin.y, cc.view.frame.size.width, cc.view.frame.size.height);
+        cc.view.alpha = 1 - (abs(cc.view.frame.origin.x) / cc.view.frame.size.width);
         [sender setTranslation:CGPointZero inView:[self view]];
     }else if(sender.state == UIGestureRecognizerStateEnded){
         if(cc.view.frame.origin.x < cc.view.frame.size.width / 3 * -1){
@@ -194,9 +195,9 @@
     
     UIView *superView = [tv superview];
 
-    [lv setHidden:YES];
+    [tv setHidden:YES];
     
-    UndoView *undoButton = [[UndoView alloc] initWithFrame:CGRectMake(10, 0, lv.frame.size.width, lv.frame.size.height)];
+    UndoView *undoButton = [[UndoView alloc] initWithFrame:CGRectMake(10, 0, tv.frame.size.width, tv.frame.size.height)];
     undoButton.alpha = 0;
     [UIView animateWithDuration:.25 animations:^{
         undoButton.alpha = 1;
@@ -205,17 +206,17 @@
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(cancelRemove:)];
     [undoButton addGestureRecognizer:tap];
     [self performSelector:@selector(finishRemove) withObject:nil afterDelay:2];
-    [self.lists enqueue:lv];
+    [self.lists enqueue:tv];
     [superView addSubview:undoButton];
 }
 
 - (void)cancelRemove:(UITapGestureRecognizer *)sender{
     
-    ListView *undoneView;
+    TaskView *undoneView;
     
     NSArray *views = [[[sender view] superview] subviews];
     for(id view in views){
-        if([view isKindOfClass:[ListView class]]){
+        if([view isKindOfClass:[TaskView class]]){
             [self.undoRemoves addObject:view];
             undoneView = view;
         }
@@ -233,11 +234,11 @@
 
 - (void)finishRemove{
     
-    ListView *lv = [self.lists peek];
+    TaskView *tv = [self.lists peek];
     [self.lists dequeue];
     
     [UIView animateWithDuration:1 animations:^{
-        NSArray *views = [[lv superview] subviews];
+        NSArray *views = [[tv superview] subviews];
         for(id view in views){
             if([view isKindOfClass:[UndoView class]]){
                 UndoView *uv = (UndoView *)view;
@@ -245,9 +246,9 @@
             }
         }
     } completion:^(BOOL success){
-        if(![self.undoRemoves containsObject:lv]){
+        if(![self.undoRemoves containsObject:tv]){
             
-            UIView *superview = lv.superview;
+            UIView *superview = tv.superview;
             if([superview isKindOfClass:[CollectionCell class]]){
                 CollectionCell *cc = (CollectionCell *)superview;
                 cc.view = nil;
