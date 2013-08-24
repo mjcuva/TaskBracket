@@ -310,6 +310,9 @@
 				LastUpgradeCheck = 0500;
 				ORGANIZATIONNAME = "Marc Cuva";
 				TargetAttributes = {
+					49A84CF117754DBA0076597F = {
+						DevelopmentTeam = S9PLJWKQVD;
+					};
 					49A84D1217754DBA0076597F = {
 						TestTargetID = 49A84CF117754DBA0076597F;
 					};
@@ -503,10 +506,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Todo Player/Task Bracket-Prefix.pch";
 				INFOPLIST_FILE = "Todo Player/Task Bracket-Info.plist";
 				PRODUCT_NAME = "Task Bracket";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -516,10 +522,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Todo Player/Task Bracket-Prefix.pch";
 				INFOPLIST_FILE = "Todo Player/Task Bracket-Info.plist";
 				PRODUCT_NAME = "Task Bracket";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
