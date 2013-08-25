@@ -13,6 +13,7 @@
 		494DF7961785F7D200B99774 /* NewTaskVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 494DF7951785F7D200B99774 /* NewTaskVC.m */; };
 		494DF799178602E400B99774 /* TaskListCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 494DF798178602E400B99774 /* TaskListCollectionVC.m */; };
 		4962E70B1792277100AFABF5 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4962E70A1792277100AFABF5 /* UIPlaceHolderTextView.m */; };
+		4979B8EA17C9A39300D2E4DA /* UIImage+blur.m in Sources */ = {isa = PBXBuildFile; fileRef = 4979B8E917C9A39300D2E4DA /* UIImage+blur.m */; };
 		4985FB8F17AB08F100BF9A2F /* DynamicFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4985FB8E17AB08F100BF9A2F /* DynamicFlowLayout.m */; };
 		498611FA17A07D800086000E /* UndoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 498611F917A07D800086000E /* UndoView.m */; };
 		49951422177B79DF00E444D7 /* ItemList+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = 49951421177B79DF00E444D7 /* ItemList+Description.m */; };
@@ -38,9 +39,9 @@
 		49A84D3F1777B84B0076597F /* Playlist.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D3E1777B84B0076597F /* Playlist.m */; };
 		49A84D421777B84B0076597F /* ItemList.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D411777B84B0076597F /* ItemList.m */; };
 		49B69C40179473F700F95484 /* SharedManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B69C3F179473F700F95484 /* SharedManagedObjectContext.m */; };
+		49B9ADF617BFE1BA009BB631 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B9ADF517BFE1BA009BB631 /* Queue.m */; };
 		49C3A00217B1656A006ECEA8 /* BaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C3A00117B1656A006ECEA8 /* BaseView.m */; };
 		49C3A00517B1677B006ECEA8 /* TaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C3A00417B1677B006ECEA8 /* TaskView.m */; };
-		49B9ADF617BFE1BA009BB631 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B9ADF517BFE1BA009BB631 /* Queue.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,8 @@
 		494DF798178602E400B99774 /* TaskListCollectionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskListCollectionVC.m; sourceTree = "<group>"; };
 		4962E7091792277100AFABF5 /* UIPlaceHolderTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIPlaceHolderTextView.h; sourceTree = "<group>"; };
 		4962E70A1792277100AFABF5 /* UIPlaceHolderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIPlaceHolderTextView.m; sourceTree = "<group>"; };
+		4979B8E817C9A39300D2E4DA /* UIImage+blur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+blur.h"; sourceTree = "<group>"; };
+		4979B8E917C9A39300D2E4DA /* UIImage+blur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+blur.m"; sourceTree = "<group>"; };
 		4985FB8D17AB08F100BF9A2F /* DynamicFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicFlowLayout.h; sourceTree = "<group>"; };
 		4985FB8E17AB08F100BF9A2F /* DynamicFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicFlowLayout.m; sourceTree = "<group>"; };
 		498611F817A07D800086000E /* UndoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoView.h; sourceTree = "<group>"; };
@@ -105,12 +108,12 @@
 		49A84D411777B84B0076597F /* ItemList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ItemList.m; path = "Core Data/ItemList.m"; sourceTree = "<group>"; };
 		49B69C3E179473F700F95484 /* SharedManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedManagedObjectContext.h; path = "Core Data/SharedManagedObjectContext.h"; sourceTree = "<group>"; };
 		49B69C3F179473F700F95484 /* SharedManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SharedManagedObjectContext.m; path = "Core Data/SharedManagedObjectContext.m"; sourceTree = "<group>"; };
+		49B9ADF417BFE1BA009BB631 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
+		49B9ADF517BFE1BA009BB631 /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
 		49C3A00017B1656A006ECEA8 /* BaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseView.h; sourceTree = "<group>"; };
 		49C3A00117B1656A006ECEA8 /* BaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseView.m; sourceTree = "<group>"; };
 		49C3A00317B1677B006ECEA8 /* TaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskView.h; sourceTree = "<group>"; };
 		49C3A00417B1677B006ECEA8 /* TaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskView.m; sourceTree = "<group>"; };
-		49B9ADF417BFE1BA009BB631 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
-		49B9ADF517BFE1BA009BB631 /* Queue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Queue.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,6 +153,8 @@
 				498611F917A07D800086000E /* UndoView.m */,
 				4962E7091792277100AFABF5 /* UIPlaceHolderTextView.h */,
 				4962E70A1792277100AFABF5 /* UIPlaceHolderTextView.m */,
+				4979B8E817C9A39300D2E4DA /* UIImage+blur.h */,
+				4979B8E917C9A39300D2E4DA /* UIImage+blur.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -375,6 +380,7 @@
 			files = (
 				49A84D421777B84B0076597F /* ItemList.m in Sources */,
 				49A84D2C177551480076597F /* TaskCollectionVC.m in Sources */,
+				4979B8EA17C9A39300D2E4DA /* UIImage+blur.m in Sources */,
 				494DF799178602E400B99774 /* TaskListCollectionVC.m in Sources */,
 				4962E70B1792277100AFABF5 /* UIPlaceHolderTextView.m in Sources */,
 				49A84D3F1777B84B0076597F /* Playlist.m in Sources */,
