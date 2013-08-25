@@ -10,4 +10,5 @@
 
 @interface BaseView : UIView
 @property (strong, nonatomic) NSString *text;
+@property (strong, nonatomic) UIColor *color;
 @end
