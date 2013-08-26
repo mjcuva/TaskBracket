@@ -13,7 +13,7 @@
 
 - (UIColor *)color{
     if(!_color){
-        _color = [UIColor greenColor];
+        _color = [UIColor redColor];
     }
     
     return _color;
@@ -36,13 +36,12 @@
     
     NSArray *colors = [self getColorRange];
     
-    NSUInteger randomIndex = arc4random() % [colors count];
-    [[colors objectAtIndex:randomIndex] setFill];
-    UIRectFill(self.bounds);
+    [self.color setFill];
+    UIRectFill(rect);
     
     UIImage *image = [self generateImageWithSize:rect andColors:colors];
     
-    [image drawInRect:rect blendMode:kCGBlendModeOverlay alpha:1];
+    [image drawInRect:rect blendMode:kCGBlendModeNormal alpha:.7];
     
 }
 
@@ -62,6 +61,7 @@
         [colors addObject:color];
         
     }
+//    return @[[UIColor whiteColor]];
     return colors;
 }
 
@@ -73,25 +73,25 @@
  */
 - (UIImage *)generateImageWithSize:(CGRect)rect andColors:(NSArray *)colors{
     
-    UIGraphicsBeginImageContext(rect.size);
+    UIGraphicsBeginImageContextWithOptions(rect.size, NO, 0.0);
     
-    for(int i = 50; i > 0; i--){
+    for(int i = 200; i > 0; i--){
         NSUInteger randomColorIndex = arc4random() % [colors count];
         UIColor *color = [colors objectAtIndex:randomColorIndex];
         [color setFill];
         
-        NSUInteger width = arc4random() % (int)rect.size.width / 2;
-        NSUInteger height = arc4random() % (int)rect.size.height / 2;
+        NSUInteger width = arc4random() % (int)rect.size.width / 4;
+        NSUInteger height = arc4random() % (int)rect.size.height / 4;
         NSUInteger x = arc4random() % (int)rect.size.width;
         NSUInteger y = arc4random() % (int)rect.size.height;
         UIRectFill(CGRectMake(x, y, width, height));
     }
     
-    [self.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage *viewImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     
     return [viewImage applyDarkEffect];
+//    return viewImage;
     
 }
 
