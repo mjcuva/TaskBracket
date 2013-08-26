@@ -19,21 +19,24 @@
     return self;
 }
 
+#define HORIZONTAL_OFFSET 20
+
 - (void)drawRect:(CGRect)rect{
     [super drawRect:rect];
     
     // Center Text Horizontally
     NSMutableParagraphStyle *p = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    [p setAlignment:NSTextAlignmentCenter];
+    [p setAlignment:NSTextAlignmentLeft];
     
+    UIFont *font = [UIFont systemFontOfSize:17];
     
-    NSDictionary *attr = @{NSParagraphStyleAttributeName:p};
+    NSDictionary *attr = @{NSParagraphStyleAttributeName:p, NSFontAttributeName:font, NSForegroundColorAttributeName:[UIColor whiteColor]};
     
     // Center Text Vertically
-    CGSize fontHeight = [self.description sizeWithAttributes:attr];
+    CGSize fontHeight = [self.title sizeWithAttributes:attr];
     CGFloat YOffSet = (rect.size.height - fontHeight.height) / 2;
     
-    [self.text drawInRect:CGRectMake(0, YOffSet, rect.size.width, rect.size.height) withAttributes:attr];
+    [self.title drawInRect:CGRectMake(HORIZONTAL_OFFSET, YOffSet, rect.size.width - HORIZONTAL_OFFSET, rect.size.height) withAttributes:attr];
 }
 
 @end
