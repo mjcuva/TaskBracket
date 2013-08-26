@@ -25,7 +25,7 @@
     NSMutableParagraphStyle *p = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     [p setAlignment:NSTextAlignmentLeft];
     
-    UIFont *font = [UIFont systemFontOfSize:22];
+    UIFont *font = [UIFont systemFontOfSize:25];
     
     NSDictionary *attr = @{NSParagraphStyleAttributeName:p, NSFontAttributeName:font, NSForegroundColorAttributeName:[UIColor whiteColor]};
     
@@ -33,7 +33,7 @@
     CGSize fontHeight = [self.description sizeWithAttributes:attr];
     CGFloat YOffSet = (rect.size.height - fontHeight.height) / 2;
     
-    [self.text drawInRect:CGRectMake(CENTER_OFFSET, YOffSet, rect.size.width, rect.size.height) withAttributes:attr];
+    [self.text drawInRect:CGRectMake(CENTER_OFFSET, YOffSet, rect.size.width - CENTER_OFFSET, rect.size.height) withAttributes:attr];
 }
 
 @end
