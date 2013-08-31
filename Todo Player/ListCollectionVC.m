@@ -8,8 +8,10 @@
 
 #import "ListCollectionVC.h"
 #import "ItemList+Description.h"
+#import "ItemList+colors.h"
 #import "CollectionCell.h"
 #import "ListView.h"
+#import "UIColor+random.h"
 
 @interface ListCollectionVC () <UIActionSheetDelegate>
 @property (strong, nonatomic) UIActionSheet *actionSheet;
@@ -45,6 +47,7 @@
             CollectionCell *colCell = (CollectionCell *)cell;
             ItemList *iList = (ItemList *)object;
             colCell.view.text = iList.description;
+            colCell.view.color = [iList color];
             [colCell.view setNeedsDisplay];
             
             UILongPressGestureRecognizer *lp = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(showActionSheet:)];
@@ -127,17 +130,24 @@
     }
 }
 
+#pragma GCC diagnostic ignored "-Wundeclared-selector"
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    // TODO: Clean code
     if([segue.identifier isEqualToString:@"NewListPush"]){
         NSString *title;
+        UIColor *color;
         if([sender respondsToSelector:@selector(title)]){
             title = [sender performSelector:@selector(title)];
+            color = [sender performSelector:@selector(color)];
         }
         [segue.destinationViewController setTitle:title];
+        [segue.destinationViewController performSelector:@selector(setViewColor:) withObject:color];
     }else if ([segue.identifier isEqualToString:@"CollectionCellPush"]){
         if([sender isKindOfClass:[CollectionCell class]]){
             CollectionCell *cell = (CollectionCell *)sender;
             [segue.destinationViewController setTitle:cell.view.text];
+            [segue.destinationViewController performSelector:@selector(setViewColor:) withObject:cell.view.color];
         }
     }
 }
@@ -145,6 +155,7 @@
 - (id)createListWithTitle:(NSString *)title{
     ItemList *list = [NSEntityDescription insertNewObjectForEntityForName:@"ItemList" inManagedObjectContext:self.context];
     list.title = title;
+    [list setColor:[UIColor randomColor]];
     return list;
 }
 
