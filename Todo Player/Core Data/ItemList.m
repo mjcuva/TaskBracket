@@ -2,7 +2,7 @@
 //  ItemList.m
 //  Task Bracket
 //
-//  Created by Marc Cuva on 6/23/13.
+//  Created by Marc Cuva on 8/31/13.
 //  Copyright (c) 2013 Marc Cuva. All rights reserved.
 //
 
@@ -13,6 +13,9 @@
 @implementation ItemList
 
 @dynamic title;
+@dynamic red_color;
+@dynamic blue_color;
+@dynamic green_color;
 @dynamic tasks;
 
 @end

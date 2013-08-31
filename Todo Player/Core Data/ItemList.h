@@ -2,7 +2,7 @@
 //  ItemList.h
 //  Task Bracket
 //
-//  Created by Marc Cuva on 6/23/13.
+//  Created by Marc Cuva on 8/31/13.
 //  Copyright (c) 2013 Marc Cuva. All rights reserved.
 //
 
@@ -14,6 +14,9 @@
 @interface ItemList : NSManagedObject
 
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSNumber * red_color;
+@property (nonatomic, retain) NSNumber * blue_color;
+@property (nonatomic, retain) NSNumber * green_color;
 @property (nonatomic, retain) NSSet *tasks;
 @end
 
