@@ -10,5 +10,5 @@
 #import "TaskCollectionVC.h"
 
 @interface TaskListCollectionVC : TaskCollectionVC
-
+@property (strong, nonatomic) UIColor *viewColor;
 @end

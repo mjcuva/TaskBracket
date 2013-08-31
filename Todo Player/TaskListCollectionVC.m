@@ -92,6 +92,7 @@
             Task *t = (Task *)object;
             colCell.view.text = t.description;
             view.title = t.title;
+            view.color = self.viewColor;
             [colCell.view setNeedsDisplay];
         }
     }
