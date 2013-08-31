@@ -21,6 +21,8 @@
 @property (strong, nonatomic) NSMutableArray *undoRemoves;
 
 @property (strong, nonatomic) Queue *lists;
+
+@property (strong, nonatomic) NSMutableArray *swipedTasks;
 @end
 
 @implementation TaskListCollectionVC
@@ -43,6 +45,13 @@
     if(!_lists)
         _lists = [[Queue alloc] init];
     return _lists;
+}
+
+- (NSMutableArray *)swipedTasks{
+    if(!_swipedTasks) {
+        _swipedTasks = [[NSMutableArray alloc] init];
+    }
+    return _swipedTasks;
 }
 
 # pragma mark - newTask protocol
@@ -143,6 +152,7 @@
 - (BaseView *)cellView{
     return [[TaskView alloc] initWithFrame:CGRectMake([self viewX], 0, [self viewWidth], self.flowLayout.itemSize.height)];
 }
+
 #pragma mark - Remove Item Gesture
 
 - (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer{
@@ -157,7 +167,13 @@
     CollectionCell *cc = (CollectionCell *)cell;
     TaskView *swiped = (TaskView *)cc.view;
     
-    if(sender.state == UIGestureRecognizerStateChanged && cc.view == swiped){
+    if(sender.state == UIGestureRecognizerStateChanged && swiped != nil){
+        
+        if(![self.swipedTasks containsObject:swiped]){
+            // Add new object that was swipedw
+            [self.swipedTasks addObject:swiped];
+        }
+        
         cc.view.frame = CGRectMake(cc.view.frame.origin.x + [sender translationInView:[self view]].x, cc.view.frame.origin.y, cc.view.frame.size.width, cc.view.frame.size.height);
         cc.view.alpha = 1 - (abs(cc.view.frame.origin.x) / cc.view.frame.size.width);
         [sender setTranslation:CGPointZero inView:[self view]];
@@ -183,8 +199,12 @@
         }else{
             // Gesture failed
             [UIView animateWithDuration:.75 animations:^{
-                swiped.frame = CGRectMake(10, 0, swiped.frame.size.width, swiped.frame.size.height);
-                swiped.alpha = 1;
+                for(TaskView *item in self.swipedTasks){
+                    item.frame = CGRectMake(10, 0, item.frame.size.width, item.frame.size.height);
+                    item.alpha = 1;
+                }
+            } completion:^(BOOL success){
+                [self.swipedTasks removeAllObjects];
             }];
         }
     }
