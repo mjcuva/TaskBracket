@@ -10,4 +10,5 @@
 
 @interface TaskView : BaseView
 @property (strong, nonatomic) NSString *title;
+@property (strong, nonatomic) NSString *description_text;
 @end
