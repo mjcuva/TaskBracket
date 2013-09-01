@@ -93,6 +93,7 @@
             colCell.view.text = t.description;
             view.title = t.title;
             view.color = self.viewColor;
+            view.description_text = t.task_description;
             [colCell.view setNeedsDisplay];
         }
     }
