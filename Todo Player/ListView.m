@@ -14,8 +14,6 @@
 
 @implementation ListView
 
-#define CENTER_OFFSET 20
-
 - (void)drawRect:(CGRect)rect
 {
  
@@ -23,7 +21,7 @@
     
     // Center Text Horizontally
     NSMutableParagraphStyle *p = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
-    [p setAlignment:NSTextAlignmentLeft];
+    [p setAlignment:NSTextAlignmentCenter];
     
     UIFont *font = [UIFont systemFontOfSize:25];
     
@@ -33,7 +31,7 @@
     CGSize fontHeight = [self.description sizeWithAttributes:attr];
     CGFloat YOffSet = (rect.size.height - fontHeight.height) / 2;
     
-    [self.text drawInRect:CGRectMake(CENTER_OFFSET, YOffSet, rect.size.width - CENTER_OFFSET, rect.size.height) withAttributes:attr];
+    [self.text drawInRect:CGRectMake(0, YOffSet, rect.size.width, rect.size.height) withAttributes:attr];
 }
 
 @end
