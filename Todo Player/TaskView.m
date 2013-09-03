@@ -28,6 +28,8 @@
 - (void)drawRect:(CGRect)rect{
     [super drawRect:rect];
     
+    // Title
+    
     // Center Text Horizontally
     NSMutableParagraphStyle *p = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     [p setAlignment:NSTextAlignmentLeft];
@@ -42,6 +44,8 @@
     
     [self.title drawInRect:CGRectMake(TITLE_HORIZONTAL_OFFSET, YOffSet - TITLE_VERTICAL_OFFSET, rect.size.width - TITLE_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET, rect.size.height) withAttributes:attr];
     
+    
+    // Description
     UIFont *description_font = [UIFont systemFontOfSize:16];
     NSDictionary *description_attr = @{NSParagraphStyleAttributeName:p, NSFontAttributeName:description_font, NSForegroundColorAttributeName:[UIColor whiteColor]};
     
@@ -51,6 +55,13 @@
     // TODO: Update cell size to adjust for more text
     [self.description_text drawInRect:CGRectMake(DESCRIPTION_HORIZONTAL_OFFSET, descriptionOffset - DESCRIPTION_VERTICAL_OFFSET, rect.size.width - DESCRIPTION_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET, rect.size.height - descriptionOffset - DESCRIPTION_VERTICAL_OFFSET - descriptionHeight.height) withAttributes:description_attr];
     
+    // Add Button
+    UIButton *addToQueue = [[UIButton alloc] init];
+    [addToQueue setTitle:@"+" forState:UIControlStateNormal];
+    addToQueue.frame = CGRectMake(rect.size.width - RIGHT_EDGE_INSET, 0, rect.size.width - (rect.size.width - RIGHT_EDGE_INSET), rect.size.height);
+    addToQueue.titleLabel.textColor = [UIColor whiteColor];
+    addToQueue.titleLabel.font = [UIFont systemFontOfSize:30];
+    [self addSubview:addToQueue];
 }
 
 @end
