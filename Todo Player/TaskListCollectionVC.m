@@ -12,7 +12,6 @@
 #import "Task+Description.h"
 #import "UndoView.h"
 #import "DynamicFlowLayout.h"
-#import "TaskView.h"
 #import "Queue.h"
 
 @interface TaskListCollectionVC() <newTask, UIGestureRecognizerDelegate>
@@ -94,6 +93,7 @@
             view.title = t.title;
             view.color = self.viewColor;
             view.description_text = t.task_description;
+            view.delegate = self;
             [colCell.view setNeedsDisplay];
         }
     }
@@ -306,6 +306,16 @@
     assert(task != nil);
     [self.collectionView deselectItemAtIndexPath:indexPath animated:NO];
     [self performSegueWithIdentifier:@"EditTask" sender:task];
+}
+
+- (void)buttonPressed:(NSDictionary *)viewDetails{
+    NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
+    req.predicate = [NSPredicate predicateWithFormat:@"title == %@ && task_description == %@", [viewDetails objectForKey:@"title"], [viewDetails objectForKey:@"description"]];
+    Task *t = [[self.context executeFetchRequest:req error:nil] lastObject];
+
+    // TODO: Add to some queue
+    NSLog(@"Added: %@", [t description]);
+    
 }
 
 

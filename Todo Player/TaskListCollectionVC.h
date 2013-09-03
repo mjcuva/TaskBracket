@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TaskView.h"
 #import "TaskCollectionVC.h"
 
-@interface TaskListCollectionVC : TaskCollectionVC
+@interface TaskListCollectionVC : TaskCollectionVC <ButtonPressed>
 @property (strong, nonatomic) UIColor *viewColor;
 @end

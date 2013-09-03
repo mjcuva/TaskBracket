@@ -8,6 +8,12 @@
 
 #import "Taskview.h"
 
+@interface TaskView()
+
+@property (strong, nonatomic) UIButton *addToQueueButton;
+
+@end
+
 @implementation TaskView
 
 - (id)initWithFrame:(CGRect)frame
@@ -56,12 +62,18 @@
     [self.description_text drawInRect:CGRectMake(DESCRIPTION_HORIZONTAL_OFFSET, descriptionOffset - DESCRIPTION_VERTICAL_OFFSET, rect.size.width - DESCRIPTION_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET, rect.size.height - descriptionOffset - DESCRIPTION_VERTICAL_OFFSET - descriptionHeight.height) withAttributes:description_attr];
     
     // Add Button
-    UIButton *addToQueueButton = [[UIButton alloc] init];
-    [addToQueueButton setTitle:@"+" forState:UIControlStateNormal];
-    addToQueueButton.frame = CGRectMake(rect.size.width - RIGHT_EDGE_INSET, 0, rect.size.width - (rect.size.width - RIGHT_EDGE_INSET), rect.size.height);
-    addToQueueButton.titleLabel.textColor = [UIColor whiteColor];
-    addToQueueButton.titleLabel.font = [UIFont systemFontOfSize:30];
-    [self addSubview:addToQueueButton];
+    if(!self.addToQueueButton){
+        self.addToQueueButton = [[UIButton alloc] init];
+        [self.addToQueueButton setTitle:@"+" forState:UIControlStateNormal];
+        self.addToQueueButton.frame = CGRectMake(rect.size.width - RIGHT_EDGE_INSET, 0, rect.size.width - (rect.size.width - RIGHT_EDGE_INSET), rect.size.height);
+        self.addToQueueButton.titleLabel.font = [UIFont systemFontOfSize:30];
+        [self.addToQueueButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:self.addToQueueButton];
+    }
+}
+
+- (void)buttonPressed:(UIButton *)button{
+    [self.delegate buttonPressed:@{@"title":self.title, @"description":self.description_text}];
 }
 
 @end

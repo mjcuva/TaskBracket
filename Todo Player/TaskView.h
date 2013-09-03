@@ -8,7 +8,14 @@
 
 #import "BaseView.h"
 
-@interface TaskView : BaseView
+@protocol ButtonPressed
+- (void)buttonPressed:(NSDictionary *)viewDetails;
+@end
+
+@interface TaskView : BaseView <ButtonPressed>
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *description_text;
+
+@property (strong, nonatomic) id<ButtonPressed> delegate;
+
 @end
