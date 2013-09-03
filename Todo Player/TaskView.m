@@ -48,7 +48,8 @@
     CGSize descriptionHeight = [self.description_text sizeWithAttributes:description_attr];
     CGFloat descriptionOffset = (rect.size.height - descriptionHeight.height) / 2;
     
-    [self.description_text drawInRect:CGRectMake(DESCRIPTION_HORIZONTAL_OFFSET, descriptionOffset - DESCRIPTION_VERTICAL_OFFSET, rect.size.width - DESCRIPTION_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET, rect.size.height - descriptionOffset - DESCRIPTION_VERTICAL_OFFSET - 25) withAttributes:description_attr];
+    // TODO: Update cell size to adjust for more text
+    [self.description_text drawInRect:CGRectMake(DESCRIPTION_HORIZONTAL_OFFSET, descriptionOffset - DESCRIPTION_VERTICAL_OFFSET, rect.size.width - DESCRIPTION_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET, rect.size.height - descriptionOffset - DESCRIPTION_VERTICAL_OFFSET - descriptionHeight.height) withAttributes:description_attr];
     
 }
 
