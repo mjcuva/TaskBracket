@@ -19,7 +19,7 @@
 
 @implementation TaskCollectionVC
 
-#define LOG_ITEM_NUMBER 0
+#define LOG_ITEM_NUMBER NO
 
 - (void)viewDidLoad{
     self.collectionView.dataSource = self;
