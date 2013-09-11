@@ -18,4 +18,6 @@
 
 @property (strong, nonatomic) id<ButtonPressed> delegate;
 
+@property (nonatomic) BOOL enqueued;
+
 @end
