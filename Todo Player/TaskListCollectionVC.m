@@ -94,6 +94,7 @@
             view.color = self.viewColor;
             view.description_text = t.task_description;
             view.delegate = self;
+            view.enqueued = [t.enqueued boolValue];
             [colCell.view setNeedsDisplay];
         }
     }
@@ -314,7 +315,9 @@
     Task *t = [[self.context executeFetchRequest:req error:nil] lastObject];
 
     // TODO: Add to some queue
-    NSLog(@"Added: %@", [t description]);
+    NSLog(@"Added %@ to queue", [t title]);
+    
+    t.enqueued = [[viewDetails valueForKey:@"enqueued"] isEqualToString:@"YES"] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO];
     
 }
 
