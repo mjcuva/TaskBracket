@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		492C11241795DD75006BBB13 /* Task+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C11231795DD75006BBB13 /* Task+Description.m */; };
-		492C690317C283C100DEC650 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 492C690017C283C100DEC650 /* fishhook.c */; };
-		492C690417C283C100DEC650 /* QuietAssertMacros.c in Sources */ = {isa = PBXBuildFile; fileRef = 492C690217C283C100DEC650 /* QuietAssertMacros.c */; };
 		49472B4517D2902000D9D185 /* UIColor+random.m in Sources */ = {isa = PBXBuildFile; fileRef = 49472B4417D2902000D9D185 /* UIColor+random.m */; };
 		49472B5417D2913800D9D185 /* ItemList+colors.m in Sources */ = {isa = PBXBuildFile; fileRef = 49472B5317D2913800D9D185 /* ItemList+colors.m */; };
 		49472B5D17D294FE00D9D185 /* ItemList.m in Sources */ = {isa = PBXBuildFile; fileRef = 49472B5C17D294FE00D9D185 /* ItemList.m */; };
@@ -58,9 +56,6 @@
 /* Begin PBXFileReference section */
 		492C11221795DD75006BBB13 /* Task+Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Task+Description.h"; path = "Core Data/Task+Description.h"; sourceTree = "<group>"; };
 		492C11231795DD75006BBB13 /* Task+Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Task+Description.m"; path = "Core Data/Task+Description.m"; sourceTree = "<group>"; };
-		492C690017C283C100DEC650 /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = fishhook.c; path = QuietMacro/fishhook.c; sourceTree = "<group>"; };
-		492C690117C283C100DEC650 /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = fishhook.h; path = QuietMacro/fishhook.h; sourceTree = "<group>"; };
-		492C690217C283C100DEC650 /* QuietAssertMacros.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = QuietAssertMacros.c; path = QuietMacro/QuietAssertMacros.c; sourceTree = "<group>"; };
 		49472B4317D2902000D9D185 /* UIColor+random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+random.h"; sourceTree = "<group>"; };
 		49472B4417D2902000D9D185 /* UIColor+random.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+random.m"; sourceTree = "<group>"; };
 		49472B5217D2913800D9D185 /* ItemList+colors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ItemList+colors.h"; path = "Core Data/ItemList+colors.h"; sourceTree = "<group>"; };
@@ -214,7 +209,6 @@
 				49A84D39177665D20076597F /* Core Data */,
 				49A84D0D17754DBA0076597F /* Images.xcassets */,
 				49A84CFC17754DBA0076597F /* Supporting Files */,
-				49B9ADFA17BFE8B8009BB631 /* IOS7B5 Assert Macro Fix */,
 			);
 			name = "Task Bracket";
 			path = "Todo Player";
@@ -271,16 +265,6 @@
 				49B69C3F179473F700F95484 /* SharedManagedObjectContext.m */,
 			);
 			name = "Core Data";
-			sourceTree = "<group>";
-		};
-		49B9ADFA17BFE8B8009BB631 /* IOS7B5 Assert Macro Fix */ = {
-			isa = PBXGroup;
-			children = (
-				492C690017C283C100DEC650 /* fishhook.c */,
-				492C690117C283C100DEC650 /* fishhook.h */,
-				492C690217C283C100DEC650 /* QuietAssertMacros.c */,
-			);
-			name = "IOS7B5 Assert Macro Fix";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -390,14 +374,12 @@
 				4962E70B1792277100AFABF5 /* UIPlaceHolderTextView.m in Sources */,
 				49472B5417D2913800D9D185 /* ItemList+colors.m in Sources */,
 				49B9ADF617BFE1BA009BB631 /* Queue.m in Sources */,
-				492C690317C283C100DEC650 /* fishhook.c in Sources */,
 				49A84D38177562910076597F /* ListView.m in Sources */,
 				494DF7961785F7D200B99774 /* NewTaskVC.m in Sources */,
 				49D202BC17D956900064A51E /* Task.m in Sources */,
 				49C3A00517B1677B006ECEA8 /* TaskView.m in Sources */,
 				4985FB8F17AB08F100BF9A2F /* DynamicFlowLayout.m in Sources */,
 				49A84D0617754DBA0076597F /* AppDelegate.m in Sources */,
-				492C690417C283C100DEC650 /* QuietAssertMacros.c in Sources */,
 				49951422177B79DF00E444D7 /* ItemList+Description.m in Sources */,
 				49A84D0217754DBA0076597F /* main.m in Sources */,
 				49472B5D17D294FE00D9D185 /* ItemList.m in Sources */,
