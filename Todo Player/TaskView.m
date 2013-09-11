@@ -14,16 +14,7 @@
 
 @end
 
-@implementation TaskView
-
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
+@implementation TaskView 
 
 #define TITLE_HORIZONTAL_OFFSET 20
 #define TITLE_VERTICAL_OFFSET 20
@@ -70,10 +61,21 @@
         [self.addToQueueButton addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.addToQueueButton];
     }
+    
+    if (self.enqueued) {
+        self.addToQueueButton.titleLabel.textColor = [UIColor redColor]; 
+    }else{
+        self.addToQueueButton.titleLabel.textColor = [UIColor whiteColor];
+    }
 }
 
 - (void)buttonPressed:(UIButton *)button{
-    [self.delegate buttonPressed:@{@"title":self.title, @"description":self.description_text}];
+    
+    NSString *enqueuedValue = !self.enqueued ? @"YES" : @"NO";
+    
+    [self.delegate buttonPressed:@{@"title":self.title, @"description":self.description_text, @"enqueued":enqueuedValue}];
+    self.enqueued = !self.enqueued;
+    [self setNeedsDisplay];
 }
 
 @end
