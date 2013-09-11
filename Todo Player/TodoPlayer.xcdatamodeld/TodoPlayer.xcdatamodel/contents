@@ -9,6 +9,7 @@
     </entity>
     <entity name="Task" representedClassName="Task" syncable="YES">
         <attribute name="duration" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="enqueued" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="task_description" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="lists" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ItemList" inverseName="tasks" inverseEntity="ItemList" syncable="YES"/>
