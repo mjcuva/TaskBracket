@@ -2,7 +2,7 @@
 //  Task.h
 //  Task Bracket
 //
-//  Created by Marc Cuva on 8/31/13.
+//  Created by Marc Cuva on 9/5/13.
 //  Copyright (c) 2013 Marc Cuva. All rights reserved.
 //
 
@@ -14,6 +14,7 @@
 @interface Task : NSManagedObject
 
 @property (nonatomic, retain) NSNumber * duration;
+@property (nonatomic, retain) NSNumber * enqueued;
 @property (nonatomic, retain) NSString * task_description;
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) ItemList *lists;

@@ -2,7 +2,7 @@
 //  Task.m
 //  Task Bracket
 //
-//  Created by Marc Cuva on 8/31/13.
+//  Created by Marc Cuva on 9/5/13.
 //  Copyright (c) 2013 Marc Cuva. All rights reserved.
 //
 
@@ -13,6 +13,7 @@
 @implementation Task
 
 @dynamic duration;
+@dynamic enqueued;
 @dynamic task_description;
 @dynamic title;
 @dynamic lists;
