@@ -17,6 +17,7 @@
 		4979B8EA17C9A39300D2E4DA /* UIImage+blur.m in Sources */ = {isa = PBXBuildFile; fileRef = 4979B8E917C9A39300D2E4DA /* UIImage+blur.m */; };
 		4985FB8F17AB08F100BF9A2F /* DynamicFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4985FB8E17AB08F100BF9A2F /* DynamicFlowLayout.m */; };
 		498611FA17A07D800086000E /* UndoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 498611F917A07D800086000E /* UndoView.m */; };
+		498F0E8317E3D337008DB7F6 /* QueueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 498F0E8217E3D337008DB7F6 /* QueueVC.m */; };
 		49951422177B79DF00E444D7 /* ItemList+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = 49951421177B79DF00E444D7 /* ItemList+Description.m */; };
 		49A84CF617754DBA0076597F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A84CF517754DBA0076597F /* Foundation.framework */; };
 		49A84CF817754DBA0076597F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49A84CF717754DBA0076597F /* CoreGraphics.framework */; };
@@ -74,6 +75,8 @@
 		4985FB8E17AB08F100BF9A2F /* DynamicFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicFlowLayout.m; sourceTree = "<group>"; };
 		498611F817A07D800086000E /* UndoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoView.h; sourceTree = "<group>"; };
 		498611F917A07D800086000E /* UndoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UndoView.m; sourceTree = "<group>"; };
+		498F0E8117E3D337008DB7F6 /* QueueVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueVC.h; sourceTree = "<group>"; };
+		498F0E8217E3D337008DB7F6 /* QueueVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueueVC.m; sourceTree = "<group>"; };
 		49951420177B79DF00E444D7 /* ItemList+Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ItemList+Description.h"; path = "Core Data/ItemList+Description.h"; sourceTree = "<group>"; };
 		49951421177B79DF00E444D7 /* ItemList+Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "ItemList+Description.m"; path = "Core Data/ItemList+Description.m"; sourceTree = "<group>"; };
 		49A84CF217754DBA0076597F /* Task Bracket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Task Bracket.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,6 +208,8 @@
 				494DF7951785F7D200B99774 /* NewTaskVC.m */,
 				4985FB8D17AB08F100BF9A2F /* DynamicFlowLayout.h */,
 				4985FB8E17AB08F100BF9A2F /* DynamicFlowLayout.m */,
+				498F0E8117E3D337008DB7F6 /* QueueVC.h */,
+				498F0E8217E3D337008DB7F6 /* QueueVC.m */,
 				498611F417A07D4D0086000E /* Views */,
 				49A84D39177665D20076597F /* Core Data */,
 				49A84D0D17754DBA0076597F /* Images.xcassets */,
@@ -376,6 +381,7 @@
 				49B9ADF617BFE1BA009BB631 /* Queue.m in Sources */,
 				49A84D38177562910076597F /* ListView.m in Sources */,
 				494DF7961785F7D200B99774 /* NewTaskVC.m in Sources */,
+				498F0E8317E3D337008DB7F6 /* QueueVC.m in Sources */,
 				49D202BC17D956900064A51E /* Task.m in Sources */,
 				49C3A00517B1677B006ECEA8 /* TaskView.m in Sources */,
 				4985FB8F17AB08F100BF9A2F /* DynamicFlowLayout.m in Sources */,
