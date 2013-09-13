@@ -53,7 +53,7 @@
     [self.description_text drawInRect:CGRectMake(DESCRIPTION_HORIZONTAL_OFFSET, descriptionOffset - DESCRIPTION_VERTICAL_OFFSET, rect.size.width - DESCRIPTION_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET, rect.size.height - descriptionOffset - DESCRIPTION_VERTICAL_OFFSET - descriptionHeight.height) withAttributes:description_attr];
     
     // Add Button
-    if(!self.addToQueueButton){
+    if(!self.addToQueueButton && !self.hideAddQueueButton){
         self.addToQueueButton = [[UIButton alloc] init];
         [self.addToQueueButton setTitle:@"+" forState:UIControlStateNormal];
         self.addToQueueButton.frame = CGRectMake(rect.size.width - RIGHT_EDGE_INSET, 0, rect.size.width - (rect.size.width - RIGHT_EDGE_INSET), rect.size.height);

@@ -20,4 +20,6 @@
 
 @property (nonatomic) BOOL enqueued;
 
+@property (nonatomic) BOOL hideAddQueueButton;
+
 @end
