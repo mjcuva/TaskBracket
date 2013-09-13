@@ -7,17 +7,17 @@
         <!--View Controller - Task Queue-->
         <scene sceneID="nXr-Kq-1kf">
             <objects>
-                <viewController id="FAY-0c-xvD" sceneMemberID="viewController">
+                <viewController providesPresentationContextTransitionStyle="YES" id="FAY-0c-xvD" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ja0-Qa-aIy"/>
                         <viewControllerLayoutGuide type="bottom" id="dxE-R7-JUp"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="4jI-zf-dfu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="Task Queue" id="JWY-9U-BZN"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u4n-0G-PL8" userLabel="First Responder" sceneMemberID="firstResponder"/>
