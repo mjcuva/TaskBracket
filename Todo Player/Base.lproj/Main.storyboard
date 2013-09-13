@@ -4,10 +4,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3742"/>
     </dependencies>
     <scenes>
-        <!--View Controller - Task Queue-->
+        <!--QueueVC - Task Queue-->
         <scene sceneID="nXr-Kq-1kf">
             <objects>
-                <viewController providesPresentationContextTransitionStyle="YES" id="FAY-0c-xvD" sceneMemberID="viewController">
+                <viewController providesPresentationContextTransitionStyle="YES" id="FAY-0c-xvD" customClass="QueueVC" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ja0-Qa-aIy"/>
                         <viewControllerLayoutGuide type="bottom" id="dxE-R7-JUp"/>
@@ -15,10 +15,19 @@
                     <view key="view" contentMode="scaleToFill" id="4jI-zf-dfu">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dGp-Vo-jD3">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <tabBarItem key="tabBarItem" title="Task Queue" id="JWY-9U-BZN"/>
+                    <connections>
+                        <outlet property="scrollView" destination="dGp-Vo-jD3" id="CXu-tn-jVQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="u4n-0G-PL8" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
