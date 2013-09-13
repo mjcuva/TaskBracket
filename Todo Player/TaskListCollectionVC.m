@@ -313,9 +313,6 @@
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
     req.predicate = [NSPredicate predicateWithFormat:@"title == %@ && task_description == %@", [viewDetails objectForKey:@"title"], [viewDetails objectForKey:@"description"]];
     Task *t = [[self.context executeFetchRequest:req error:nil] lastObject];
-
-    // TODO: Add to some queue
-    NSLog(@"Added %@ to queue", [t title]);
     
     t.enqueued = [[viewDetails valueForKey:@"enqueued"] isEqualToString:@"YES"] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO];
     
