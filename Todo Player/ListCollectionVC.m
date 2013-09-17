@@ -186,7 +186,7 @@
         [editAV show];
     }else if([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:DELETE_BUTTON_TITLE]){
         
-        // TODO: Make sure orphaned core data items isn't a problem
+#warning Orphaned Core Data?
         
         NSFetchRequest *req = [[NSFetchRequest alloc] initWithEntityName:@"ItemList"];
         req.predicate = [NSPredicate predicateWithFormat:@"title = %@", self.pressedCell.view.text];
