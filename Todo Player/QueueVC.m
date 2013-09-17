@@ -8,14 +8,21 @@
 
 #import "QueueVC.h"
 #import "SharedManagedObjectContext.h"
-#import "Task.h"
+#import "Task+Description.h"
+#import "TaskView.h"
+#import "ItemList+colors.h"
 
 @interface QueueVC ()
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) NSManagedObjectContext *context;
+@property (strong, nonatomic) NSArray *enqueuedTasks;
 @end
 
 @implementation QueueVC
+
+#define HORIZONTAL_PADDING 10
+#define CELL_HEIGHT 100
+#define VERTICAL_PADDING 10
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -27,6 +34,12 @@
     
 }
 
+- (void)viewDidLoad{
+    [super viewDidLoad];
+    [self.scrollView setContentOffset:CGPointMake(0, -1 * (self.scrollView.frame.size.height / 2) - (CELL_HEIGHT / 2))];
+}
+
+#warning All the Cool Kids Cache
 
 - (void)loadTasks{
     NSFetchRequest *req = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
@@ -34,12 +47,28 @@
     req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
     
     NSError *err;
-    NSArray *enqueuedTasks = [self.context executeFetchRequest:req error:&err];
+    self.enqueuedTasks = [self.context executeFetchRequest:req error:&err];
     
     if(err){
-        NSLog(@"%@", [err description]);
+        NSLog(@"HOLY SHIT BATMAN! ERROR IN THE QUEUE: %@", [err description]);
     }else{
-        NSLog(@"%@", [enqueuedTasks description]);
+        NSLog(@"%@", [self.enqueuedTasks description]);
+        [self addSubviews];
+    }
+}
+
+
+#warning SUCKS
+- (void)addSubviews{
+    int start = 0;
+    for(Task *i in self.enqueuedTasks){
+        TaskView *tv = [[TaskView alloc] initWithFrame:CGRectMake(HORIZONTAL_PADDING, start, self.view.frame.size.width - (HORIZONTAL_PADDING * 2), CELL_HEIGHT)];
+        tv.color = i.lists.color;
+        tv.title = i.title;
+        tv.description_text = i.task_description;
+        tv.hideAddQueueButton = YES;
+        [self.scrollView addSubview:tv];
+        start += CELL_HEIGHT + VERTICAL_PADDING;
     }
 }
 
