@@ -12,7 +12,7 @@
 #import "TaskView.h"
 #import "ItemList+colors.h"
 
-@interface QueueVC ()
+@interface QueueVC () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) NSManagedObjectContext *context;
 @property (strong, nonatomic) NSArray *enqueuedTasks;
@@ -36,6 +36,7 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    self.scrollView.delegate = self;
     [self.scrollView setContentOffset:CGPointMake(0, -1 * (self.scrollView.frame.size.height / 2) - (CELL_HEIGHT / 2))];
 }
 
@@ -60,7 +61,8 @@
 
 #warning SUCKS
 - (void)addSubviews{
-    int start = 0;
+    int start = (self.scrollView.frame.size.height / 2) - (CELL_HEIGHT);
+    NSLog(@"%@", NSStringFromCGRect(self.scrollView.frame));
     for(Task *i in self.enqueuedTasks){
         TaskView *tv = [[TaskView alloc] initWithFrame:CGRectMake(HORIZONTAL_PADDING, start, self.view.frame.size.width - (HORIZONTAL_PADDING * 2), CELL_HEIGHT)];
         tv.color = i.lists.color;
@@ -70,6 +72,9 @@
         [self.scrollView addSubview:tv];
         start += CELL_HEIGHT + VERTICAL_PADDING;
     }
+    
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.scrollView.frame.size.height + (CELL_HEIGHT + VERTICAL_PADDING) * ([self.enqueuedTasks count] - 1));
+//    NSLog([self.scrollView description]);
 }
 
 @end
