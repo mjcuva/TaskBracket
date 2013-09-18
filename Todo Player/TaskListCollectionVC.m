@@ -283,6 +283,10 @@
             req.predicate = [NSPredicate predicateWithFormat:@"title=%@", tv.title];
             
             Task *t = [[self.context executeFetchRequest:req error:NULL] lastObject];
+            
+            // Guarantees that the number won't be in the queue
+            t.enqueued = [NSNumber numberWithBool:NO];
+            
             NSLog(@"Deleting %@", [t title]);
             [self.context deleteObject:t];
             
