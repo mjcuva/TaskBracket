@@ -9,7 +9,13 @@
 #import "BaseView.h"
 #import "UIImage+blur.h"
 
+@interface BaseView()
+@property (strong, nonatomic) UIImage *image;
+@end
+
 @implementation BaseView
+
+@synthesize color = _color;
 
 - (UIColor *)color{
     if(!_color){
@@ -17,6 +23,15 @@
     }
     
     return _color;
+}
+
+- (void)setColor:(UIColor *)color{
+    _color = color;
+    self.image = nil;
+}
+
+- (UIImage *)image{
+    return _image;
 }
 
 - (id)initWithFrame:(CGRect)frame
@@ -39,9 +54,11 @@
     [self.color setFill];
     UIRectFill(rect);
     
-    UIImage *image = [self generateImageWithSize:rect andColors:colors];
+    if (!self.image) {
+        self.image = [self generateImageWithSize:rect andColors:colors];
+    }
     
-    [image drawInRect:rect blendMode:kCGBlendModeNormal alpha:.7];
+    [self.image drawInRect:rect blendMode:kCGBlendModeNormal alpha:.7];
     
 }
 
