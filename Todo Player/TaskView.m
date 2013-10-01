@@ -22,6 +22,9 @@
 #define DESCRIPTION_VERTICAL_OFFSET -10
 #define RIGHT_EDGE_INSET 60
 
+#define TITLE_FONT_SIZE 23
+#define DESCRIPTION_FONT_SIZE 16
+
 - (void)drawRect:(CGRect)rect{
     [super drawRect:rect];
     
@@ -31,7 +34,7 @@
     NSMutableParagraphStyle *p = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     [p setAlignment:NSTextAlignmentLeft];
     
-    UIFont *title_font = [UIFont systemFontOfSize:23];
+    UIFont *title_font = [UIFont systemFontOfSize:TITLE_FONT_SIZE * self.fontSizeFactor];
     
     NSDictionary *attr = @{NSParagraphStyleAttributeName:p, NSFontAttributeName:title_font, NSForegroundColorAttributeName:[UIColor whiteColor]};
     
@@ -43,7 +46,7 @@
     
     
     // Description
-    UIFont *description_font = [UIFont systemFontOfSize:16];
+    UIFont *description_font = [UIFont systemFontOfSize:DESCRIPTION_FONT_SIZE * self.fontSizeFactor];
     NSDictionary *description_attr = @{NSParagraphStyleAttributeName:p, NSFontAttributeName:description_font, NSForegroundColorAttributeName:[UIColor whiteColor]};
     
     CGSize descriptionHeight = [self.description_text sizeWithAttributes:description_attr];

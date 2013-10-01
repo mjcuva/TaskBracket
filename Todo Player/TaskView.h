@@ -22,4 +22,6 @@
 
 @property (nonatomic) BOOL hideAddQueueButton;
 
+@property CGFloat fontSizeFactor;
+
 @end
