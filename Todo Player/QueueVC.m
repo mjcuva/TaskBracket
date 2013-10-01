@@ -45,17 +45,24 @@
     self.scrollView.delegate = self;
     [self.scrollView setShowsVerticalScrollIndicator:NO];
     [self.scrollView setContentOffset:CGPointMake(0, -1 * (self.scrollView.frame.size.height / 2) - (CELL_HEIGHT / 2))];
+    
+    UINavigationBar *bar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size
+                                                                             .width, 64)];
+    
+    [self.view addSubview:bar];
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     for(id view in scrollView.subviews){
         if([view isKindOfClass:[TaskView class]]){
             TaskView *tv = (TaskView *)view;
-            CGFloat diff = abs((tv.center.y - self.scrollView.contentOffset.y) - [self center].y) / OFFSET_FACTOR;
-            if([tv.title isEqualToString:@"Discrete Structures"])
-                NSLog(@"%f", diff);
-            tv.frame = CGRectMake(MAX(HORIZONTAL_PADDING, diff), tv.frame.origin.y, (self.view.frame.size.width - (HORIZONTAL_PADDING)) - MAX(diff, HORIZONTAL_PADDING), tv.frame.size.height);
-            [tv setNeedsDisplay];
+            if(CGRectIntersectsRect(tv.frame, self.scrollView.bounds)){
+                CGFloat diff = abs((tv.center.y - self.scrollView.contentOffset.y) - [self center].y) / OFFSET_FACTOR;
+                CGFloat fontSizeFactor = MAX(0, powf((self.view.frame.size.height - diff) / self.view.frame.size.height, 1.5));
+                tv.fontSizeFactor = fontSizeFactor;
+                tv.frame = CGRectMake(MAX(HORIZONTAL_PADDING, diff), tv.frame.origin.y, (self.view.frame.size.width - (HORIZONTAL_PADDING)) - MAX(diff, HORIZONTAL_PADDING), tv.frame.size.height);
+                [tv setNeedsDisplay];
+            }
         }
     }
 }
