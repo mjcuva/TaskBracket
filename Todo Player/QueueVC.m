@@ -104,6 +104,8 @@
 
 #warning SUCKS
 - (void)addSubviews{
+    // Remove all subviews to prevent memory leak when adding new subviews
+    [[self.scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     int start = (self.scrollView.frame.size.height / 2) - (CELL_HEIGHT);
     for(Task *i in self.enqueuedTasks){
         TaskView *tv = [[TaskView alloc] initWithFrame:CGRectMake(HORIZONTAL_PADDING, start, self.view.frame.size.width - (HORIZONTAL_PADDING * 2), CELL_HEIGHT)];
