@@ -36,6 +36,7 @@
     [SharedManagedObjectContext getSharedContextWithCompletionHandler:^(NSManagedObjectContext *context){
         self.context = context;
         [self loadTasks];
+        [self adjustQueueLayout];
     }];
     
 }
@@ -53,7 +54,11 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    for(id view in scrollView.subviews){
+    [self adjustQueueLayout];
+}
+
+- (void)adjustQueueLayout{
+    for(id view in self.scrollView.subviews){
         if([view isKindOfClass:[TaskView class]]){
             TaskView *tv = (TaskView *)view;
             if(CGRectIntersectsRect(tv.frame, self.scrollView.bounds)){
