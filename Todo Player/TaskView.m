@@ -16,6 +16,13 @@
 
 @implementation TaskView 
 
+- (CGFloat)fontSizeFactor{
+    if (!_fontSizeFactor) {
+        _fontSizeFactor = 1;
+    }
+    return _fontSizeFactor;
+}
+
 #define TITLE_HORIZONTAL_OFFSET 20
 #define TITLE_VERTICAL_OFFSET 20
 #define DESCRIPTION_HORIZONTAL_OFFSET 30
