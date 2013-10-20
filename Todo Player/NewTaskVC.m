@@ -66,7 +66,7 @@
 
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
-    self.accesoryControl.tintColor = self.view.window.tintColor;
+    self.accesoryControl.tintColor = self.view.tintColor;
 }
 
 #pragma mark - Keyboard Control for Text Boxes
