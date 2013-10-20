@@ -35,29 +35,37 @@
 #define MIN_CELL_HEIGHT 100
 #define MAX_CELL_WIDTH 
 
+- (CGFloat)maxWidth{
+    return self.frame.size.width - TITLE_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET;
+}
+
+- (CGFloat)titleHeight{
+    return [self.title boundingRectWithSize:CGSizeMake([self maxWidth], 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[self titleFont]} context:nil].size.height;
+}
+
+- (CGFloat)descriptionHeight{
+    UIFont *description_font = [UIFont systemFontOfSize:DESCRIPTION_FONT_SIZE * self.fontSizeFactor];
+    return [self.description_text boundingRectWithSize:CGSizeMake([self maxWidth], 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:description_font} context:nil].size.height;
+}
+
+- (UIFont *)titleFont{
+    return [UIFont systemFontOfSize:TITLE_FONT_SIZE * self.fontSizeFactor];
+}
+
+- (UIFont *)descriptionFont{
+    return [UIFont systemFontOfSize:DESCRIPTION_FONT_SIZE * self.fontSizeFactor];
+}
+
 - (CGFloat)idealHeight{
     CGFloat height = 0;
     // Padding
     height += TITLE_VERTICAL_OFFSET;
 
     // Title Size
-#warning Duplicated Code
-    
-    UIFont *title_font = [UIFont systemFontOfSize:TITLE_FONT_SIZE * self.fontSizeFactor];
-    
-    // Max Width for Textbox
-    CGFloat max_width = self.frame.size.width - TITLE_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET;
-    
-    // Center Text Vertically
-    height += [self.title boundingRectWithSize:CGSizeMake(max_width, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:title_font} context:nil].size.height;
-    
-    // Padding
+    height += [self titleHeight];
     
     // Description Size
-#warning Duplicated Code
-    UIFont *description_font = [UIFont systemFontOfSize:DESCRIPTION_FONT_SIZE * self.fontSizeFactor];
-    
-    height += [self.description_text boundingRectWithSize:CGSizeMake(max_width, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:description_font} context:nil].size.height;
+    height += [self descriptionHeight];
     
     // Padding
     height += 10;
@@ -80,27 +88,23 @@
     [p setAlignment:NSTextAlignmentLeft];
     p.lineBreakMode = NSLineBreakByWordWrapping;    
     
-    UIFont *title_font = [UIFont systemFontOfSize:TITLE_FONT_SIZE * self.fontSizeFactor];
-    
-    NSDictionary *attr = @{NSParagraphStyleAttributeName:p, NSFontAttributeName:title_font, NSForegroundColorAttributeName:[UIColor whiteColor]};
+    NSDictionary *attr = @{NSParagraphStyleAttributeName:p, NSFontAttributeName:[self titleFont], NSForegroundColorAttributeName:[UIColor whiteColor]};
     
     // Center Text Vertically
-    CGFloat max_width = rect.size.width - TITLE_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET;
-    CGFloat titleHeight = [self.title boundingRectWithSize:CGSizeMake(max_width, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:title_font} context:nil].size.height;
+    CGFloat titleHeight = [self titleHeight];
     CGFloat titleOffSet = ((rect.size.height - titleHeight) / 2) - TITLE_VERTICAL_OFFSET;
     
     [self.title drawInRect:CGRectMake(TITLE_HORIZONTAL_OFFSET, titleOffSet, rect.size.width - TITLE_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET, titleHeight) withAttributes:attr];
     
     // Description
-    UIFont *description_font = [UIFont systemFontOfSize:DESCRIPTION_FONT_SIZE * self.fontSizeFactor];
-    NSDictionary *description_attr = @{NSParagraphStyleAttributeName:p, NSFontAttributeName:description_font, NSForegroundColorAttributeName:[UIColor whiteColor]};
+    NSDictionary *description_attr = @{NSParagraphStyleAttributeName:p, NSFontAttributeName:[self descriptionFont], NSForegroundColorAttributeName:[UIColor whiteColor]};
     
-    CGSize descriptionHeight = [self.description_text sizeWithAttributes:description_attr];
+    CGFloat descriptionHeight = [self descriptionHeight];
 //    CGFloat descriptionOffset = (rect.size.height - descriptionHeight.height) / 2;
     CGFloat descriptionOffset = titleHeight + titleOffSet;
     
     // TODO: Update cell size to adjust for more text
-    [self.description_text drawInRect:CGRectMake(DESCRIPTION_HORIZONTAL_OFFSET, descriptionOffset - DESCRIPTION_VERTICAL_OFFSET, rect.size.width - DESCRIPTION_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET, rect.size.height - descriptionOffset - DESCRIPTION_VERTICAL_OFFSET - descriptionHeight.height) withAttributes:description_attr];
+    [self.description_text drawInRect:CGRectMake(DESCRIPTION_HORIZONTAL_OFFSET, descriptionOffset - DESCRIPTION_VERTICAL_OFFSET, rect.size.width - DESCRIPTION_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET, rect.size.height - descriptionOffset - DESCRIPTION_VERTICAL_OFFSET - descriptionHeight) withAttributes:description_attr];
     
     // Add Button
     if(!self.addToQueueButton && !self.hideAddQueueButton){
