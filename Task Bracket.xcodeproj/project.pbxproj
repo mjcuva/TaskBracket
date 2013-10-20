@@ -37,6 +37,7 @@
 		49A84D3217755CD70076597F /* ListCollectionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D3117755CD70076597F /* ListCollectionVC.m */; };
 		49A84D35177562530076597F /* CollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D34177562530076597F /* CollectionCell.m */; };
 		49A84D38177562910076597F /* ListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A84D37177562910076597F /* ListView.m */; };
+		49A8F47518120A39009575E0 /* TODO in Resources */ = {isa = PBXBuildFile; fileRef = 49A8F47418120A39009575E0 /* TODO */; };
 		49B69C40179473F700F95484 /* SharedManagedObjectContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B69C3F179473F700F95484 /* SharedManagedObjectContext.m */; };
 		49B9ADF617BFE1BA009BB631 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B9ADF517BFE1BA009BB631 /* Queue.m */; };
 		49C3A00217B1656A006ECEA8 /* BaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C3A00117B1656A006ECEA8 /* BaseView.m */; };
@@ -105,6 +106,7 @@
 		49A84D34177562530076597F /* CollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionCell.m; sourceTree = "<group>"; };
 		49A84D36177562910076597F /* ListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListView.h; sourceTree = "<group>"; };
 		49A84D37177562910076597F /* ListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListView.m; sourceTree = "<group>"; };
+		49A8F47418120A39009575E0 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
 		49B69C3E179473F700F95484 /* SharedManagedObjectContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SharedManagedObjectContext.h; path = "Core Data/SharedManagedObjectContext.h"; sourceTree = "<group>"; };
 		49B69C3F179473F700F95484 /* SharedManagedObjectContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SharedManagedObjectContext.m; path = "Core Data/SharedManagedObjectContext.m"; sourceTree = "<group>"; };
 		49B9ADF417BFE1BA009BB631 /* Queue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Queue.h; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 		49A84CFB17754DBA0076597F /* Task Bracket */ = {
 			isa = PBXGroup;
 			children = (
+				49A8F47418120A39009575E0 /* TODO */,
 				49A84D0717754DBA0076597F /* Main.storyboard */,
 				49A84D2A177551480076597F /* TaskCollectionVC.h */,
 				49A84D2B177551480076597F /* TaskCollectionVC.m */,
@@ -353,6 +356,7 @@
 			files = (
 				49A84D0E17754DBA0076597F /* Images.xcassets in Resources */,
 				49A84D0017754DBA0076597F /* InfoPlist.strings in Resources */,
+				49A8F47518120A39009575E0 /* TODO in Resources */,
 				49A84D0917754DBA0076597F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
