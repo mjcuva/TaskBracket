@@ -75,7 +75,6 @@
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     for(TaskView *view in scrollView.subviews){
         if(CGRectContainsPoint(view.frame, CGPointMake([self center].x, [self center].y - self.scrollView.contentOffset.y))){
-            NSLog(@"%@", view.title);
             [UIView animateWithDuration:.5 animations:^{
                 self.scrollView.contentOffset = CGPointMake(0, view.center.y - [self center].y);
             }];
@@ -108,17 +107,22 @@
     [[self.scrollView subviews] makeObjectsPerformSelector:@selector(removeFromSuperview)];
     int start = (self.scrollView.frame.size.height / 2) - (CELL_HEIGHT);
     for(Task *i in self.enqueuedTasks){
-        TaskView *tv = [[TaskView alloc] initWithFrame:CGRectMake(HORIZONTAL_PADDING, start, self.view.frame.size.width - (HORIZONTAL_PADDING * 2), CELL_HEIGHT)];
+        TaskView *tv = [[TaskView alloc] initWithFrame:CGRectMake(HORIZONTAL_PADDING, start, self.view.frame.size.width - (HORIZONTAL_PADDING), CELL_HEIGHT)];
         tv.color = i.lists.color;
         tv.title = i.title;
         tv.description_text = i.task_description;
         tv.hideAddQueueButton = YES;
+        
+        // Ideal height can't be calculated until the width of the frame is set
+        if([tv idealHeight] != tv.frame.size.height){
+            tv.frame = CGRectMake(tv.frame.origin.x, tv.frame.origin.y, tv.frame.size.width, [tv idealHeight]);
+        }
+        
         [self.scrollView addSubview:tv];
-        start += CELL_HEIGHT + VERTICAL_PADDING;
+        start += tv.frame.size.height + VERTICAL_PADDING;
     }
     
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.scrollView.frame.size.height + (CELL_HEIGHT + VERTICAL_PADDING) * ([self.enqueuedTasks count] - 1));
-//    NSLog([self.scrollView description]);
 }
 
 @end
