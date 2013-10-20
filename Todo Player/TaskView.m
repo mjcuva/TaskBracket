@@ -7,7 +7,6 @@
 //
 
 #import "Taskview.h"
-#import "NSString+stringHeight.h"
 
 @interface TaskView()
 
@@ -58,7 +57,7 @@
 #warning Duplicated Code
     UIFont *description_font = [UIFont systemFontOfSize:DESCRIPTION_FONT_SIZE * self.fontSizeFactor];
     
-    height += [self.description_text sizeForStringWithFont:description_font andSize:CGSizeMake(max_width, 500)].height;
+    height += [self.description_text boundingRectWithSize:CGSizeMake(max_width, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:description_font} context:nil].size.height;
     
     // Padding
     height += 10;
