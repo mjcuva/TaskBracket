@@ -24,4 +24,6 @@
 
 @property (nonatomic) CGFloat fontSizeFactor;
 
+- (CGFloat)idealHeight;
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "Taskview.h"
+#import "NSString+stringHeight.h"
 
 @interface TaskView()
 
@@ -32,6 +33,44 @@
 #define TITLE_FONT_SIZE 23
 #define DESCRIPTION_FONT_SIZE 16
 
+#define MIN_CELL_HEIGHT 100
+#define MAX_CELL_WIDTH 
+
+- (CGFloat)idealHeight{
+    CGFloat height = 0;
+    // Padding
+    height += TITLE_VERTICAL_OFFSET;
+
+    // Title Size
+#warning Duplicated Code
+    
+    UIFont *title_font = [UIFont systemFontOfSize:TITLE_FONT_SIZE * self.fontSizeFactor];
+    
+    // Max Width for Textbox
+    CGFloat max_width = self.frame.size.width - TITLE_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET;
+    
+    // Center Text Vertically
+    height += [self.title boundingRectWithSize:CGSizeMake(max_width, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:title_font} context:nil].size.height;
+    
+    // Padding
+    
+    // Description Size
+#warning Duplicated Code
+    UIFont *description_font = [UIFont systemFontOfSize:DESCRIPTION_FONT_SIZE * self.fontSizeFactor];
+    
+    height += [self.description_text sizeForStringWithFont:description_font andSize:CGSizeMake(max_width, 500)].height;
+    
+    // Padding
+    height += 10;
+    
+    // Min Height 
+    if(height < MIN_CELL_HEIGHT){
+        height = MIN_CELL_HEIGHT;
+    }
+    
+    return height;
+}
+
 - (void)drawRect:(CGRect)rect{
     [super drawRect:rect];
     
@@ -40,24 +79,26 @@
     // Center Text Horizontally
     NSMutableParagraphStyle *p = [[NSParagraphStyle defaultParagraphStyle] mutableCopy];
     [p setAlignment:NSTextAlignmentLeft];
+    p.lineBreakMode = NSLineBreakByWordWrapping;    
     
     UIFont *title_font = [UIFont systemFontOfSize:TITLE_FONT_SIZE * self.fontSizeFactor];
     
     NSDictionary *attr = @{NSParagraphStyleAttributeName:p, NSFontAttributeName:title_font, NSForegroundColorAttributeName:[UIColor whiteColor]};
     
     // Center Text Vertically
-    CGSize fontHeight = [self.title sizeWithAttributes:attr];
-    CGFloat YOffSet = (rect.size.height - fontHeight.height) / 2;
+    CGFloat max_width = rect.size.width - TITLE_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET;
+    CGFloat titleHeight = [self.title boundingRectWithSize:CGSizeMake(max_width, 0) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:title_font} context:nil].size.height;
+    CGFloat titleOffSet = ((rect.size.height - titleHeight) / 2) - TITLE_VERTICAL_OFFSET;
     
-    [self.title drawInRect:CGRectMake(TITLE_HORIZONTAL_OFFSET, YOffSet - TITLE_VERTICAL_OFFSET, rect.size.width - TITLE_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET, rect.size.height) withAttributes:attr];
-    
+    [self.title drawInRect:CGRectMake(TITLE_HORIZONTAL_OFFSET, titleOffSet, rect.size.width - TITLE_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET, titleHeight) withAttributes:attr];
     
     // Description
     UIFont *description_font = [UIFont systemFontOfSize:DESCRIPTION_FONT_SIZE * self.fontSizeFactor];
     NSDictionary *description_attr = @{NSParagraphStyleAttributeName:p, NSFontAttributeName:description_font, NSForegroundColorAttributeName:[UIColor whiteColor]};
     
     CGSize descriptionHeight = [self.description_text sizeWithAttributes:description_attr];
-    CGFloat descriptionOffset = (rect.size.height - descriptionHeight.height) / 2;
+//    CGFloat descriptionOffset = (rect.size.height - descriptionHeight.height) / 2;
+    CGFloat descriptionOffset = titleHeight + titleOffSet;
     
     // TODO: Update cell size to adjust for more text
     [self.description_text drawInRect:CGRectMake(DESCRIPTION_HORIZONTAL_OFFSET, descriptionOffset - DESCRIPTION_VERTICAL_OFFSET, rect.size.width - DESCRIPTION_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET, rect.size.height - descriptionOffset - DESCRIPTION_VERTICAL_OFFSET - descriptionHeight.height) withAttributes:description_attr];
