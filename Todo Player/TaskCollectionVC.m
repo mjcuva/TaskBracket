@@ -35,9 +35,10 @@
 }
 
 
-
 - (void)reloadCollectionView{
+    [self setCollectionViewCellSize];
     [self createObjectList];
+    [self loadViewList];
     [self.collectionView reloadData];
     if([self.flowLayout respondsToSelector:@selector(reset)])
         [self.flowLayout performSelector:@selector(reset)];
@@ -54,16 +55,21 @@
     if([cell isKindOfClass:[CollectionCell class]]){
         CollectionCell *collectionCell = (CollectionCell *)cell;
         if(!collectionCell.view){
-            BaseView *view = [self cellView];
-            collectionCell.view = view;
+            BaseView *view = [self.viewList objectAtIndex:indexPath.item];
             [collectionCell addSubview:view];
+            collectionCell.view = view;
         }
         if(LOG_ITEM_NUMBER)
             NSLog(@"Item Number: %ul", indexPath.item);
-        id list = [self objectAtIndex:indexPath.item];
-        [self updateCell:collectionCell usingObject:list];
+        [self updateCell:collectionCell];
     }
     return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    BaseView *view = [[self viewList] objectAtIndex:indexPath.item];
+    CGFloat height = MAX(self.flowLayout.itemSize.height, [view idealHeight]);
+    return CGSizeMake(self.flowLayout.itemSize.width, height);
 }
 
 - (void)setContext:(NSManagedObjectContext *)context{
@@ -84,8 +90,7 @@
     return nil;
 }
 
-- (void)updateCell:(UICollectionViewCell *)cell
-         usingObject:(id)object{
+- (void)updateCell:(UICollectionViewCell *)cell{
 
 }
 
@@ -115,6 +120,17 @@
 
 - (BaseView *)cellView{
     return nil;
+}
+
+- (void)loadViewList{
+    
+}
+
+- (NSMutableArray *)viewList{
+    if(!_viewList){
+        _viewList = [[NSMutableArray alloc] init];
+    }
+    return _viewList;
 }
 
 @end

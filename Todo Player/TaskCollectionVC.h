@@ -23,7 +23,7 @@
 // Abstract
 - (NSUInteger)numCollections;
 - (NSString *)reuseID;
-- (void)updateCell:(UICollectionViewCell *)cell usingObject:(id)Object;
+- (void)updateCell:(UICollectionViewCell *)cell;
 - (id)objectAtIndex:(NSUInteger)index;
 - (NSString *)entityName;
 - (void)createObjectList;
@@ -37,5 +37,12 @@
 - (NSUInteger)viewX;
 
 @property (strong, nonatomic) NSArray *objectList;
+
+/**
+ Array of views to be used by superclass in index order
+ */
+@property (strong, nonatomic) NSMutableArray *viewList;
+
+- (void)loadViewList;
 
 @end

@@ -22,6 +22,8 @@
 @property (strong, nonatomic) Queue *lists;
 
 @property (strong, nonatomic) NSMutableArray *swipedTasks;
+
+@property (strong, nonatomic) NSMutableArray *viewList;
 @end
 
 @implementation TaskListCollectionVC
@@ -38,6 +40,22 @@
     }
     
     return _undoRemoves;
+}
+
+- (void)loadViewList{
+    for(Task *t in self.objectList){
+        TaskView *view = (TaskView *)[self cellView];
+        view.text = t.description;
+        view.title = t.title;
+        view.color = self.viewColor;
+        view.description_text = t.task_description;
+        view.delegate = self;
+        view.enqueued = [t.enqueued boolValue];
+        if(view.frame.size.height != [view idealHeight]){
+            view.frame = CGRectMake([self viewX], 0, [self viewWidth], [view idealHeight]);
+        }
+        [self.viewList addObject:view];
+    }
 }
 
 - (Queue *)lists{
@@ -83,23 +101,6 @@
     return @"TaskListCell";
 }
 
-- (void)updateCell:(UICollectionViewCell *)cell usingObject:(id)object{
-    if([cell isKindOfClass:[CollectionCell class]]){
-        if([object isKindOfClass:[Task class]]){
-            CollectionCell *colCell = (CollectionCell *)cell;
-            TaskView *view = (TaskView *)colCell.view;
-            Task *t = (Task *)object;
-            colCell.view.text = t.description;
-            view.title = t.title;
-            view.color = self.viewColor;
-            view.description_text = t.task_description;
-            view.delegate = self;
-            view.enqueued = [t.enqueued boolValue];
-            [colCell.view setNeedsDisplay];
-        }
-    }
-}
-
 - (NSString *)entityName{
     return @"Task";
 }
@@ -141,6 +142,7 @@
     CGFloat width = self.view.frame.size.width - COLLECTION_VIEW_CELL_PADDING;
     CGFloat height = COLLECTION_VIEW_CELL_HEIGHT;
     self.flowLayout.itemSize = CGSizeMake(width, height);
+    NSLog(@"Width: %f", self.flowLayout.itemSize.width);
     self.flowLayout.sectionInset = UIEdgeInsetsMake(COLLECTION_VIEW_OFFSET, 0, COLLECTION_VIEW_OFFSET, 0);
 }
 

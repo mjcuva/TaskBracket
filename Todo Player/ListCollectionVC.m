@@ -18,6 +18,7 @@
 
 // Cell pressed to bring up action sheet
 @property (strong, nonatomic) CollectionCell *pressedCell;
+
 @end
 
 #define COLLECTION_VIEW_CELL_PADDING 20
@@ -41,19 +42,22 @@
     return @"listCell";
 }
 
-- (void)updateCell:(UICollectionViewCell *)cell usingObject:(id)object{
+- (void)loadViewList{
+    for(ItemList *iList in self.objectList){
+        ListView *view = (ListView *)[self cellView];
+        view.text = iList.description;
+        view.color = [iList color];
+        
+        [self.viewList addObject:view];
+    }
+}
+
+- (void)updateCell:(UICollectionViewCell *)cell{
     if([cell isKindOfClass:[CollectionCell class]]){
-        if([object isKindOfClass:[ItemList class]]){
-            CollectionCell *colCell = (CollectionCell *)cell;
-            ItemList *iList = (ItemList *)object;
-            colCell.view.text = iList.description;
-            colCell.view.color = [iList color];
-            [colCell.view setNeedsDisplay];
+        CollectionCell *colCell = (CollectionCell *)cell;
             
-            UILongPressGestureRecognizer *lp = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(showActionSheet:)];
-            [colCell addGestureRecognizer:lp];
-            
-        }
+        UILongPressGestureRecognizer *lp = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(showActionSheet:)];
+        [colCell addGestureRecognizer:lp];
     }
 }
 
