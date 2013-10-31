@@ -112,6 +112,11 @@
     
 }
 
+- (CGFloat)idealHeight{
+    // Abstract
+    return 0;
+}
+
 @end
 
 
