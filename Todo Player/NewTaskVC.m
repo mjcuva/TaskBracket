@@ -159,6 +159,9 @@
         request.predicate = [NSPredicate predicateWithFormat:@"title=%@", self.listTitle];
         
         ItemList *list = [self.context executeFetchRequest:request error:NULL][0];
+        
+        task.list_location = [NSNumber numberWithInt:[list.tasks count]];
+        
         [list addTasksObject:task];
         
         NSLog(@"%@", self.titleView.text);
