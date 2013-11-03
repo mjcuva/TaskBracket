@@ -26,6 +26,8 @@
 #define OFFSET_FACTOR 3
 #define NAV_BAR_HEIGHT 44
 
+#define TOP_BAR_HEIGHT 140
+
 - (CGPoint)center{
     return CGPointMake(self.view.frame.size.width / 2, (self.view.bounds.size.height / 2 - CELL_HEIGHT) + NAV_BAR_HEIGHT);
 }
@@ -48,7 +50,7 @@
     [self.scrollView setContentOffset:CGPointMake(0, -1 * (self.scrollView.frame.size.height / 2) - (CELL_HEIGHT / 2))];
     
     UINavigationBar *bar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size
-                                                                             .width, 64)];
+                                                                             .width, TOP_BAR_HEIGHT)];
     
     [self.view addSubview:bar];
 }
