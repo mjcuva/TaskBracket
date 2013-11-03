@@ -54,7 +54,7 @@
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:[self reuseID] forIndexPath:indexPath];
     if([cell isKindOfClass:[CollectionCell class]]){
         CollectionCell *collectionCell = (CollectionCell *)cell;
-        if(!collectionCell.view){
+        if(collectionCell.view != [self.viewList objectAtIndex:indexPath.item]){
             BaseView *view = [self.viewList objectAtIndex:indexPath.item];
             [collectionCell addSubview:view];
             collectionCell.view = view;
