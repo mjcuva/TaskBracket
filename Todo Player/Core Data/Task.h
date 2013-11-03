@@ -2,7 +2,7 @@
 //  Task.h
 //  Task Bracket
 //
-//  Created by Marc Cuva on 9/5/13.
+//  Created by Marc Cuva on 11/3/13.
 //  Copyright (c) 2013 Marc Cuva. All rights reserved.
 //
 
@@ -17,6 +17,8 @@
 @property (nonatomic, retain) NSNumber * enqueued;
 @property (nonatomic, retain) NSString * task_description;
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSNumber * list_location;
+@property (nonatomic, retain) NSNumber * queue_location;
 @property (nonatomic, retain) ItemList *lists;
 
 @end
