@@ -55,6 +55,12 @@
     if([cell isKindOfClass:[CollectionCell class]]){
         CollectionCell *collectionCell = (CollectionCell *)cell;
         if(collectionCell.view != [self.viewList objectAtIndex:indexPath.item]){
+            if(cell.subviews != nil){
+                NSArray *views = cell.subviews;
+                for(UIView *view in views){
+                    [view removeFromSuperview];
+                }
+            }
             BaseView *view = [self.viewList objectAtIndex:indexPath.item];
             [collectionCell addSubview:view];
             collectionCell.view = view;
