@@ -2,7 +2,7 @@ Bugs:
 Add task to queue and then delete list containing task
 Tweak text placement
 Change Color Generation for more varied, lighter colors
-Order of Tasks should be based on creation time, then moved around
+Drag to reorder tasks
 Swipe to delete in queue
 Entire timer feature
 Undo View
