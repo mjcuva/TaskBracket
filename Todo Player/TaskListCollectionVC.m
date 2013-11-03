@@ -55,8 +55,10 @@
         if(view.frame.size.height != [view idealHeight]){
             view.frame = CGRectMake([self viewX], 0, [self viewWidth], [view idealHeight]);
         }
+        
         [self.viewList addObject:view];
     }
+
 }
 
 - (Queue *)lists{
@@ -122,7 +124,7 @@
 
 - (void)createObjectList{
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
-    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"list_location" ascending:YES]];
     req.predicate = [NSPredicate predicateWithFormat:@"lists.title == %@", self.title];
     
     // Perform Fetch
