@@ -283,7 +283,6 @@
             
             // Remove task and update collectionView
             NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
-            req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
             req.predicate = [NSPredicate predicateWithFormat:@"title=%@", tv.title];
             
             Task *t = [[self.context executeFetchRequest:req error:NULL] lastObject];
@@ -293,6 +292,19 @@
             
             NSLog(@"Deleting %@", [t title]);
             [self.context deleteObject:t];
+            
+            NSFetchRequest *allItems = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
+            allItems.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"list_location" ascending:YES]];
+            
+            NSArray *tasks = [self.context executeFetchRequest:allItems error:NULL];
+            
+            int count = 0;
+            for(Task *t in tasks){
+                if([t.list_location integerValue] != count){
+                    t.list_location = [NSNumber numberWithInt:count];
+                }
+                count++;
+            }
             
             if([self.lists isEmpty])
                 [self reloadCollectionView];
