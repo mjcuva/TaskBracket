@@ -43,6 +43,7 @@
 }
 
 - (void)loadViewList{
+    [self.viewList removeAllObjects];
     for(Task *t in self.objectList){
         TaskView *view = (TaskView *)[self cellView];
         view.text = t.description;
@@ -142,7 +143,6 @@
     CGFloat width = self.view.frame.size.width - COLLECTION_VIEW_CELL_PADDING;
     CGFloat height = COLLECTION_VIEW_CELL_HEIGHT;
     self.flowLayout.itemSize = CGSizeMake(width, height);
-    NSLog(@"Width: %f", self.flowLayout.itemSize.width);
     self.flowLayout.sectionInset = UIEdgeInsetsMake(COLLECTION_VIEW_OFFSET, 0, COLLECTION_VIEW_OFFSET, 0);
 }
 

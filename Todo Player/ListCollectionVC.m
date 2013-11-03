@@ -43,8 +43,10 @@
 }
 
 - (void)loadViewList{
+    [self.viewList removeAllObjects];
     for(ItemList *iList in self.objectList){
         ListView *view = (ListView *)[self cellView];
+        NSLog(@"Text: %@", iList.description);
         view.text = iList.description;
         view.color = [iList color];
         
