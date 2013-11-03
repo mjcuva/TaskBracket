@@ -87,8 +87,7 @@
 - (void)loadTasks{
     NSFetchRequest *req = [[NSFetchRequest alloc] initWithEntityName:@"Task"];
     req.predicate = [NSPredicate predicateWithFormat:@"enqueued = %@", [NSNumber numberWithBool:YES]];
-    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES selector:@selector(localizedCaseInsensitiveCompare:)]];
-    
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"queue_location" ascending:YES]];    
     NSError *err;
     self.enqueuedTasks = [self.context executeFetchRequest:req error:&err];
     
