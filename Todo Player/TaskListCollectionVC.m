@@ -329,13 +329,29 @@
     [self performSegueWithIdentifier:@"EditTask" sender:task];
 }
 
+#pragma mark - Queue
+
 - (void)buttonPressed:(NSDictionary *)viewDetails{
     NSFetchRequest *req = [NSFetchRequest fetchRequestWithEntityName:@"Task"];
-    req.predicate = [NSPredicate predicateWithFormat:@"title == %@ && task_description == %@", [viewDetails objectForKey:@"title"], [viewDetails objectForKey:@"description"]];
-    Task *t = [[self.context executeFetchRequest:req error:nil] lastObject];
+//    req.predicate = [NSPredicate predicateWithFormat:@"title == %@ && task_description == %@", [viewDetails objectForKey:@"title"], [viewDetails objectForKey:@"description"]];
+    req.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"queue_location" ascending:YES]];
+
+    NSArray *tasks = [self.context executeFetchRequest:req error:nil];
     
-    t.enqueued = [[viewDetails valueForKey:@"enqueued"] isEqualToString:@"YES"] ? [NSNumber numberWithBool:YES] : [NSNumber numberWithBool:NO];
-    
+    for(Task *t in tasks){
+        if([t.title isEqualToString:[viewDetails objectForKey:@"title"]] && [t.task_description isEqualToString:[viewDetails objectForKey:@"description"]]){
+            Task *last = [tasks lastObject];
+            if([[viewDetails valueForKey:@"enqueued"] isEqualToString:@"YES"]){
+                t.enqueued = [NSNumber numberWithBool:YES];
+                t.queue_location = @([last.queue_location integerValue] + 1);
+            }else{
+                t.enqueued = [NSNumber numberWithBool:NO];
+                t.queue_location = @(0);
+            }
+            NSLog(@"Location: %@", [t.queue_location description]);
+            break;
+        }
+    }
 }
 
 
