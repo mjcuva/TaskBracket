@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4922C4AF18261E9B0031518D /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 4922C4AE18261E9B0031518D /* Task.m */; };
 		492C11241795DD75006BBB13 /* Task+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C11231795DD75006BBB13 /* Task+Description.m */; };
 		49472B4517D2902000D9D185 /* UIColor+random.m in Sources */ = {isa = PBXBuildFile; fileRef = 49472B4417D2902000D9D185 /* UIColor+random.m */; };
 		49472B5417D2913800D9D185 /* ItemList+colors.m in Sources */ = {isa = PBXBuildFile; fileRef = 49472B5317D2913800D9D185 /* ItemList+colors.m */; };
@@ -42,7 +43,6 @@
 		49B9ADF617BFE1BA009BB631 /* Queue.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B9ADF517BFE1BA009BB631 /* Queue.m */; };
 		49C3A00217B1656A006ECEA8 /* BaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C3A00117B1656A006ECEA8 /* BaseView.m */; };
 		49C3A00517B1677B006ECEA8 /* TaskView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C3A00417B1677B006ECEA8 /* TaskView.m */; };
-		49D202BC17D956900064A51E /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D202BB17D956900064A51E /* Task.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +56,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4922C4AD18261E9B0031518D /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Task.h; path = "Core Data/Task.h"; sourceTree = "<group>"; };
+		4922C4AE18261E9B0031518D /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Task.m; path = "Core Data/Task.m"; sourceTree = "<group>"; };
 		492C11221795DD75006BBB13 /* Task+Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Task+Description.h"; path = "Core Data/Task+Description.h"; sourceTree = "<group>"; };
 		492C11231795DD75006BBB13 /* Task+Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Task+Description.m"; path = "Core Data/Task+Description.m"; sourceTree = "<group>"; };
 		49472B4317D2902000D9D185 /* UIColor+random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+random.h"; sourceTree = "<group>"; };
@@ -115,8 +117,6 @@
 		49C3A00117B1656A006ECEA8 /* BaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseView.m; sourceTree = "<group>"; };
 		49C3A00317B1677B006ECEA8 /* TaskView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TaskView.h; sourceTree = "<group>"; };
 		49C3A00417B1677B006ECEA8 /* TaskView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TaskView.m; sourceTree = "<group>"; };
-		49D202BA17D956900064A51E /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Task.h; path = "Core Data/Task.h"; sourceTree = "<group>"; };
-		49D202BB17D956900064A51E /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Task.m; path = "Core Data/Task.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,8 +259,8 @@
 			isa = PBXGroup;
 			children = (
 				49A84D2D177558A00076597F /* TodoPlayer.xcdatamodeld */,
-				49D202BA17D956900064A51E /* Task.h */,
-				49D202BB17D956900064A51E /* Task.m */,
+				4922C4AD18261E9B0031518D /* Task.h */,
+				4922C4AE18261E9B0031518D /* Task.m */,
 				49472B5B17D294FE00D9D185 /* ItemList.h */,
 				49472B5C17D294FE00D9D185 /* ItemList.m */,
 				492C11221795DD75006BBB13 /* Task+Description.h */,
@@ -380,13 +380,13 @@
 				49A84D2C177551480076597F /* TaskCollectionVC.m in Sources */,
 				4979B8EA17C9A39300D2E4DA /* UIImage+blur.m in Sources */,
 				494DF799178602E400B99774 /* TaskListCollectionVC.m in Sources */,
+				4922C4AF18261E9B0031518D /* Task.m in Sources */,
 				4962E70B1792277100AFABF5 /* UIPlaceHolderTextView.m in Sources */,
 				49472B5417D2913800D9D185 /* ItemList+colors.m in Sources */,
 				49B9ADF617BFE1BA009BB631 /* Queue.m in Sources */,
 				49A84D38177562910076597F /* ListView.m in Sources */,
 				494DF7961785F7D200B99774 /* NewTaskVC.m in Sources */,
 				498F0E8317E3D337008DB7F6 /* QueueVC.m in Sources */,
-				49D202BC17D956900064A51E /* Task.m in Sources */,
 				49C3A00517B1677B006ECEA8 /* TaskView.m in Sources */,
 				4985FB8F17AB08F100BF9A2F /* DynamicFlowLayout.m in Sources */,
 				49A84D0617754DBA0076597F /* AppDelegate.m in Sources */,
