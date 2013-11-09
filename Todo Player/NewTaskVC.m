@@ -162,6 +162,13 @@
         
         task.list_location = [NSNumber numberWithInt:[list.tasks count]];
         
+        NSError *err;
+        [self.context save:&err];
+        
+        if(err){
+            NSLog(@"%@", [err description]);
+        }
+        
         [list addTasksObject:task];
         
         NSLog(@"%@", self.titleView.text);
