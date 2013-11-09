@@ -53,6 +53,19 @@
                                                                              .width, TOP_BAR_HEIGHT)];
     
     [self.view addSubview:bar];
+    
+    NSString *currentTask = @"Current Task: ";
+    UIFont *font = [UIFont systemFontOfSize:20];
+    NSDictionary *attr = @{NSFontAttributeName: font};
+    CGFloat labelVOffset = 30.0;
+    
+    UILabel *currentTaskLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 2) - ([currentTask sizeWithAttributes:attr].width / 2), (TOP_BAR_HEIGHT / 2) - labelVOffset, [currentTask sizeWithAttributes:attr].width, [currentTask sizeWithAttributes:attr].height)];
+    currentTaskLabel.text = currentTask;
+#warning Tint color?
+    currentTaskLabel.textColor = [UIColor redColor];
+
+    [self.view addSubview:currentTaskLabel];
+    
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
