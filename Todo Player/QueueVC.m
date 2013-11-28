@@ -11,6 +11,7 @@
 #import "Task+Description.h"
 #import "TaskView.h"
 #import "ItemList+colors.h"
+#import "QueueDisplayView.h"
 
 @interface QueueVC () <UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -25,8 +26,7 @@
 #define VERTICAL_PADDING 10
 #define OFFSET_FACTOR 3
 #define NAV_BAR_HEIGHT 44
-
-#define TOP_BAR_HEIGHT 140
+#define TOP_BAR_HEIGHT 140 // Also set in QueueDisplayView.m
 
 - (CGPoint)center{
     return CGPointMake(self.view.frame.size.width / 2, (self.view.bounds.size.height / 2 - CELL_HEIGHT) + NAV_BAR_HEIGHT);
@@ -49,22 +49,8 @@
     [self.scrollView setShowsVerticalScrollIndicator:NO];
     [self.scrollView setContentOffset:CGPointMake(0, -1 * (self.scrollView.frame.size.height / 2) - (CELL_HEIGHT / 2))];
     
-    UINavigationBar *bar = [[UINavigationBar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size
-                                                                             .width, TOP_BAR_HEIGHT)];
-    
-    [self.view addSubview:bar];
-    
-    NSString *currentTask = @"Current Task: ";
-    UIFont *font = [UIFont systemFontOfSize:20];
-    NSDictionary *attr = @{NSFontAttributeName: font};
-    CGFloat labelVOffset = 30.0;
-    
-    UILabel *currentTaskLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width / 2) - ([currentTask sizeWithAttributes:attr].width / 2), (TOP_BAR_HEIGHT / 2) - labelVOffset, [currentTask sizeWithAttributes:attr].width, [currentTask sizeWithAttributes:attr].height)];
-    currentTaskLabel.text = currentTask;
-#warning Tint color?
-    currentTaskLabel.textColor = [UIColor redColor];
-
-    [self.view addSubview:currentTaskLabel];
+    QueueDisplayView *qdv = [[QueueDisplayView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, TOP_BAR_HEIGHT)];
+    [self.view addSubview:qdv];
     
 }
 
