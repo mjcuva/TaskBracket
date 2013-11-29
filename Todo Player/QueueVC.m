@@ -17,6 +17,11 @@
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (strong, nonatomic) NSManagedObjectContext *context;
 @property (strong, nonatomic) NSArray *enqueuedTasks;
+
+// Holds that task that is currently active
+@property (strong, nonatomic) Task *currentTask;
+
+@property (strong, nonatomic) QueueDisplayView *displayView;
 @end
 
 @implementation QueueVC
@@ -49,8 +54,8 @@
     [self.scrollView setShowsVerticalScrollIndicator:NO];
     [self.scrollView setContentOffset:CGPointMake(0, -1 * (self.scrollView.frame.size.height / 2) - (CELL_HEIGHT / 2))];
     
-    QueueDisplayView *qdv = [[QueueDisplayView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, TOP_BAR_HEIGHT)];
-    [self.view addSubview:qdv];
+    self.displayView = [[QueueDisplayView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, TOP_BAR_HEIGHT)];
+    [self.view addSubview:self.displayView];
     
 }
 
@@ -96,6 +101,15 @@
         NSLog(@"HOLY SHIT BATMAN! ERROR IN THE QUEUE: %@", [err description]);
     }else{
         NSLog(@"%@", [self.enqueuedTasks description]);
+        NSUInteger index = 0;
+        while (self.currentTask == nil && [self.enqueuedTasks count] > 0) {
+            // If the task at index isn't completed
+            if(![(Task *)[self.enqueuedTasks objectAtIndex:index] completed]){
+                self.currentTask = [self.enqueuedTasks objectAtIndex:index];
+            }else{
+                index++;
+            }
+        }
         [self addSubviews];
     }
 }
@@ -123,6 +137,13 @@
     }
     
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width, self.scrollView.frame.size.height + (CELL_HEIGHT + VERTICAL_PADDING) * ([self.enqueuedTasks count] - 1));
+}
+
+// Sets the current task in the display view 
+// to the current task in the Queue
+- (void)setCurrentTask:(Task *)currentTask{
+    _currentTask = currentTask;
+    self.displayView.currentTask = currentTask;
 }
 
 @end
