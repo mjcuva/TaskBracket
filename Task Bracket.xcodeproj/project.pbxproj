@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4922C4AF18261E9B0031518D /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 4922C4AE18261E9B0031518D /* Task.m */; };
 		492C11241795DD75006BBB13 /* Task+Description.m in Sources */ = {isa = PBXBuildFile; fileRef = 492C11231795DD75006BBB13 /* Task+Description.m */; };
 		49472B4517D2902000D9D185 /* UIColor+random.m in Sources */ = {isa = PBXBuildFile; fileRef = 49472B4417D2902000D9D185 /* UIColor+random.m */; };
 		49472B5417D2913800D9D185 /* ItemList+colors.m in Sources */ = {isa = PBXBuildFile; fileRef = 49472B5317D2913800D9D185 /* ItemList+colors.m */; };
@@ -17,6 +16,7 @@
 		4962E70B1792277100AFABF5 /* UIPlaceHolderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4962E70A1792277100AFABF5 /* UIPlaceHolderTextView.m */; };
 		4979B8EA17C9A39300D2E4DA /* UIImage+blur.m in Sources */ = {isa = PBXBuildFile; fileRef = 4979B8E917C9A39300D2E4DA /* UIImage+blur.m */; };
 		497E73F71847ABC800132553 /* QueueDisplayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 497E73F61847ABC800132553 /* QueueDisplayView.m */; };
+		497E73FA1849396900132553 /* Task.m in Sources */ = {isa = PBXBuildFile; fileRef = 497E73F91849396900132553 /* Task.m */; };
 		4985FB8F17AB08F100BF9A2F /* DynamicFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 4985FB8E17AB08F100BF9A2F /* DynamicFlowLayout.m */; };
 		498611FA17A07D800086000E /* UndoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 498611F917A07D800086000E /* UndoView.m */; };
 		498F0E8317E3D337008DB7F6 /* QueueVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 498F0E8217E3D337008DB7F6 /* QueueVC.m */; };
@@ -57,8 +57,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4922C4AD18261E9B0031518D /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Task.h; path = "Core Data/Task.h"; sourceTree = "<group>"; };
-		4922C4AE18261E9B0031518D /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Task.m; path = "Core Data/Task.m"; sourceTree = "<group>"; };
 		492C11221795DD75006BBB13 /* Task+Description.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "Task+Description.h"; path = "Core Data/Task+Description.h"; sourceTree = "<group>"; };
 		492C11231795DD75006BBB13 /* Task+Description.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "Task+Description.m"; path = "Core Data/Task+Description.m"; sourceTree = "<group>"; };
 		49472B4317D2902000D9D185 /* UIColor+random.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+random.h"; sourceTree = "<group>"; };
@@ -77,6 +75,8 @@
 		4979B8E917C9A39300D2E4DA /* UIImage+blur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+blur.m"; sourceTree = "<group>"; };
 		497E73F51847ABC800132553 /* QueueDisplayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QueueDisplayView.h; sourceTree = "<group>"; };
 		497E73F61847ABC800132553 /* QueueDisplayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QueueDisplayView.m; sourceTree = "<group>"; };
+		497E73F81849396900132553 /* Task.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Task.h; path = "Core Data/Task.h"; sourceTree = "<group>"; };
+		497E73F91849396900132553 /* Task.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Task.m; path = "Core Data/Task.m"; sourceTree = "<group>"; };
 		4985FB8D17AB08F100BF9A2F /* DynamicFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicFlowLayout.h; sourceTree = "<group>"; };
 		4985FB8E17AB08F100BF9A2F /* DynamicFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicFlowLayout.m; sourceTree = "<group>"; };
 		498611F817A07D800086000E /* UndoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UndoView.h; sourceTree = "<group>"; };
@@ -264,8 +264,8 @@
 			isa = PBXGroup;
 			children = (
 				49A84D2D177558A00076597F /* TodoPlayer.xcdatamodeld */,
-				4922C4AD18261E9B0031518D /* Task.h */,
-				4922C4AE18261E9B0031518D /* Task.m */,
+				497E73F81849396900132553 /* Task.h */,
+				497E73F91849396900132553 /* Task.m */,
 				49472B5B17D294FE00D9D185 /* ItemList.h */,
 				49472B5C17D294FE00D9D185 /* ItemList.m */,
 				492C11221795DD75006BBB13 /* Task+Description.h */,
@@ -385,13 +385,13 @@
 				49A84D2C177551480076597F /* TaskCollectionVC.m in Sources */,
 				4979B8EA17C9A39300D2E4DA /* UIImage+blur.m in Sources */,
 				494DF799178602E400B99774 /* TaskListCollectionVC.m in Sources */,
-				4922C4AF18261E9B0031518D /* Task.m in Sources */,
 				4962E70B1792277100AFABF5 /* UIPlaceHolderTextView.m in Sources */,
 				497E73F71847ABC800132553 /* QueueDisplayView.m in Sources */,
 				49472B5417D2913800D9D185 /* ItemList+colors.m in Sources */,
 				49B9ADF617BFE1BA009BB631 /* Queue.m in Sources */,
 				49A84D38177562910076597F /* ListView.m in Sources */,
 				494DF7961785F7D200B99774 /* NewTaskVC.m in Sources */,
+				497E73FA1849396900132553 /* Task.m in Sources */,
 				498F0E8317E3D337008DB7F6 /* QueueVC.m in Sources */,
 				49C3A00517B1677B006ECEA8 /* TaskView.m in Sources */,
 				4985FB8F17AB08F100BF9A2F /* DynamicFlowLayout.m in Sources */,
