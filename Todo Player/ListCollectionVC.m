@@ -12,6 +12,7 @@
 #import "CollectionCell.h"
 #import "ListView.h"
 #import "UIColor+random.h"
+#import "Task.h"
 
 @interface ListCollectionVC () <UIActionSheetDelegate>
 @property (strong, nonatomic) UIActionSheet *actionSheet;
@@ -198,6 +199,12 @@
         req.predicate = [NSPredicate predicateWithFormat:@"title = %@", self.pressedCell.view.text];
         ItemList *list = [[self.context executeFetchRequest:req error:NULL] lastObject];
         assert(list != nil);
+        
+        // Removes items in deleted list
+        for(Task *task in list.tasks){
+            [self.context deleteObject:task];
+        }
+        
         [self.context deleteObject:list];
         [UIView animateWithDuration:.25 animations:^{
             self.pressedCell.alpha = 0;
