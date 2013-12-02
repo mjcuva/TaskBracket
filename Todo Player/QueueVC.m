@@ -102,14 +102,21 @@
     }else{
         NSLog(@"%@", [self.enqueuedTasks description]);
         NSUInteger index = 0;
-        while (self.currentTask == nil && [self.enqueuedTasks count] > 0) {
-            // If the task at index isn't completed
-            if(![(Task *)[self.enqueuedTasks objectAtIndex:index] completed]){
-                self.currentTask = [self.enqueuedTasks objectAtIndex:index];
-            }else{
-                index++;
+        
+        if([self.enqueuedTasks count] == 0){
+            // If task is deleted, reset current task
+            self.currentTask = nil;
+        }else{
+            while (self.currentTask == nil && [self.enqueuedTasks count] > 0) {
+                // If the task at index isn't completed
+                if(![(Task *)[self.enqueuedTasks objectAtIndex:index] completed]){
+                    self.currentTask = [self.enqueuedTasks objectAtIndex:index];
+                }else{
+                    index++;
+                }
             }
         }
+        
         [self addSubviews];
     }
 }
