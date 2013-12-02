@@ -107,15 +107,9 @@
     NSDictionary *description_attr = @{NSParagraphStyleAttributeName:p, NSFontAttributeName:[self descriptionFont], NSForegroundColorAttributeName:[UIColor whiteColor]};
     
     CGFloat descriptionHeight = [self descriptionHeight];
-//    CGFloat descriptionOffset = (rect.size.height - descriptionHeight.height) / 2;
     CGFloat descriptionOffset = titleHeight + titleOffSet;
     
-    NSLog(@"height = %f - %f - %d - %f", rect.size.height, descriptionOffset, DESCRIPTION_VERTICAL_OFFSET, descriptionHeight);
-    
     CGRect descriptionTextRect = CGRectMake(DESCRIPTION_HORIZONTAL_OFFSET, descriptionOffset - DESCRIPTION_VERTICAL_OFFSET, rect.size.width - DESCRIPTION_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET, descriptionHeight);
-    
-    NSLog(@"Description: %@", [self stringFromRect:descriptionTextRect]);
-    NSLog(@"Frame: %@", [self stringFromRect:rect]);
     
     [self.description_text drawInRect:descriptionTextRect withAttributes:description_attr];
     
@@ -134,10 +128,6 @@
     }else{
         self.addToQueueButton.titleLabel.textColor = [UIColor whiteColor];
     }
-}
-
-- (NSString *)stringFromRect:(CGRect)rect{
-    return [NSString stringWithFormat:@"X: %f, Y: %f, Width: %f, Height: %f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height];
 }
 
 - (void)buttonPressed:(UIButton *)button{
