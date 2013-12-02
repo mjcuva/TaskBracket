@@ -24,7 +24,7 @@
 }
 
 #define TITLE_HORIZONTAL_OFFSET 20
-#define TITLE_VERTICAL_OFFSET 20
+#define TITLE_VERTICAL_OFFSET 10
 #define DESCRIPTION_HORIZONTAL_OFFSET 30
 #define DESCRIPTION_VERTICAL_OFFSET -10
 #define RIGHT_EDGE_INSET 60
@@ -33,7 +33,7 @@
 #define DESCRIPTION_FONT_SIZE 16
 
 #define MIN_CELL_HEIGHT 100
-#define MAX_CELL_WIDTH 
+#define CELL_PADDING 35
 
 - (CGFloat)maxWidth{
     return self.frame.size.width - TITLE_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET;
@@ -68,7 +68,7 @@
     height += [self descriptionHeight];
     
     // Padding
-    height += 10;
+    height += CELL_PADDING;
     
     // Min Height 
     if(height < MIN_CELL_HEIGHT){
@@ -92,7 +92,14 @@
     
     // Center Text Vertically
     CGFloat titleHeight = [self titleHeight];
-    CGFloat titleOffSet = ((rect.size.height - titleHeight) / 2) - TITLE_VERTICAL_OFFSET;
+
+    // Center title if no description 
+    CGFloat titleOffSet;
+    if([self.description_text isEqualToString:@""]){
+        titleOffSet = ((rect.size.height - titleHeight) / 2);    
+    }else{
+        titleOffSet = TITLE_VERTICAL_OFFSET;   
+    }
     
     [self.title drawInRect:CGRectMake(TITLE_HORIZONTAL_OFFSET, titleOffSet, rect.size.width - TITLE_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET, titleHeight) withAttributes:attr];
     
@@ -103,8 +110,14 @@
 //    CGFloat descriptionOffset = (rect.size.height - descriptionHeight.height) / 2;
     CGFloat descriptionOffset = titleHeight + titleOffSet;
     
-    // TODO: Update cell size to adjust for more text
-    [self.description_text drawInRect:CGRectMake(DESCRIPTION_HORIZONTAL_OFFSET, descriptionOffset - DESCRIPTION_VERTICAL_OFFSET, rect.size.width - DESCRIPTION_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET, rect.size.height - descriptionOffset - DESCRIPTION_VERTICAL_OFFSET - descriptionHeight) withAttributes:description_attr];
+    NSLog(@"height = %f - %f - %d - %f", rect.size.height, descriptionOffset, DESCRIPTION_VERTICAL_OFFSET, descriptionHeight);
+    
+    CGRect descriptionTextRect = CGRectMake(DESCRIPTION_HORIZONTAL_OFFSET, descriptionOffset - DESCRIPTION_VERTICAL_OFFSET, rect.size.width - DESCRIPTION_HORIZONTAL_OFFSET - RIGHT_EDGE_INSET, descriptionHeight);
+    
+    NSLog(@"Description: %@", [self stringFromRect:descriptionTextRect]);
+    NSLog(@"Frame: %@", [self stringFromRect:rect]);
+    
+    [self.description_text drawInRect:descriptionTextRect withAttributes:description_attr];
     
     // Add Button
     if(!self.addToQueueButton && !self.hideAddQueueButton){
@@ -121,6 +134,10 @@
     }else{
         self.addToQueueButton.titleLabel.textColor = [UIColor whiteColor];
     }
+}
+
+- (NSString *)stringFromRect:(CGRect)rect{
+    return [NSString stringWithFormat:@"X: %f, Y: %f, Width: %f, Height: %f", rect.origin.x, rect.origin.y, rect.size.width, rect.size.height];
 }
 
 - (void)buttonPressed:(UIButton *)button{
