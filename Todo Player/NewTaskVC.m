@@ -45,6 +45,8 @@
     // Set up picker
     self.picker.dataSource = self;
     self.picker.delegate = self;
+    // Set default to 15min
+    [self.picker selectRow:15 inComponent:0 animated:NO];
     
     // Get shared context
     [SharedManagedObjectContext getSharedContextWithCompletionHandler:^(NSManagedObjectContext *context){
