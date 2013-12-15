@@ -9,8 +9,9 @@
 
 #import <UIKit/UIKit.h>
 #import "BaseView.h"
+#import "LXReorderableCollectionViewFlowLayout.h"
 
-@interface TaskCollectionVC : UIViewController
+@interface TaskCollectionVC : UIViewController <LXReorderableCollectionViewDataSource, LXReorderableCollectionViewDelegateFlowLayout>
 
 @property (strong, nonatomic) NSManagedObjectContext *context;
 
@@ -28,6 +29,8 @@
 - (NSString *)entityName;
 - (void)createObjectList;
 - (BaseView *)cellView;
+- (BOOL)canMoveItems;
+- (void)moveItemFromIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath;
 
 - (void)setCollectionViewCellSize;
 

@@ -11,6 +11,8 @@
 #import "SharedManagedObjectContext.h"
 #import <CoreData/CoreData.h>
 
+
+
 @interface TaskCollectionVC () <UICollectionViewDataSource,
                                 UICollectionViewDelegateFlowLayout,
                                 UIAlertViewDelegate>
@@ -137,6 +139,32 @@
         _viewList = [[NSMutableArray alloc] init];
     }
     return _viewList;
+}
+
+- (BOOL)canMoveItems{
+    return NO;
+}
+
+- (void)moveItemFromIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath{
+    
+}
+
+#pragma mark - LXReorderableCollectionView Delegate
+
+- (BOOL) collectionView:(UICollectionView *)collectionView canMoveItemAtIndexPath:(NSIndexPath *)indexPath{
+    return [self canMoveItems];
+}
+
+- (BOOL)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath canMoveToIndexPath:(NSIndexPath *)toIndexPath{
+    return YES;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView itemAtIndexPath:(NSIndexPath *)fromIndexPath willMoveToIndexPath:(NSIndexPath *)toIndexPath{
+    [self moveItemFromIndexPath:fromIndexPath toIndexPath:toIndexPath];
+}
+
+- (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout 
+// TODO: fix reloading collection view and fix colors
 }
 
 @end

@@ -160,6 +160,19 @@
     return [[TaskView alloc] initWithFrame:CGRectMake([self viewX], 0, [self viewWidth], self.flowLayout.itemSize.height)];
 }
 
+- (BOOL)canMoveItems{
+    return YES;
+}
+
+- (void)moveItemFromIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath{
+    Task *task = self.objectList[fromIndexPath.item];
+    Task *task2 = self.objectList[toIndexPath.item];
+    task.list_location = @(toIndexPath.item);
+    task2.list_location = @(fromIndexPath.item);
+    
+//    [self reloadCollectionView];
+}
+
 #pragma mark - Remove Item Gesture
 
 - (BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer{
