@@ -119,7 +119,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewLayout key="collectionViewLayout" id="3pg-aj-Xy9" customClass="DynamicFlowLayout"/>
+                        <collectionViewLayout key="collectionViewLayout" id="3pg-aj-Xy9" customClass="LXReorderableCollectionViewFlowLayout"/>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TaskListCell" id="2sP-9r-FS3" customClass="CollectionCell">
                                 <rect key="frame" x="0.0" y="64" width="50" height="50"/>
