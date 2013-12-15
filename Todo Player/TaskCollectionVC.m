@@ -163,7 +163,7 @@
     [self moveItemFromIndexPath:fromIndexPath toIndexPath:toIndexPath];
 }
 
-- (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout 
+- (void)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)layout{
 // TODO: fix reloading collection view and fix colors
 }
 
