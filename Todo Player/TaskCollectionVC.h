@@ -39,7 +39,7 @@
 // Override for custom origin
 - (NSUInteger)viewX;
 
-@property (strong, nonatomic) NSArray *objectList;
+@property (strong, nonatomic) NSMutableArray *objectList;
 
 /**
  Array of views to be used by superclass in index order
