@@ -129,7 +129,7 @@
     
     // Perform Fetch
     NSError *err;
-    self.objectList = [self.context executeFetchRequest:req error:&err];
+    self.objectList = [[self.context executeFetchRequest:req error:&err] mutableCopy];
     if(err){
         NSLog(@"Error Fetching List %@: %@", self.title, [err description]);
     }else{
@@ -169,6 +169,8 @@
     Task *task2 = self.objectList[toIndexPath.item];
     task.list_location = @(toIndexPath.item);
     task2.list_location = @(fromIndexPath.item);
+    self.objectList[fromIndexPath.item] = task2;
+    self.objectList[toIndexPath.item] = task;
     
 //    [self reloadCollectionView];
 }
