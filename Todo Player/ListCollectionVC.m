@@ -87,7 +87,7 @@
     
     // Perform Fetch
     NSError *err;
-    self.objectList = [self.context executeFetchRequest:request error:&err];
+    self.objectList = [[self.context executeFetchRequest:request error:&err] mutableCopy];
     
     if(err)
         NSLog(@"%@", [err description]);
