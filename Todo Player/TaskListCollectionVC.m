@@ -24,6 +24,8 @@
 @property (strong, nonatomic) NSMutableArray *swipedTasks;
 
 @property (strong, nonatomic) NSMutableArray *viewList;
+
+@property (strong, nonatomic) UIImage *taskBackground;
 @end
 
 @implementation TaskListCollectionVC
@@ -48,7 +50,13 @@
         TaskView *view = (TaskView *)[self cellView];
         view.text = t.description;
         view.title = t.title;
-        view.color = self.viewColor;
+        if(!self.taskBackground){
+            view.color = self.viewColor;
+            self.taskBackground = view.image;
+        }else{
+            view.color = self.viewColor;
+            view.image = self.taskBackground;
+        }
         view.description_text = t.task_description;
         view.delegate = self;
         view.enqueued = [t.enqueued boolValue];
