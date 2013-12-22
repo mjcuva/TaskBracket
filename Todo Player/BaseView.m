@@ -9,10 +9,6 @@
 #import "BaseView.h"
 #import "UIImage+blur.h"
 
-@interface BaseView()
-@property (strong, nonatomic) UIImage *image;
-@end
-
 @implementation BaseView
 
 @synthesize color = _color;
@@ -28,6 +24,7 @@
 - (void)setColor:(UIColor *)color{
     _color = color;
     self.image = nil;
+    [self generateImage];
 }
 
 - (UIImage *)image{
@@ -43,20 +40,22 @@
     return self;
 }
 
+
+- (void)generateImage{
+    NSArray *colors = [self getColorRange];
+    self.image = [self generateImageWithSize:self.frame andColors:colors];
+}
+
 - (void)drawRect:(CGRect)rect{
     
     UIBezierPath *roundedRect = [UIBezierPath bezierPathWithRoundedRect:self.bounds cornerRadius:12.0];
     
     [roundedRect addClip];
     
-    NSArray *colors = [self getColorRange];
+
     
     [self.color setFill];
     UIRectFill(rect);
-    
-    if (!self.image) {
-        self.image = [self generateImageWithSize:rect andColors:colors];
-    }
     
     [self.image drawInRect:rect blendMode:kCGBlendModeNormal alpha:.7];
     
@@ -78,7 +77,6 @@
         [colors addObject:color];
         
     }
-//    return @[[UIColor whiteColor]];
     return colors;
 }
 

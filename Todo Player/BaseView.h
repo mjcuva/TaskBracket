@@ -10,7 +10,16 @@
 
 @interface BaseView : UIView
 @property (strong, nonatomic) NSString *text;
+
+/**
+ Color used for the background of the image. Defaults to [UIColor redColor]
+ */
 @property (strong, nonatomic) UIColor *color;
+
+/**
+  Image used for the styling of the background. If set manually, color still needs to be set, otherwise it will default to red.
+ */
+@property (strong, nonatomic) UIImage *image;
 
 /**
  Abstract
