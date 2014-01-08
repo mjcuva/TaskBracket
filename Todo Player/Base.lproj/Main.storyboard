@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A3017" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Pms-Ww-vk2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="5037.2" systemVersion="13B3116" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="Pms-Ww-vk2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
     </dependencies>
     <scenes>
         <!--QueueVC - Task Queue-->
@@ -119,7 +119,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <collectionViewLayout key="collectionViewLayout" id="3pg-aj-Xy9" customClass="LXReorderableCollectionViewFlowLayout"/>
+                        <gestureRecognizers/>
+                        <collectionViewLayout key="collectionViewLayout" id="3pg-aj-Xy9" customClass="DynamicFlowLayout"/>
                         <cells>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="TaskListCell" id="2sP-9r-FS3" customClass="CollectionCell">
                                 <rect key="frame" x="0.0" y="64" width="50" height="50"/>
@@ -130,15 +131,12 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="GSa-RO-7BN" appends="YES" id="9CR-Dc-E0v"/>
-                                    <outletCollection property="gestureRecognizers" destination="GSa-RO-7BN" appends="YES" id="Pdu-CY-o7t"/>
-                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
                             <outlet property="dataSource" destination="yoa-BP-uXb" id="s1a-Ki-rbh"/>
                             <outlet property="delegate" destination="yoa-BP-uXb" id="VeG-IZ-hxY"/>
+                            <outletCollection property="gestureRecognizers" destination="GSa-RO-7BN" appends="YES" id="Tqt-gS-XsI"/>
                         </connections>
                     </collectionView>
                     <navigationItem key="navigationItem" id="4ib-PO-hMD">
@@ -309,7 +307,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="rWh-DG-7oJ"/>
+        <segue reference="MM6-Ni-vOJ"/>
         <segue reference="B2U-1z-TVb"/>
     </inferredMetricsTieBreakers>
 </document>
