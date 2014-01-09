@@ -62,7 +62,6 @@ static NSString * const kLXCollectionViewKeyPath = @"collectionView";
 @end
 
 @interface LXReorderableCollectionViewFlowLayout ()
-
 @property (strong, nonatomic) NSIndexPath *selectedItemIndexPath;
 @property (strong, nonatomic) UIView *currentView;
 @property (assign, nonatomic) CGPoint currentViewCenter;

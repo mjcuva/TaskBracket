@@ -34,11 +34,37 @@
 }
 
 - (NSArray *)layoutAttributesForElementsInRect:(CGRect)rect{
-    return [_dynamicAnimator itemsInRect:rect];
+    
+    NSArray *superItems = [super layoutAttributesForElementsInRect:rect];
+    NSArray *newItems = [_dynamicAnimator itemsInRect:rect];
+ 
+    if(self.panGestureRecognizer.state == UIGestureRecognizerStateFailed){
+        return newItems;
+    }else if(self.panGestureRecognizer.state == UIGestureRecognizerStatePossible){
+        for(UICollectionViewLayoutAttributes *layout in newItems){
+            [self applyLayoutAttributes:layout];
+        }
+        return newItems;
+    }else{
+        _dynamicAnimator = nil;
+        return superItems;
+    }
 }
 
 - (UICollectionViewLayoutAttributes *)layoutAttributesForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return [_dynamicAnimator layoutAttributesForCellAtIndexPath:indexPath];
+    
+    UICollectionViewLayoutAttributes *superLayout = [super layoutAttributesForItemAtIndexPath:indexPath];
+    UICollectionViewLayoutAttributes *newLayout = [_dynamicAnimator layoutAttributesForCellAtIndexPath:indexPath];
+    
+    if(self.panGestureRecognizer.state == UIGestureRecognizerStateFailed){
+        return newLayout;
+    }else if(self.panGestureRecognizer.state == UIGestureRecognizerStatePossible){
+        [self applyLayoutAttributes:newLayout];
+        return newLayout;
+    }else{
+        _dynamicAnimator = nil;
+        return superLayout;
+    }
 }
 
 #define RESISTANCE_FACTOR 800 // Higher resists less

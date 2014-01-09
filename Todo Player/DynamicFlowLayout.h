@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LXReorderableCollectionViewFlowLayout.h"
 
-@interface DynamicFlowLayout : UICollectionViewFlowLayout
+@interface DynamicFlowLayout : LXReorderableCollectionViewFlowLayout
 - (void)reset;
 @end

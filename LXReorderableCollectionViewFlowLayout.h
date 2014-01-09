@@ -16,6 +16,9 @@
 
 - (void)setUpGestureRecognizersOnCollectionView __attribute__((deprecated("Calls to setUpGestureRecognizersOnCollectionView method are not longer needed as setup are done automatically through KVO.")));
 
+- (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes;
+
+
 @end
 
 @protocol LXReorderableCollectionViewDataSource <UICollectionViewDataSource>
